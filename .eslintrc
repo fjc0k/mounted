@@ -1,0 +1,16 @@
+{
+  "extends": ["taro", "io"],
+  "rules": {
+    "no-unused-vars": ["error", { "varsIgnorePattern": "Taro" }],
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".tsx"] }],
+    "no-debugger": "off",
+    "react/jsx-closing-bracket-location": [2, {
+      "selfClosing": "line-aligned",
+      "nonEmpty": "after-props"
+    }],
+    "space-infix-ops": 0,
+    "react/react-in-jsx-scope": 0,
+    "react/jsx-boolean-value": [2, "always"]
+  },
+  "parser": "babel-eslint"
+}
