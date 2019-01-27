@@ -12,7 +12,7 @@ class MSticky extends Taro.Component<{}, {
   /** 内容高度，单位：px */
   contentHeight: number,
 }> {
-  static options = {
+  static options: wx.ComponentOptions = {
     addGlobalClass: true,
   }
 

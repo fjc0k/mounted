@@ -8,3 +8,9 @@ declare module '*.less'
 declare module '*.scss'
 declare module '*.sass'
 declare module '*.styl'
+
+declare namespace wx {
+  interface ComponentOptions {
+    addGlobalClass?: boolean,
+  }
+}
