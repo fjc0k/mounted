@@ -1,11 +1,12 @@
 import Taro from '@tarojs/taro'
-import Home from './pages/Home/Home';
+import Home from './pages/Home/Home'
 
 class App extends Taro.Component {
   config: Taro.Config = {
     pages: [
       // 'pages/Home/Home',
-      'pages/Sticky/Sticky',
+      // 'pages/Sticky/Sticky',
+      'pages/Transition/Transition',
     ],
     window: {
       navigationBarTitleText: 'DEMO',

@@ -7,7 +7,7 @@ export default class Sticky extends Taro.Component {
   render() {
     return (
       <View>
-        {range(0, 40).map(index => (
+        {range(0, 10).map(index => (
           <View key={index}>
             {index}
           </View>
