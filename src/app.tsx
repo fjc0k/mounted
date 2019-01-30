@@ -6,7 +6,8 @@ class App extends Taro.Component {
     pages: [
       // 'pages/Home/Home',
       // 'pages/Sticky/Sticky',
-      'pages/Transition/Transition',
+      // 'pages/Transition/X',
+      'pages/Popup/Popup',
     ],
     window: {
       navigationBarTitleText: 'DEMO',

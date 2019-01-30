@@ -1,30 +1,22 @@
 import Taro from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import { Disposer } from 'vtils'
+import { component } from '../component'
+import { CUSTOM_CLASS } from '../const'
 import _ from './index.module.scss'
 
 /**
  * 吸顶组件。
  */
-class MSticky extends Taro.Component<{}, {
-  /** 是否置顶 */
-  fixed: boolean,
-  /** 内容高度，单位：px */
-  contentHeight: number,
-}> {
-  static options: wx.ComponentOptions = {
-    addGlobalClass: true,
-  }
-
+class MSticky extends component({
+  state: {
+    /** 是否置顶 */
+    fixed: false as boolean,
+    /** 内容高度，单位：px */
+    contentHeight: 0 as number,
+  },
+}) {
   disposer = new Disposer()
-
-  constructor() {
-    super(...arguments)
-    this.state = {
-      fixed: false,
-      contentHeight: 0,
-    }
-  }
 
   componentDidMount() {
     wx.createSelectorQuery()
@@ -51,11 +43,12 @@ class MSticky extends Taro.Component<{}, {
   }
 
   render() {
+    const { className } = this.props
     const { fixed, contentHeight } = this.state
     return (
       <View
-        className={`${_.sticky} ${fixed && _.fixed}`}
-        style={{ height: contentHeight ? `${contentHeight}px` : 'initial' }}>
+        className={`${_.sticky} ${fixed && _.fixed} ${className} ${CUSTOM_CLASS}`}
+        style={contentHeight ? { height: `${contentHeight}px` } : {}}>
         <View className={_.content}>
           {this.props.children}
         </View>

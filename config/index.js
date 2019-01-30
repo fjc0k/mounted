@@ -68,7 +68,6 @@ const config = {
               if (!cssNames.has(cssNameKey)) {
                 cssNames.set(cssNameKey, `m-${componentName.toLowerCase() === local ? '' : (`${componentName.toLowerCase()}-`)}${local}`)
               }
-              console.log(...arguments)
               return cssNames.get(cssNameKey)
             },
           },

@@ -1,3 +1,4 @@
+import './Transition.scss'
 import Taro from '@tarojs/taro'
 import { View, Button } from '@tarojs/components'
 import { range } from 'vtils'
@@ -23,7 +24,7 @@ export default class Transition extends Taro.Component<{}, {
     const { visible } = this.state
     return (
       <View>
-        <MTransition visible={visible} name='slideLeft'>
+        <MTransition customClass='red' visible={visible} name='fade'>
           <View style={{ background: '#1296db' }}>
             {range(0, 20).map(index => (
               <View key={index}>
