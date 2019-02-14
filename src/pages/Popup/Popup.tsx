@@ -20,6 +20,9 @@ export default class Popup extends component({
     const { visible } = this.state
     return (
       <View>
+        {range(0, 20).map(index => (
+          <View key={index}>{index}</View>
+        ))}
         <MPopup position='center' visible={visible} onVisibleChange={this.toggleVisible}>
           <View className='content'>
             hello

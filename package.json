@@ -1,7 +1,7 @@
 {
   "name": "mounted",
   "version": "0.1.0",
-  "description": "基于 Taro 的小程序、H5 组件库。",
+  "description": "基于 Taro 的微信小程序组件库。",
   "main": "src/index.js",
   "scripts": {
     "dev:weapp": "taro build --type weapp --watch",
