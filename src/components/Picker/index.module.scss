@@ -1,0 +1,35 @@
+@import '../../settings.scss';
+
+.view {
+  background: white;
+  width: 100vw;
+  font-size: 17px;
+  .header {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    border-bottom: 1px solid $hairlineColor;
+    .cancel {
+      flex-shrink: 0;
+      font-size: 17px;
+      color: $grayColor;
+      &.hidden {
+        visibility: hidden;
+        opacity: 0;
+        pointer-events: none;
+      }
+    }
+    .title {
+      flex-grow: 1;
+      text-align: center;
+      margin: 0 15px;
+      font-size: 19px;
+      @include ellipsis;
+    }
+    .confirm {
+      flex-shrink: 0;
+      font-size: 17px;
+      color: $primaryColor;
+    }
+  }
+}

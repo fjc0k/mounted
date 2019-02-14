@@ -26,7 +26,7 @@ export type ColData<V = any> = NormalColData<V> | CascadedColData<V>
 
 export type Data<V = any> = NormalData<V> | CascadedData<V>
 
-export default class MPickerView<D extends Data, V extends (D extends Data<infer VV> ? VV : any)> extends component({
+export default class MPickerView<D extends Data, V extends (D extends Data<infer VV> ? VV : any) = any> extends component({
   props: {
     data: [],
     value: [],

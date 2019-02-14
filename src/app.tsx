@@ -8,7 +8,8 @@ class App extends Taro.Component {
       // 'pages/Sticky/Sticky',
       // 'pages/Transition/X',
       // 'pages/Popup/Popup',
-      'pages/PickerView/PickerView',
+      // 'pages/Picker/PickerView',
+      'pages/Picker/Picker',
     ],
     window: {
       navigationBarTitleText: 'DEMO',

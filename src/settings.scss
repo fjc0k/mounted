@@ -1,0 +1,16 @@
+$primaryColor: #1AAD19;
+$grayColor: #999;
+$hairlineColor: #E5E5E5;
+
+@mixin ellipsis($line: 1) {
+  @if $line == 1 {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  } @else {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: $line;
+  }
+}
