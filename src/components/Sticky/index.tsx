@@ -19,23 +19,25 @@ class MSticky extends component({
   disposer = new Disposer()
 
   componentDidMount() {
-    wx.createSelectorQuery()
-      .in(this.$scope)
-      .select(`.${_.sticky}`)
-      .boundingClientRect(res => {
-        this.setState({
-          contentHeight: res.height,
+    setTimeout(() => {
+      wx.createSelectorQuery()
+        .in(this.$scope)
+        .select(`.${_.sticky}`)
+        .boundingClientRect(res => {
+          this.setState({
+            contentHeight: res.height,
+          })
         })
-      })
-      .exec()
-    const intersectionObserver = wx.createIntersectionObserver(this.$scope)
+        .exec()
+      const intersectionObserver = wx.createIntersectionObserver(this.$scope)
     ;(intersectionObserver.relativeToViewport({ top: 0 }) as any)
-      .observe(`.${_.sticky}`, (res: wx.ObserveCallbackResult) => {
-        this.setState({
-          fixed: res.intersectionRatio <= 0 && res.boundingClientRect.top < 0,
+        .observe(`.${_.sticky}`, (res: wx.ObserveCallbackResult) => {
+          this.setState({
+            fixed: res.intersectionRatio <= 0 && res.boundingClientRect.top < 0,
+          })
         })
-      })
-    this.disposer.add(intersectionObserver.disconnect)
+      this.disposer.add(intersectionObserver.disconnect)
+    }, 300)
   }
 
   componentWillUnmount() {
