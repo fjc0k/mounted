@@ -1,22 +1,12 @@
 import { View } from '@tarojs/components'
-import { noop } from 'vtils'
 import { component } from '../component'
 import MPickerView, { Data } from '../PickerView'
 import MPopup from '../Popup'
-import defaultProps from '../PickerView/defaultProps'
 import _ from './index.module.scss'
+import defaultProps from './defaultProps'
 
 class MPicker<D extends Data, V extends (D extends Data<infer VV> ? VV : any) = any> extends component({
-  props: {
-    ...defaultProps,
-    maskClosable: true as boolean,
-    title: '' as string,
-    noCancel: false as boolean,
-    cancelText: '取消' as string,
-    confirmText: '确定' as string,
-    onCancel: noop as () => void,
-    onConfirm: noop,
-  },
+  props: defaultProps,
   state: {
     localVisible: false as boolean,
     localValue: [],
