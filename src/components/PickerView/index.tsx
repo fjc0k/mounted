@@ -2,6 +2,7 @@ import { View, PickerView, PickerViewColumn } from '@tarojs/components'
 import { parseCSSValue, noop, isArray, isEqualArray, isNumber, clamp } from 'vtils'
 import { component } from '../component'
 import _ from './index.module.scss'
+import defaultProps from './defaultProps'
 
 export type NormalItem<V = any> = {
   label: string | number,
@@ -26,14 +27,8 @@ export type ColData<V = any> = NormalColData<V> | CascadedColData<V>
 
 export type Data<V = any> = NormalData<V> | CascadedData<V>
 
-export default class MPickerView<D extends Data, V extends (D extends Data<infer VV> ? VV : any) = any> extends component({
-  props: {
-    data: [],
-    value: [],
-    itemHeight: '2.5em' as string,
-    visibleItemCount: 5 as number,
-    onChange: noop,
-  },
+class MPickerView<D extends Data, V extends (D extends Data<infer VV> ? VV : any) = any> extends component({
+  props: defaultProps,
   state: {
     selectedIndexes: [] as number[],
     normalizedData: [],
@@ -179,3 +174,5 @@ export default class MPickerView<D extends Data, V extends (D extends Data<infer
     )
   }
 }
+
+export default MPickerView

@@ -3,15 +3,13 @@ import { noop } from 'vtils'
 import { component } from '../component'
 import MPickerView, { Data } from '../PickerView'
 import MPopup from '../Popup'
+import defaultProps from '../PickerView/defaultProps'
 import _ from './index.module.scss'
 
-export default class MPicker<D extends Data, V extends (D extends Data<infer VV> ? VV : any) = any> extends component({
+class MPicker<D extends Data, V extends (D extends Data<infer VV> ? VV : any) = any> extends component({
   props: {
+    ...defaultProps,
     maskClosable: true as boolean,
-    data: [],
-    value: [],
-    itemHeight: '2.5em' as string,
-    visibleItemCount: 5 as number,
     title: '' as string,
     noCancel: false as boolean,
     cancelText: '取消' as string,
@@ -117,3 +115,5 @@ export default class MPicker<D extends Data, V extends (D extends Data<infer VV>
     )
   }
 }
+
+export default MPicker
