@@ -18,6 +18,8 @@ class MPicker<D extends Data, V extends (D extends Data<infer VV> ? VV : any) = 
 }, {
   localValue: V[],
 }> {
+  canClose: boolean = true
+
   componentWillMount() {
     const { value } = this.props
     this.setState({
@@ -44,13 +46,22 @@ class MPicker<D extends Data, V extends (D extends Data<infer VV> ? VV : any) = 
     })
   }
 
-  handlePickerChange: MPickerView<D>['props']['onChange'] = value => {
+  handlePickStart = () => {
+    this.canClose = false
+  }
+
+  handlePickEnd = () => {
+    this.canClose = true
+  }
+
+  handlePickChange: MPickerView<D>['props']['onChange'] = value => {
     this.setState({
       localValue: value,
     })
   }
 
   handleCancelClick = () => {
+    if (!this.canClose) return
     this.setState({
       localValue: this.props.value,
       localVisible: false,
@@ -60,6 +71,7 @@ class MPicker<D extends Data, V extends (D extends Data<infer VV> ? VV : any) = 
   }
 
   handleConfirmClick = () => {
+    if (!this.canClose) return
     this.setState({
       localVisible: false,
     }, () => {
@@ -94,10 +106,12 @@ class MPicker<D extends Data, V extends (D extends Data<infer VV> ? VV : any) = 
             </View>
             <MPickerView
               data={data}
-              value={localValue}
+              value={localValue as any}
               itemHeight={itemHeight}
               visibleItemCount={visibleItemCount}
-              onChange={this.handlePickerChange}
+              onPickStart={this.handlePickStart}
+              onPickEnd={this.handlePickEnd}
+              onChange={this.handlePickChange}
             />
           </View>
         </MPopup>

@@ -28,7 +28,11 @@ export type ColData<V = any> = NormalColData<V> | CascadedColData<V>
 export type Data<V = any> = NormalData<V> | CascadedData<V>
 
 class MPickerView<D extends Data, V extends (D extends Data<infer VV> ? VV : any) = any> extends component({
-  props: defaultProps,
+  props: {
+    ...defaultProps,
+    onPickStart: noop as () => void,
+    onPickEnd: noop as () => void,
+  },
   state: {
     selectedIndexes: [] as number[],
     normalizedData: [],
@@ -48,7 +52,7 @@ class MPickerView<D extends Data, V extends (D extends Data<infer VV> ? VV : any
     this.update(this.props, { data: null, value: this.prevValue })
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps: MPickerView<any>['props']) {
     this.update(nextProps, { ...this.props, value: this.prevValue })
   }
 
@@ -56,7 +60,7 @@ class MPickerView<D extends Data, V extends (D extends Data<infer VV> ? VV : any
     { data, value }: MPickerView<D, V>['props'],
     { data: prevData, value: prevValue }: MPickerView<D, V>['props'],
     callback: () => void = noop,
-    disableEmitChangeEvent: boolean = false
+    disableEmitChangeEvent: boolean = false,
   ) {
     this.isCascaded = !isArray(data[0])
 
@@ -75,10 +79,10 @@ class MPickerView<D extends Data, V extends (D extends Data<infer VV> ? VV : any
         shouldRestoreSelectedIndex && isNumber(prevSelectedIndexes[colIndex])
           ? prevSelectedIndexes[colIndex]
           : colData.findIndex(
-            item => item.value === value[colIndex]
+            item => item.value === value[colIndex],
           ),
         0,
-        colData.length - 1
+        colData.length - 1,
       )
       normalizedData.push(colData)
       selectedIndexes.push(selectedIndex)
@@ -91,12 +95,12 @@ class MPickerView<D extends Data, V extends (D extends Data<infer VV> ? VV : any
         normalizedData,
         selectedIndexes,
       },
-      callback
+      callback,
     )
 
     if (!disableEmitChangeEvent && data !== prevData) {
       this.prevValue = selectedIndexes.map(
-        (selectedIndex, colIndex) => normalizedData[colIndex][selectedIndex].value
+        (selectedIndex, colIndex) => normalizedData[colIndex][selectedIndex].value,
       )
       this.props.onChange(this.prevValue)
     }
@@ -124,7 +128,7 @@ class MPickerView<D extends Data, V extends (D extends Data<infer VV> ? VV : any
 
     this.setState({ selectedIndexes }, () => {
       this.prevValue = selectedIndexes.map(
-        (selectedIndex, colIndex) => normalizedData[colIndex][selectedIndex].value
+        (selectedIndex, colIndex) => normalizedData[colIndex][selectedIndex].value,
       )
       if (this.isCascaded) {
         // 级联数据应先更新再触发 change 事件
@@ -138,11 +142,11 @@ class MPickerView<D extends Data, V extends (D extends Data<infer VV> ? VV : any
           () => {
             const { normalizedData, selectedIndexes } = this.state
             this.prevValue = selectedIndexes.map(
-              (selectedIndex, colIndex) => normalizedData[colIndex][selectedIndex].value
+              (selectedIndex, colIndex) => normalizedData[colIndex][selectedIndex].value,
             )
             this.props.onChange(this.prevValue)
           },
-          true
+          true,
         )
       } else {
         this.props.onChange(this.prevValue)
@@ -153,11 +157,15 @@ class MPickerView<D extends Data, V extends (D extends Data<infer VV> ? VV : any
   render() {
     const { normalizedData, selectedIndexes } = this.state
     const styles = this.computeStyles()
+    console.log(selectedIndexes.slice())
     return (
+      // @ts-ignore
       <PickerView
         value={selectedIndexes}
         style={styles.view}
         indicatorStyle={`height:${styles.indicator.height}`}
+        onPickStart={this.props.onPickStart}
+        onPickEnd={this.props.onPickEnd}
         onChange={this.handleChange}>
         {normalizedData.map((colData, colIndex) => (
           <PickerViewColumn key={colIndex}>

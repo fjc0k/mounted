@@ -1,8 +1,6 @@
-import Taro from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import { Disposer } from 'vtils'
 import { component } from '../component'
-import { CUSTOM_CLASS } from '../const'
 import _ from './index.module.scss'
 
 /**
@@ -49,7 +47,7 @@ class MSticky extends component({
     const { fixed, contentHeight } = this.state
     return (
       <View
-        className={`${_.sticky} ${fixed && _.fixed} ${className} ${CUSTOM_CLASS}`}
+        className={`${_.sticky} ${fixed && _.fixed} ${className}`}
         style={contentHeight ? { height: `${contentHeight}px` } : {}}>
         <View className={_.content}>
           {this.props.children}

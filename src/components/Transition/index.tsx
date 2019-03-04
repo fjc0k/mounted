@@ -1,8 +1,6 @@
-import Taro from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import { noop } from 'vtils'
 import { component, RequiredProp } from '../component'
-import { CUSTOM_CLASS } from '../const'
 import _ from './index.module.scss'
 
 /**
@@ -70,7 +68,7 @@ class MTransition extends component({
       { display: this.props.visible },
       () => {
         this.props.onTransitionEnd()
-      }
+      },
     )
   }
 
@@ -80,7 +78,7 @@ class MTransition extends component({
     const animation = `${_[`${name}${type}`]} ${duration}ms both`
     return (
       <View
-        className={`${_.transition} ${className} ${CUSTOM_CLASS}`}
+        className={`${_.transition} ${className}`}
         style={{
           WebkitAnimation: animation,
           animation: animation,

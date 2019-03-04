@@ -2,7 +2,6 @@ import { component } from '../component'
 import { NormalColData } from '../PickerView'
 import MPicker from '../Picker'
 import defaultProps from './defaultProps'
-import _ from './index.module.scss'
 
 class MSinglePicker<D extends NormalColData, V extends (D extends NormalColData<infer VV> ? VV : any) = any> extends component({
   props: defaultProps,
@@ -42,13 +41,24 @@ class MSinglePicker<D extends NormalColData, V extends (D extends NormalColData<
   }
 
   render() {
-    const { maskClosable, itemHeight, visibleItemCount, noCancel, cancelText, confirmText, title } = this.props
-    const { localData, localValue } = this.state
+    const {
+      maskClosable,
+      itemHeight,
+      visibleItemCount,
+      noCancel,
+      cancelText,
+      confirmText,
+      title,
+    } = this.props
+    const {
+      localData,
+      localValue,
+    } = this.state
     return (
       <MPicker
         maskClosable={maskClosable}
         data={localData}
-        value={localValue}
+        value={localValue as any}
         itemHeight={itemHeight}
         visibleItemCount={visibleItemCount}
         noCancel={noCancel}

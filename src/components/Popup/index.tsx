@@ -1,4 +1,3 @@
-import Taro from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import { noop } from 'vtils'
 import { component, RequiredProp } from '../component'

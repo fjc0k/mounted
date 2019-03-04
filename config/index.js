@@ -1,4 +1,4 @@
-const cssNames = new Map()
+// const cssNames = new Map()
 
 const config = {
   projectName: 'mounted',
@@ -62,14 +62,15 @@ const config = {
           enable: true, // 默认为 false，如需使用 css modules 功能，则设为 true
           config: {
             namingPattern: 'module', // 转换模式，取值为 global/module
-            generateScopedName: function (local, path) {
-              const cssNameKey = `${path}___${local}`
-              const componentName = String(path).match(/src\/components\/(.+?)\//)[1]
-              if (!cssNames.has(cssNameKey)) {
-                cssNames.set(cssNameKey, `m-${componentName.toLowerCase() === local ? '' : (`${componentName.toLowerCase()}-`)}${local}`)
-              }
-              return cssNames.get(cssNameKey)
-            },
+            generateScopedName: '[name]__[local]___[hash:base64:5]',
+            // generateScopedName: function (local, path) {
+            //   const cssNameKey = `${path}___${local}`
+            //   const componentName = String(path).match(/src\/components\/(.+?)\//)[1]
+            //   if (!cssNames.has(cssNameKey)) {
+            //     cssNames.set(cssNameKey, `m-${componentName.toLowerCase() === local ? '' : (`${componentName.toLowerCase()}-`)}${local}`)
+            //   }
+            //   return cssNames.get(cssNameKey)
+            // },
           },
         },
       },

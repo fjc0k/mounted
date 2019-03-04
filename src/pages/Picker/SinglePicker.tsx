@@ -1,4 +1,5 @@
-import { View } from '@tarojs/components'
+import { View, PickerView, PickerViewColumn } from '@tarojs/components'
+import { range } from 'vtils'
 import { component } from '../../components/component'
 import { MSinglePicker } from '../../components'
 
@@ -36,6 +37,21 @@ export default class SinglePicker extends component({
       <View style={{
         fontSize: '16px',
       }}>
+        <View style={{ fontWeight: 'bold', padding: '10px 0', marginBottom: '10px', borderBottom: '1px solid #eee' }}>
+          RawPicker
+        </View>
+        <PickerView indicatorStyle='height: 50px;' style={{ height: '300px' }} value={[0, 0]} onChange={() => {}}>
+          <PickerViewColumn>
+            {range(0, 7).map(ii => (
+              <View style='line-height: 50px' key={ii}>{ii}</View>
+            ))}
+          </PickerViewColumn>
+          <PickerViewColumn>
+            {range(0, 7).map(ii => (
+              <View style='line-height: 50px' key={ii}>{ii}</View>
+            ))}
+          </PickerViewColumn>
+        </PickerView>
         <View style={{ fontWeight: 'bold', padding: '10px 0', marginBottom: '10px', borderBottom: '1px solid #eee' }}>
           NormalPicker
         </View>
