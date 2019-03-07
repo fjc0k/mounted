@@ -9,22 +9,24 @@ export default class Transition extends Taro.Component<{}, {
 }> {
   constructor() {
     super(...arguments)
-    this.state ={
+    this.state = {
       visible: false,
     }
   }
 
   toggle = (key: string) => {
-    this.setState(_ => ({
-      [key]: !_[key],
-    } as any))
+    this.setState(
+      _ => ({
+        [key as any]: !(_ as any)[key as any],
+      } as any),
+    )
   }
 
   render() {
     const { visible } = this.state
     return (
       <View>
-        <MTransition customClass='red' visible={visible} name='fade'>
+        <MTransition visible={visible} name='fade'>
           <View style={{ background: '#1296db' }}>
             {range(0, 20).map(index => (
               <View key={index}>

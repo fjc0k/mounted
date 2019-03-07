@@ -1,7 +1,7 @@
 // const cssNames = new Map()
 
 const config = {
-  projectName: 'mounted',
+  projectName: 'Mounted',
   date: '2019-1-28',
   designWidth: 375,
   deviceRatio: {

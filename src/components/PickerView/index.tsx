@@ -157,9 +157,7 @@ class MPickerView<D extends Data, V extends (D extends Data<infer VV> ? VV : any
   render() {
     const { normalizedData, selectedIndexes } = this.state
     const styles = this.computeStyles()
-    console.log(selectedIndexes.slice())
     return (
-      // @ts-ignore
       <PickerView
         value={selectedIndexes}
         style={styles.view}

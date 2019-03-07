@@ -1,5 +1,6 @@
 import { View } from '@tarojs/components'
 import { noop } from 'vtils'
+import { CommonEventFunction } from '@tarojs/components/types/common'
 import { component, RequiredProp } from '../component'
 import MTransition from '../Transition'
 import _ from './index.module.scss'
@@ -23,7 +24,7 @@ class MPopup extends component({
     visible: false as any as RequiredProp<boolean>,
     /** 点击遮罩是否可关闭 */
     maskClosable: true as boolean,
-    /** 动画时长，单位: ms */
+    /** 动画时长，单位：毫秒 */
     duration: 300 as number,
     /** 弹出内容位置 */
     position: 'center' as Position,
@@ -58,7 +59,7 @@ class MPopup extends component({
     }
   }
 
-  handleTouchMove = (e: Event) => {
+  handleTouchMove: CommonEventFunction = e => {
     e.stopPropagation()
   }
 
@@ -88,7 +89,7 @@ class MPopup extends component({
           zIndex,
           ...(display ? {} : { display: 'none' }),
         }}
-        onTouchMove={this.handleTouchMove as any}>
+        onTouchMove={this.handleTouchMove}>
         <MTransition
           name='fade'
           visible={visible}

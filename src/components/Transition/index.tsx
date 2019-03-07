@@ -6,7 +6,7 @@ import _ from './index.module.scss'
 /**
  * 动画过渡组件。
  */
-class MTransition extends component({
+export default class MTransition extends component({
   props: {
     /** 组件是否可见 */
     visible: true as any as RequiredProp<boolean>,
@@ -73,12 +73,12 @@ class MTransition extends component({
   }
 
   render() {
-    const { name, duration, className } = this.props
+    const { name, duration } = this.props
     const { type, display } = this.state
     const animation = `${_[`${name}${type}`]} ${duration}ms both`
     return (
       <View
-        className={`${_.transition} ${className}`}
+        className={_.transition}
         style={{
           WebkitAnimation: animation,
           animation: animation,
@@ -90,5 +90,3 @@ class MTransition extends component({
     )
   }
 }
-
-export default MTransition

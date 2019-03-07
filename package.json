@@ -5,28 +5,31 @@
   "main": "src/index.js",
   "scripts": {
     "dev": "taro build --type weapp --watch",
-    "build": "taro build --type weapp",
     "release": "standard-version -a && git push --follow-tags origin master"
   },
   "author": "Jay Fong",
   "license": "MIT",
+  "eslintConfig": {
+    "root": true,
+    "extends": "io"
+  },
+  "eslintIgnore": [
+    "dist",
+    "node_modules"
+  ],
   "dependencies": {
-    "@tarojs/components": "1.2.15",
-    "@tarojs/taro": "1.2.15",
-    "@tarojs/taro-weapp": "1.2.15",
-    "nervjs": "^1.3.9",
+    "@tarojs/components": "1.2.16",
+    "@tarojs/taro": "1.2.16",
+    "@tarojs/taro-weapp": "1.2.16",
     "vtils": "^0.77.0"
   },
   "devDependencies": {
-    "@tarojs/cli": "1.2.15",
-    "@tarojs/plugin-babel": "1.2.15",
-    "@tarojs/plugin-csso": "1.2.15",
-    "@tarojs/plugin-sass": "1.2.15",
-    "@tarojs/plugin-uglifyjs": "1.2.15",
-    "@tarojs/webpack-runner": "1.2.15",
+    "@tarojs/cli": "1.2.16",
+    "@tarojs/plugin-babel": "1.2.16",
+    "@tarojs/plugin-csso": "1.2.16",
+    "@tarojs/plugin-sass": "1.2.16",
+    "@tarojs/plugin-uglifyjs": "1.2.16",
     "@types/react": "16.3.14",
-    "@types/webpack-env": "^1.13.6",
-    "babel-eslint": "^8.2.3",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
     "babel-plugin-transform-jsx-stylesheet": "^0.6.5",

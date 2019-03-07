@@ -14,7 +14,7 @@ class MSticky extends component({
     contentHeight: 0 as number,
   },
 }) {
-  disposer = new Disposer()
+  disposer: Disposer = new Disposer()
 
   componentDidMount() {
     setTimeout(() => {
@@ -28,12 +28,15 @@ class MSticky extends component({
         })
         .exec()
       const intersectionObserver = wx.createIntersectionObserver(this.$scope)
-    ;(intersectionObserver.relativeToViewport({ top: 0 }) as any)
-        .observe(`.${_.sticky}`, (res: wx.ObserveCallbackResult) => {
+      const relativeToViewport = intersectionObserver.relativeToViewport({ top: 0 }) as any
+      relativeToViewport.observe(
+        `.${_.sticky}`,
+        (res: wx.ObserveCallbackResult) => {
           this.setState({
             fixed: res.intersectionRatio <= 0 && res.boundingClientRect.top < 0,
           })
-        })
+        },
+      )
       this.disposer.add(intersectionObserver.disconnect)
     }, 300)
   }
@@ -43,11 +46,10 @@ class MSticky extends component({
   }
 
   render() {
-    const { className } = this.props
     const { fixed, contentHeight } = this.state
     return (
       <View
-        className={`${_.sticky} ${fixed && _.fixed} ${className}`}
+        className={`${_.sticky} ${fixed && _.fixed}`}
         style={contentHeight ? { height: `${contentHeight}px` } : {}}>
         <View className={_.content}>
           {this.props.children}
