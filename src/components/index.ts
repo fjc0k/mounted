@@ -1,4 +1,5 @@
 // @index(^[A-Z]): export { default as M${variable/Block$//:pascal:} } from ${relpath}
+export { default as MFormIdCollector } from './FormIdCollector'
 export { default as MPicker } from './Picker'
 export { default as MPickerView } from './PickerView'
 export { default as MPopup } from './Popup'

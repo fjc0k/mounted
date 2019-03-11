@@ -4,13 +4,14 @@ import Home from './pages/Home/Home'
 class App extends Taro.Component {
   config: Taro.Config = {
     pages: [
-      // 'pages/Home/Home',
-      // 'pages/Sticky/Sticky',
-      'pages/Transition/X',
+      'pages/Home/Home',
+      'pages/Sticky/Sticky',
+      // 'pages/Transition/X',
       // 'pages/Popup/Popup',
       // 'pages/Picker/PickerView',
       // 'pages/Picker/Picker',
-      'pages/Picker/SinglePicker',
+      // 'pages/Picker/SinglePicker',
+      // 'pages/Test/Index',
     ],
     window: {
       navigationBarTitleText: 'DEMO',
