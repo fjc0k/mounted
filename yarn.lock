@@ -5506,9 +5506,9 @@ vinyl@^2.0.0, vinyl@^2.0.1, vinyl@^2.1.0:
     remove-trailing-separator "^1.0.1"
     replace-ext "^1.0.0"
 
-vtils@^0.77.0:
-  version "0.77.0"
-  resolved "https://registry.yarnpkg.com/vtils/-/vtils-0.77.0.tgz#63badcca33cb17a38c41620a79d5950215c372a5"
+vtils@^0.78.0:
+  version "0.78.0"
+  resolved "https://registry.yarnpkg.com/vtils/-/vtils-0.78.0.tgz#8651db6cb61c67c4a3db640c273c19b62c88337b"
   dependencies:
     compare-versions "^3.4.0"
     is-chinese-phone-number "^0.1.9"

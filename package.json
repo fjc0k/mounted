@@ -21,7 +21,7 @@
     "@tarojs/components": "1.2.16",
     "@tarojs/taro": "1.2.16",
     "@tarojs/taro-weapp": "1.2.16",
-    "vtils": "^0.77.0"
+    "vtils": "^0.78.0"
   },
   "devDependencies": {
     "@tarojs/cli": "1.2.16",
