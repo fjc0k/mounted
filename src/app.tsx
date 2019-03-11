@@ -6,10 +6,10 @@ class App extends Taro.Component {
     pages: [
       // 'pages/Home/Home',
       // 'pages/Sticky/Sticky',
-      'pages/Transition/X',
+      // 'pages/Transition/X',
       // 'pages/Popup/Popup',
       // 'pages/Picker/PickerView',
-      // 'pages/Picker/Picker',
+      'pages/Picker/Picker',
       // 'pages/Picker/SinglePicker',
       // 'pages/Test/Index',
     ],

@@ -1,7 +1,16 @@
-$primaryColor: #1AAD19;
-$grayColor: #999;
-$hairlineColor: #E5E5E5;
+// 设计稿尺寸
+$designWidth: 375 !default;
 
+// 主色调
+$primaryColor: #1AAD19 !default;
+
+// 灰色调
+$grayColor: #999 !default;
+
+// 边线颜色
+$hairlineColor: #E5E5E5 !default;
+
+// 文字溢出显示省略号
 @mixin ellipsis($line: 1) {
   @if $line == 1 {
     overflow: hidden;
@@ -13,4 +22,9 @@ $hairlineColor: #E5E5E5;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: $line;
   }
+}
+
+// 将 375 尺寸下的像素转换为其他尺寸下的像素
+@function transformPx($px) {
+  @return unquote(($px / (375 / $designWidth)) + 'px');
 }

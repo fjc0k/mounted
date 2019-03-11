@@ -3,15 +3,15 @@
 .view {
   background: white;
   width: 100vw;
-  font-size: 17px;
+  font-size: transformPx(17);
   .header {
     display: flex;
     align-items: center;
-    padding: 10px 15px;
+    padding: transformPx(10) transformPx(15);
     border-bottom: 1px solid $hairlineColor;
     .cancel {
       flex-shrink: 0;
-      font-size: 17px;
+      font-size: transformPx(17);
       color: $grayColor;
       &.hidden {
         visibility: hidden;
@@ -22,13 +22,13 @@
     .title {
       flex-grow: 1;
       text-align: center;
-      margin: 0 15px;
-      font-size: 19px;
+      margin: 0 transformPx(15);
+      font-size: transformPx(19);
       @include ellipsis;
     }
     .confirm {
       flex-shrink: 0;
-      font-size: 17px;
+      font-size: transformPx(17);
       color: $primaryColor;
     }
   }
