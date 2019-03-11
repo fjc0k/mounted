@@ -3,6 +3,14 @@ import { noop } from 'vtils'
 import { component, RequiredProp } from '../component'
 import _ from './index.module.scss'
 
+/** 过渡类型 */
+enum TransitionType {
+  /** 进入 */
+  Enter = 'Enter',
+  /** 离开 */
+  Leave = 'Leave',
+}
+
 /**
  * 动画过渡组件。
  */
@@ -38,7 +46,7 @@ export default class MTransition extends component({
   },
   state: {
     /** 动画类型 */
-    type: 'Enter' as 'Enter' | 'Leave',
+    type: TransitionType.Enter as TransitionType,
     /** 是否展示组件 */
     display: false as boolean,
   },
@@ -47,7 +55,7 @@ export default class MTransition extends component({
     if (this.props.visible) {
       this.setState({
         display: true,
-        type: 'Enter',
+        type: TransitionType.Enter,
       })
     } else {
       this.setState({
@@ -59,7 +67,7 @@ export default class MTransition extends component({
   componentWillReceiveProps(nextProps: MTransition['props']) {
     this.setState({
       display: true,
-      type: nextProps.visible ? 'Enter' : 'Leave',
+      type: nextProps.visible ? TransitionType.Enter : TransitionType.Leave,
     })
   }
 
