@@ -1,6 +1,6 @@
 {
   "name": "mounted",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "基于 Taro 的微信小程序组件库。",
   "main": "src/components/index.ts",
   "scripts": {

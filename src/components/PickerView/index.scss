@@ -1,0 +1,13 @@
+@import '../../settings.scss';
+
+.m-picker-view {
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &__label {
+      text-align: center;
+      @include ellipsis;
+    }
+  }
+}

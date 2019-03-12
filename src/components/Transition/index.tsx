@@ -1,7 +1,6 @@
 import { View } from '@tarojs/components'
 import { noop } from 'vtils'
 import { component, RequiredProp } from '../component'
-import _ from './index.module.scss'
 
 /** 过渡类型 */
 enum TransitionType {
@@ -83,10 +82,10 @@ export default class MTransition extends component({
   render() {
     const { name, duration } = this.props
     const { type, display } = this.state
-    const animation = `${_[`${name}${type}`]} ${duration}ms both`
+    const animation = `m-transition__${name}${type} ${duration}ms both`
     return (
       <View
-        className={_.transition}
+        className='m-transition'
         style={{
           WebkitAnimation: animation,
           animation: animation,

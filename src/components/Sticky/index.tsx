@@ -1,7 +1,6 @@
 import { View } from '@tarojs/components'
 import { Disposer, wait } from 'vtils'
 import { component } from '../component'
-import _ from './index.module.scss'
 
 /** 页面上存在的吸顶组件 */
 const stickyComponents: MSticky[] = []
@@ -37,7 +36,7 @@ class MSticky extends component({
       // 获取吸顶内容的高度
       wx.createSelectorQuery()
         .in(this.$scope)
-        .select(`.${_.sticky}`)
+        .select('.m-sticky')
         .boundingClientRect(res => {
           this.setState({
             contentHeight: res.height,
@@ -48,7 +47,7 @@ class MSticky extends component({
       const intersectionObserver = wx.createIntersectionObserver(this.$scope)
       const relativeToViewport = intersectionObserver.relativeToViewport({ top: 0 }) as any
       relativeToViewport.observe(
-        `.${_.sticky}`,
+        '.m-sticky',
         (res: wx.ObserveCallbackResult) => {
           const fixed = res.intersectionRatio <= 0 && res.boundingClientRect.top < 0
           this.setState({ fixed })
@@ -74,9 +73,9 @@ class MSticky extends component({
     const { fixed, contentHeight } = this.state
     return (
       <View
-        className={`${_.sticky} ${fixed && _.fixed}`}
+        className={`m-sticky ${fixed && 'm-sticky_fixed'}`}
         style={contentHeight ? { height: `${contentHeight}px` } : {}}>
-        <View className={_.content}>
+        <View className='m-sticky__content'>
           {this.props.children}
         </View>
       </View>

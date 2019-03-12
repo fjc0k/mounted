@@ -1,7 +1,6 @@
 import { View, PickerView, PickerViewColumn } from '@tarojs/components'
 import { parseCSSValue, noop, isArray, isEqualArray, isNumber, clamp } from 'vtils'
 import { component } from '../component'
-import _ from './index.module.scss'
 import defaultProps from './defaultProps'
 
 export type NormalItem<V = any> = {
@@ -168,8 +167,8 @@ class MPickerView<D extends Data, V extends (D extends Data<infer VV> ? VV : any
         {normalizedData.map((colData, colIndex) => (
           <PickerViewColumn key={colIndex}>
             {colData.map((item, itemIndex) => (
-              <View className={_.item} key={itemIndex}>
-                <View className={_.label}>
+              <View className='m-picker-view__item' key={itemIndex}>
+                <View className='m-picker-view__item__label'>
                   {item.label}
                 </View>
               </View>

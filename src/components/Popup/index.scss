@@ -1,13 +1,13 @@
 @import '../../settings.scss';
 
-.popup {
+.m-popup {
   position: fixed;
   top: 0;
   left: 0;
   bottom: 0;
   right: 0;
   display: flex;
-  .mask {
+  &__mask {
     position: absolute;
     top: 0;
     left: 0;
@@ -15,27 +15,27 @@
     right: 0;
     background: rgba(black, 0.6);
   }
-  .content {
+  &__content {
     position: relative;
     z-index: 1;
   }
-  &.center {
+  &_center {
     justify-content: center;
     align-items: center;
   }
-  &.top {
+  &_top {
     justify-content: center;
     align-items: flex-start;
   }
-  &.bottom {
+  &_bottom {
     justify-content: center;
     align-items: flex-end;
   }
-  &.left {
+  &_left {
     justify-content: flex-start;
     align-items: center;
   }
-  &.right {
+  &_right {
     justify-content: flex-end;
     align-items: center;
   }

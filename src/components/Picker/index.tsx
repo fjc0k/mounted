@@ -2,7 +2,6 @@ import { View } from '@tarojs/components'
 import { component } from '../component'
 import MPickerView, { Data } from '../PickerView'
 import MPopup from '../Popup'
-import _ from './index.module.scss'
 import defaultProps from './defaultProps'
 
 class MPicker<D extends Data, V extends (D extends Data<infer VV> ? VV : any) = any> extends component({
@@ -83,8 +82,8 @@ class MPicker<D extends Data, V extends (D extends Data<infer VV> ? VV : any) = 
     const { maskClosable, data, itemHeight, visibleItemCount, noCancel, cancelText, confirmText, title } = this.props
     const { localVisible, localValue } = this.state
     return (
-      <View className={_.picker}>
-        <View className={_.trigger} onClick={this.handleTriggerClick}>
+      <View>
+        <View onClick={this.handleTriggerClick}>
           {this.props.children}
         </View>
         <MPopup
@@ -92,15 +91,19 @@ class MPicker<D extends Data, V extends (D extends Data<infer VV> ? VV : any) = 
           visible={localVisible}
           maskClosable={maskClosable}
           onVisibleChange={this.handleVisibleChange}>
-          <View className={_.view}>
-            <View className={_.header}>
-              <View className={`${_.cancel} ${noCancel && _.hidden}`} onClick={this.handleCancelClick}>
+          <View className='m-picker'>
+            <View className='m-picker__header'>
+              <View
+                className={`m-picker__cancel ${noCancel && 'm-picker__cancel_hidden'}`}
+                onClick={this.handleCancelClick}>
                 {cancelText}
               </View>
-              <View className={_.title}>
+              <View className='m-picker__title'>
                 {title}
               </View>
-              <View className={_.confirm} onClick={this.handleConfirmClick}>
+              <View
+                className='m-picker__confirm'
+                onClick={this.handleConfirmClick}>
                 {confirmText}
               </View>
             </View>

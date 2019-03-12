@@ -3,7 +3,6 @@ import { noop } from 'vtils'
 import { CommonEventFunction } from '@tarojs/components/types/common'
 import { component, RequiredProp } from '../component'
 import MTransition from '../Transition'
-import _ from './index.module.scss'
 
 type Position = 'center' | 'top' | 'bottom' | 'right' | 'left'
 
@@ -84,7 +83,7 @@ class MPopup extends component({
     const { zIndex, display } = this.state
     return (
       <View
-        className={`${_.popup} ${_[position]}`}
+        className={`m-popup m-popup_${position}`}
         style={{
           zIndex,
           ...(display ? {} : { display: 'none' }),
@@ -96,11 +95,11 @@ class MPopup extends component({
           duration={duration}
           onTransitionEnd={this.handleTransitionEnd}>
           <View
-            className={_.mask}
+            className='m-popup__mask'
             onClick={this.handleMaskClick}
           />
         </MTransition>
-        <View className={_.content}>
+        <View className='m-popup__content'>
           <MTransition
             name={positionToTransitionName[position]}
             visible={visible}

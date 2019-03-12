@@ -1,7 +1,6 @@
 import { Form, Button } from '@tarojs/components'
 import { noop } from 'vtils'
 import { component, RequiredProp } from '../component'
-import _ from './Collector.module.scss'
 import Self from './Collector'
 
 export default class Collector extends component({
@@ -16,7 +15,7 @@ export default class Collector extends component({
     const { count } = this.props
     return (
       <Form
-        className={_.form}
+        className='m-form-id-collector__collector'
         reportSubmit={true}
         onSubmit={this.props.onCollect}>
         <Button formType='submit'>
