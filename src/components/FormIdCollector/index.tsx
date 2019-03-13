@@ -7,6 +7,7 @@ import Collector from './Collector'
  * Form Id 收集组件。
  */
 export default class MFormIdCollector extends component({
+  enableGlobalClass: true,
   props: {
     /** 每次点击的收集个数 */
     count: 1 as number,

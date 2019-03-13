@@ -14,6 +14,7 @@ enum TransitionType {
  * 动画过渡组件。
  */
 export default class MTransition extends component({
+  enableGlobalClass: true,
   props: {
     /** 组件是否可见 */
     visible: true as any as RequiredProp<boolean>,

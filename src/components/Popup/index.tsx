@@ -18,6 +18,7 @@ const positionToTransitionName: { [key in Position]: MTransition['props']['name'
  * 弹出层组件。
  */
 class MPopup extends component({
+  enableGlobalClass: true,
   props: {
     /** 弹出层是否可见 */
     visible: false as any as RequiredProp<boolean>,

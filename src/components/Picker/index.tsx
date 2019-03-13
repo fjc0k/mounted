@@ -5,6 +5,7 @@ import MPopup from '../Popup'
 import defaultProps from './defaultProps'
 
 class MPicker<D extends Data, V extends (D extends Data<infer VV> ? VV : any) = any> extends component({
+  enableGlobalClass: true,
   props: defaultProps,
   state: {
     localVisible: false as boolean,
