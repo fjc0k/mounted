@@ -1,11 +1,11 @@
 {
   "name": "mounted",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "基于 Taro 的微信小程序组件库。",
   "main": "src/components/index.ts",
   "scripts": {
     "dev": "taro build --type weapp --watch",
-    "release": "standard-version -a && git push --follow-tags origin master"
+    "release": "standard-version -a && git push --follow-tags origin master && npm publish"
   },
   "author": "Jay Fong",
   "license": "MIT",
