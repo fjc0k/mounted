@@ -4,22 +4,26 @@
   background: white;
   width: 100vw;
   font-size: transformPx(17);
+
   &__header {
     display: flex;
     align-items: center;
     padding: transformPx(10) transformPx(15);
     border-bottom: 1px solid $hairlineColor;
   }
+
   &__cancel {
     flex-shrink: 0;
     font-size: transformPx(17);
     color: $grayColor;
+
     &_hidden {
       visibility: hidden;
       opacity: 0;
       pointer-events: none;
     }
   }
+
   &__title {
     flex-grow: 1;
     text-align: center;
@@ -27,6 +31,7 @@
     font-size: transformPx(19);
     @include ellipsis;
   }
+
   &__confirm {
     flex-shrink: 0;
     font-size: transformPx(17);

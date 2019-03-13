@@ -18,6 +18,47 @@
     "dist",
     "node_modules"
   ],
+  "stylelint": {
+    "extends": "stylelint-config-standard",
+    "plugins": ["stylelint-scss"],
+    "rules": {
+      "function-name-case": null,
+      "at-rule-empty-line-before": null,
+      "color-hex-case": "upper",
+      "block-closing-brace-newline-after": [
+        "always",
+        {
+          "ignoreAtRules": [
+            "if",
+            "else"
+          ]
+        }
+      ],
+      "scss/at-else-closing-brace-newline-after": "always-last-in-chain",
+      "scss/at-else-closing-brace-space-after": "always-intermediate",
+      "scss/at-else-if-parentheses-space-before": "always",
+      "scss/at-function-parentheses-space-before": "never",
+      "scss/at-if-closing-brace-newline-after": "always-last-in-chain",
+      "scss/at-if-closing-brace-space-after": "always-intermediate",
+      "scss/at-mixin-parentheses-space-before": "never",
+      "at-rule-no-unknown": null,
+      "scss/at-rule-no-unknown": true,
+      "scss/dollar-variable-colon-space-after": "always-single-line",
+      "scss/dollar-variable-colon-space-before": "never",
+      "scss/dollar-variable-empty-line-before": [
+        "always",
+        {
+          "except": [
+            "first-nested",
+            "after-comment",
+            "after-dollar-variable"
+          ]
+        }
+      ],
+      "scss/double-slash-comment-whitespace-inside": "always",
+      "scss/double-slash-comment-empty-line-before": "always"
+    }
+  },
   "files": [
     "src/components",
     "src/styles"
@@ -44,6 +85,9 @@
     "eslint-config-io": "^0.1.1",
     "miniprogram-api-typings": "^2.4.2-2",
     "standard-version": "^4.4.0",
+    "stylelint": "^9.10.1",
+    "stylelint-config-standard": "^18.2.0",
+    "stylelint-scss": "^3.5.4",
     "typescript": "^3.3.3333"
   }
 }

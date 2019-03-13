@@ -12,7 +12,7 @@ $hairlineColor: #E5E5E5 !default;
 
 // 文字溢出显示省略号
 @mixin ellipsis($line: 1) {
-  @if $line == 1 {
+  @if ($line == 1) {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
