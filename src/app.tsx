@@ -1,3 +1,4 @@
+import './styles/components.scss'
 import Taro from '@tarojs/taro'
 import Home from './pages/Home/Home'
 

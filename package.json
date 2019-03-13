@@ -19,7 +19,7 @@
   ],
   "files": [
     "src/components",
-    "src/settings.scss"
+    "src/styles"
   ],
   "dependencies": {
     "@tarojs/components": "1.2.16",
