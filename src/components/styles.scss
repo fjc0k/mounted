@@ -1,7 +1,0 @@
-// @index('./**/*.scss', f => `@import '${f.path}${f.ext}';`)
-@import './FormIdCollector/Collector.scss';
-@import './Picker/index.scss';
-@import './PickerView/index.scss';
-@import './Popup/index.scss';
-@import './Sticky/index.scss';
-@import './Transition/index.scss';
