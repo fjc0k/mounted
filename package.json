@@ -5,6 +5,7 @@
   "main": "src/components/index.ts",
   "scripts": {
     "dev": "taro build --type weapp --watch",
+    "build": "taro build --type weapp",
     "release": "standard-version -a && git push --follow-tags origin master && npm publish"
   },
   "author": "Jay Fong",
