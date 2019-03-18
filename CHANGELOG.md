@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.4.0"></a>
+# [0.4.0](https://github.com/fjc0k/mounted/compare/v0.3.2...v0.4.0) (2019-03-18)
+
+
+### Features
+
+* remove enableGlobalClass ([a8d8f30](https://github.com/fjc0k/mounted/commit/a8d8f30))
+* Transition 组件支持 className ([8454c93](https://github.com/fjc0k/mounted/commit/8454c93))
+* 将 [@tarojs](https://github.com/tarojs)/* 构建依赖移入开发依赖 ([2a71ba3](https://github.com/fjc0k/mounted/commit/2a71ba3))
+* 引入 stylelint ([5c0b06d](https://github.com/fjc0k/mounted/commit/5c0b06d))
+
+
+
 <a name="0.3.2"></a>
 ## [0.3.2](https://github.com/fjc0k/mounted/compare/v0.3.1...v0.3.2) (2019-03-13)
 
