@@ -4,7 +4,6 @@ import MPicker from '../Picker'
 import defaultProps from './defaultProps'
 
 class MSinglePicker<D extends NormalColData, V extends (D extends NormalColData<infer VV> ? VV : any) = any> extends component({
-  enableGlobalClass: true,
   props: defaultProps,
   state: {
     localData: [],

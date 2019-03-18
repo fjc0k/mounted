@@ -9,7 +9,6 @@ const stickyComponents: MSticky[] = []
  * 吸顶组件。
  */
 class MSticky extends component({
-  enableGlobalClass: true,
   state: {
     /** 是否置顶 */
     fixed: false as boolean,

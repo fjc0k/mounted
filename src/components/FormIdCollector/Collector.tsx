@@ -4,7 +4,6 @@ import { component, RequiredProp } from '../component'
 import Self from './Collector'
 
 export default class Collector extends component({
-  enableGlobalClass: true,
   props: {
     count: 0 as any as RequiredProp<number>,
     onCollect: noop as any as RequiredProp<

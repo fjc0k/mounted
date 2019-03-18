@@ -26,11 +26,9 @@ const component = <
   SS = S
 >(
   {
-    enableGlobalClass = false,
     props = {} as any,
     state = {} as any,
   }: {
-    enableGlobalClass?: boolean,
     props?: P,
     state?: S,
   } = {} as any,
@@ -43,7 +41,7 @@ const component = <
     Overwrite<SS, ExtraState>
   > {
     static options: wx.ComponentOptions = {
-      addGlobalClass: enableGlobalClass,
+      addGlobalClass: true,
     }
 
     static defaultProps: P = props

@@ -27,7 +27,6 @@ export type ColData<V = any> = NormalColData<V> | CascadedColData<V>
 export type Data<V = any> = NormalData<V> | CascadedData<V>
 
 class MPickerView<D extends Data, V extends (D extends Data<infer VV> ? VV : any) = any> extends component({
-  enableGlobalClass: true,
   props: {
     ...defaultProps,
     onPickStart: noop as () => void,
