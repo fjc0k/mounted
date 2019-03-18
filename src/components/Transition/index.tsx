@@ -80,12 +80,12 @@ export default class MTransition extends component({
   }
 
   render() {
-    const { name, duration } = this.props
+    const { name, duration, className } = this.props
     const { type, display } = this.state
     const animation = `m-transition__${name}${type} ${duration}ms both`
     return (
       <View
-        className='m-transition'
+        className={`m-transition ${className}`}
         style={{
           WebkitAnimation: animation,
           animation: animation,
