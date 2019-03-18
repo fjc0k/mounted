@@ -1,28 +1,25 @@
-import './styles/components.scss'
+import './app.scss'
 import Taro from '@tarojs/taro'
-import Home from './pages/Home/Home'
+import { component } from './components/component'
 
-class App extends Taro.Component {
+class App extends component() {
   config: Taro.Config = {
     pages: [
-      // 'pages/Home/Home',
-      // 'pages/Sticky/Sticky',
-      // 'pages/Transition/X',
-      // 'pages/Popup/Popup',
-      // 'pages/Picker/PickerView',
-      'pages/Picker/Picker',
-      // 'pages/Picker/SinglePicker',
-      // 'pages/Test/Index',
+      // @index('./pages/*.tsx', (pp, cc) => `'${pp.path.replace(/^\.\//, '')}',`)
+      'pages/Home',
+      'pages/Sticky',
+      // @endindex
     ],
     window: {
-      navigationBarTitleText: 'DEMO',
+      navigationBarTitleText: 'Mounted',
+      navigationBarBackgroundColor: '#1AAD19',
+      navigationBarTextStyle: 'white',
+      backgroundColor: '#E8E8E8',
     },
   }
 
-  render() {
-    return (
-      <Home />
-    )
+  render(): any {
+    return null
   }
 }
 

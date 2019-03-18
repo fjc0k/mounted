@@ -1,0 +1,12 @@
+@import './styles/components.scss';
+
+page,
+.m-sticky_fixed .m-sticky__content {
+  background: #E8E8E8;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+page {
+  padding-bottom: 30px;
+}

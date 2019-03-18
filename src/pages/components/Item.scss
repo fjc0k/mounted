@@ -1,0 +1,43 @@
+@import '../../styles/settings.scss';
+
+.item {
+  position: relative;
+  padding: 0 15px;
+  min-height: 46px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 15px;
+    right: 0;
+    height: 1px;
+    border-bottom: 1px solid #E8E8E8;
+  }
+
+  &.active {
+    background: #F0F0F0;
+  }
+
+  .title {
+    flex-grow: 1;
+    font-size: 17px;
+  }
+
+  .extra {
+    flex-shrink: 0;
+    font-size: 15px;
+    color: $grayColor;
+  }
+
+  .arrow {
+    flex-shrink: 0;
+    font-size: 15px;
+    color: $grayColor;
+    display: flex;
+    align-items: center;
+  }
+}
