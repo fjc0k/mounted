@@ -23,10 +23,13 @@ class MSticky extends component({
   index: number = 0
 
   componentWillMount() {
+    this.index = stickyComponents.length
     stickyComponents.push(this)
-    this.index = stickyComponents.length - 1
     this.disposer.add(() => {
-      stickyComponents.splice(this.index, 1)
+      stickyComponents.splice(
+        stickyComponents.indexOf(this),
+        1,
+      )
     })
   }
 
@@ -37,31 +40,40 @@ class MSticky extends component({
       wx.createSelectorQuery()
         .in(this.$scope)
         .select('.m-sticky')
-        .boundingClientRect(res => {
+        .boundingClientRect(({ height }) => {
           this.setState({
-            contentHeight: res.height,
+            contentHeight: height,
           })
+
+          // 监听吸顶内容的位置
+          const top = -(this.index === 0 ? 0 : height)
+          const intersectionObserver = wx.createIntersectionObserver(this.$scope)
+          const relativeToViewport = intersectionObserver.relativeToViewport({ top }) as any
+          relativeToViewport.observe(
+            '.m-sticky',
+            (res: wx.ObserveCallbackResult) => {
+              const fixed = res.intersectionRatio <= 0 && res.boundingClientRect.top < -top
+
+              this.setState({ fixed })
+
+              // 切换前一个吸顶组件的状态
+              if (this.index >= 1) {
+                const prevSticky = stickyComponents[this.index - 1]
+                if (prevSticky.state.fixed !== fixed) {
+                  prevSticky.setState({
+                    fixed: !fixed,
+                  })
+                }
+              }
+            },
+          )
+
+          // 处置收集
+          this.disposer.add(
+            () => intersectionObserver.disconnect(),
+          )
         })
         .exec()
-      // 监听吸顶内容的位置
-      const intersectionObserver = wx.createIntersectionObserver(this.$scope)
-      const relativeToViewport = intersectionObserver.relativeToViewport({ top: 0 }) as any
-      relativeToViewport.observe(
-        '.m-sticky',
-        (res: wx.ObserveCallbackResult) => {
-          const fixed = res.intersectionRatio <= 0 && res.boundingClientRect.top < 0
-          this.setState({ fixed })
-          // 切换前一个吸顶组件的状态
-          if (this.index >= 1) {
-            stickyComponents[this.index - 1].setState({
-              fixed: !fixed,
-            })
-          }
-        },
-      )
-      this.disposer.add(
-        () => intersectionObserver.disconnect(),
-      )
     })
   }
 
