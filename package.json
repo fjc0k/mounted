@@ -20,7 +20,9 @@
   ],
   "stylelint": {
     "extends": "stylelint-config-standard",
-    "plugins": ["stylelint-scss"],
+    "plugins": [
+      "stylelint-scss"
+    ],
     "rules": {
       "function-name-case": null,
       "at-rule-empty-line-before": null,
@@ -64,17 +66,17 @@
     "src/styles"
   ],
   "dependencies": {
-    "@tarojs/components": "1.2.16",
-    "@tarojs/taro": "1.2.16",
-    "@tarojs/taro-weapp": "1.2.16",
     "vtils": "^0.78.0"
   },
   "devDependencies": {
     "@tarojs/cli": "1.2.16",
+    "@tarojs/components": "1.2.16",
     "@tarojs/plugin-babel": "1.2.16",
     "@tarojs/plugin-csso": "1.2.16",
     "@tarojs/plugin-sass": "1.2.16",
     "@tarojs/plugin-uglifyjs": "1.2.16",
+    "@tarojs/taro": "1.2.16",
+    "@tarojs/taro-weapp": "1.2.16",
     "@types/react": "16.3.14",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
