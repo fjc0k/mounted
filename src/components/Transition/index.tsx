@@ -36,7 +36,11 @@ export default class MTransition extends component({
       /** 左滑进入 */
       'slideLeft' |
       /** 右滑进入 */
-      'slideRight'
+      'slideRight' |
+      /** 缩放 */
+      'zoom' |
+      /** 掉落 */
+      'drop'
     ),
     /** 动画时长，单位: ms */
     duration: 300 as number,
@@ -82,13 +86,16 @@ export default class MTransition extends component({
   render() {
     const { name, duration, className } = this.props
     const { type, display } = this.state
-    const animation = `m-transition__${name}${type} ${duration}ms both`
+    const animationName = `m-transition__${name}${type}`
+    const animationDuration = `${duration}ms`
     return (
       <View
-        className={`m-transition ${className}`}
+        className={`m-transition m-transition__${name} ${className}`}
         style={{
-          WebkitAnimation: animation,
-          animation: animation,
+          WebkitAnimationName: animationName,
+          animationName: animationName,
+          WebkitAnimationDuration: animationDuration,
+          animationDuration: animationDuration,
           ...(display ? {} : { display: 'none' }),
         }}
         onAnimationEnd={this.handleAnimationEnd}>
