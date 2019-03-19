@@ -10,7 +10,9 @@ page > view,
 
 page > view {
   position: relative;
+  min-height: 100vh;
   padding-bottom: 80px;
+  overflow: hidden;
 
   &::after {
     content: 'Mounted © Jay Fong';
