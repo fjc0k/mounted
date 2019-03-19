@@ -8,6 +8,7 @@ class App extends component() {
       // @index('./pages/*.tsx', (pp, cc) => `'${pp.path.replace(/^\.\//, '')}',`)
       'pages/Home',
       'pages/Sticky',
+      'pages/Transition',
       // @endindex
     ],
     window: {

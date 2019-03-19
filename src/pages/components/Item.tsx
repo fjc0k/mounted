@@ -9,15 +9,17 @@ export default class XItem extends component({
   props: {
     title: '' as string,
     extra: '' as string,
+    arrow: false as boolean,
+    feedback: false as boolean,
     onClick: noop as () => void,
   },
 }) {
   render() {
-    const { title, extra } = this.props
+    const { title, extra, arrow, feedback } = this.props
     return (
       <View
         className='item'
-        hoverClass='active'
+        hoverClass={feedback ? 'active' : 'none'}
         onClick={this.props.onClick}>
         <View className='title'>
           {
@@ -29,9 +31,11 @@ export default class XItem extends component({
         <View className='extra'>
           <Text>{extra}</Text>
         </View>
-        <View className='arrow'>
-          <XIcon name='rightArrow' />
-        </View>
+        {arrow && (
+          <View className='arrow'>
+            <XIcon name='rightArrow' />
+          </View>
+        )}
       </View>
     )
   }

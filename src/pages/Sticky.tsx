@@ -20,7 +20,9 @@ const heroTypeList: HeroType[] = [
   HeroType.刺客,
 ]
 
-export default class Sticky extends component() {
+export default class Sticky extends component({
+  disableGlobalClass: true,
+}) {
   config: Config = {
     navigationBarTitleText: 'Sticky',
   }
@@ -31,11 +33,16 @@ export default class Sticky extends component() {
         {heroTypeList.map(heroType => (
           <View key={heroType}>
             <MSticky>
-              <XTitle>{HeroType[heroType]}</XTitle>
+              <XTitle>
+                {HeroType[heroType]}
+              </XTitle>
             </MSticky>
             <XList>
               {heroList[heroType].map(hero => (
-                <XItem key={hero} title={hero} />
+                <XItem
+                  key={hero}
+                  title={hero}
+                />
               ))}
             </XList>
           </View>

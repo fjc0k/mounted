@@ -26,7 +26,7 @@ const componentList: ComponentInfo[] = [
   {
     name: 'Transition',
     chineseName: '动画过渡',
-    url: pageUrls.Sticky,
+    url: pageUrls.Transition,
   },
 ]
 
@@ -60,6 +60,8 @@ export default class Home extends component({
               key={componentInfo.name}
               title={componentInfo.name}
               extra={componentInfo.chineseName}
+              arrow={true}
+              feedback={true}
               onClick={this.handleItemClick.bind(this, index)}
             />
           ))}

@@ -1,12 +1,25 @@
+@import './settings.scss';
 @import './styles/components.scss';
 
-page,
+page > view,
 .m-sticky_fixed .m-sticky__content {
-  background: #E8E8E8;
+  background: $backgroundColor;
   padding: 0 20px;
   box-sizing: border-box;
 }
 
-page {
-  padding-bottom: 30px;
+page > view {
+  position: relative;
+  padding-bottom: 80px;
+
+  &::after {
+    content: 'Mounted © Jay Fong';
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    white-space: nowrap;
+    color: $grayColor;
+    font-size: 13px;
+    transform: translateX(-50%);
+  }
 }

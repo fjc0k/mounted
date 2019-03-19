@@ -1,8 +1,8 @@
-@import '../../styles/settings.scss';
+@import '../../settings.scss';
 
 .title {
   font-size: 14px;
   color: $grayColor;
   padding: 16px 15px 8px 15px;
-  background: #E8E8E8;
+  background: $backgroundColor;
 }
