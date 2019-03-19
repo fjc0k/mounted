@@ -64,10 +64,10 @@ export default class MTransition extends component({
   }
 
   componentWillReceiveProps(nextProps: MTransition['props']) {
-    this.setState({
-      display: true,
+    this.setState(prevState => ({
+      display: prevState.display || nextProps.visible,
       type: nextProps.visible ? TransitionType.Enter : TransitionType.Leave,
-    })
+    }))
   }
 
   handleAnimationEnd = () => {
