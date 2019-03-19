@@ -38,7 +38,7 @@ const component = <
   class Component<
     ExtraProps extends Record<string, any> = {},
     ExtraState extends Record<string, any> = {}
-  > extends Taro.Component<
+  > extends Taro.PureComponent<
     Overwrite<PP, ExtraProps>,
     Overwrite<SS, ExtraState>
   > {
