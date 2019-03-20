@@ -27,6 +27,8 @@ const transitionNameList: TransitionName[] = [
   'slideLeft',
   'slideRight',
   'slideUp',
+  'zoom',
+  'drop',
 ]
 
 export default class Transition extends component({

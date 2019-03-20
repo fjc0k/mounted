@@ -28,6 +28,11 @@ const componentList: ComponentInfo[] = [
     chineseName: '动画过渡',
     url: pageUrls.Transition,
   },
+  {
+    name: 'Popup',
+    chineseName: '弹出层',
+    url: pageUrls.Popup,
+  },
 ]
 
 export default class Home extends component({

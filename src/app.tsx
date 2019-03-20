@@ -5,8 +5,9 @@ import { component } from './components/component'
 class App extends component() {
   config: Taro.Config = {
     pages: [
-      // @index('./pages/*.tsx', (pp, cc) => `'${pp.path.replace(/^\.\//, '')}',`)
       'pages/Home',
+      // @index('./pages/*[!Home].tsx', (pp, cc) => `'${pp.path.replace(/^\.\//, '')}',`)
+      'pages/Popup',
       'pages/Sticky',
       'pages/Transition',
       // @endindex

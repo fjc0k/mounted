@@ -1,0 +1,75 @@
+@import '../settings.scss';
+
+.container {
+  position: relative;
+  margin-top: 20px;
+  height: calc(100vh - 100px);
+
+  .toggle {
+    position: absolute;
+    font-size: 16px;
+    background: white;
+    color: lighten(black, 40%);
+    padding: 4px 12px;
+    border-radius: 5px;
+
+    &.active {
+      opacity: 0.7;
+    }
+
+    &.top {
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    &.right {
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    &.bottom {
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    &.left {
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    &.center {
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+}
+
+.popup {
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &.top,
+  &.bottom {
+    width: 100vw;
+    height: 100px;
+  }
+
+  &.right,
+  &.left {
+    height: 100vh;
+    width: 100px;
+  }
+
+  &.center {
+    width: 30vw;
+    height: 30vw;
+    border-radius: 5px;
+  }
+}
