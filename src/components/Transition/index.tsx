@@ -75,12 +75,10 @@ export default class MTransition extends component({
   }
 
   handleAnimationEnd = () => {
-    this.setState(
-      { display: this.props.visible },
-      () => {
-        this.props.onTransitionEnd()
-      },
-    )
+    this.setState({
+      display: this.props.visible,
+    })
+    this.props.onTransitionEnd()
   }
 
   render() {
@@ -93,8 +91,8 @@ export default class MTransition extends component({
         className={`m-transition m-transition__${name} ${className}`}
         style={{
           WebkitAnimationName: animationName,
-          animationName: animationName,
           WebkitAnimationDuration: animationDuration,
+          animationName: animationName,
           animationDuration: animationDuration,
           ...(display ? {} : { display: 'none' }),
         }}
