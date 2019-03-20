@@ -4,9 +4,10 @@ import { CommonEventFunction } from '@tarojs/components/types/common'
 import { component, RequiredProp } from '../component'
 import MTransition from '../Transition'
 
+type TransitionName = MTransition['props']['name']
 type Position = 'center' | 'top' | 'bottom' | 'right' | 'left'
 
-const positionToTransitionName: { [key in Position]: MTransition['props']['name'] } = {
+const positionToTransitionName: { [k in Position]: TransitionName } = {
   center: 'fade',
   top: 'slideDown',
   bottom: 'slideUp',
