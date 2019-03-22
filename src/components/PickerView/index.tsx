@@ -35,7 +35,7 @@ export type Data<V = any> = NormalData<V> | CascadedData<V>
 /**
  * 选择器视图组件。
  */
-export default class MPickerView<D extends Data, V extends (D extends Data<infer VV> ? VV : any) = any> extends component({
+export default class MPickerView<D extends Data = Data, V extends (D extends Data<infer VV> ? VV : any) = any> extends component({
   props: {
     ...defaultProps,
     /** 选择开始事件 */
