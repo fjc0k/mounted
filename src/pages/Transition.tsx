@@ -54,14 +54,14 @@ export default class Transition extends component({
     return (
       <View className='page'>
         <View className='sideBar'>
-          {transitionNameList.map(transitionName => (
+          {transitionNameList.map(name => (
             <View
-              key={transitionName}
+              key={name}
               className='toggle'
               hoverClass='active'
               hoverStayTime={100}
-              onClick={this.handleToggleClick.bind(this, transitionName)}>
-              {transitionName}
+              onClick={this.handleToggleClick.bind(this, name)}>
+              {name}
             </View>
           ))}
         </View>

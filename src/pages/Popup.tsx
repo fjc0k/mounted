@@ -37,14 +37,14 @@ export default class Popup extends component({
     return (
       <View>
         <View className='container'>
-          {positionList.map(position => (
+          {positionList.map(pos => (
             <View
-              key={position}
-              className={`toggle ${position}`}
+              key={pos}
+              className={`toggle ${pos}`}
               hoverClass='active'
               hoverStayTime={100}
-              onClick={this.handleToggleClick.bind(this, position)}>
-              {position}
+              onClick={this.handleToggleClick.bind(this, pos)}>
+              {pos}
             </View>
           ))}
         </View>
