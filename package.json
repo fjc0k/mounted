@@ -28,6 +28,7 @@
     "plugins": [
       "stylelint-scss"
     ],
+    "ignoreFiles": ["**/*.tsx"],
     "rules": {
       "function-name-case": null,
       "at-rule-empty-line-before": null,

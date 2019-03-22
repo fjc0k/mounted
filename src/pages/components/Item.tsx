@@ -12,6 +12,7 @@ export default class XItem extends component({
     extra: '' as string,
     arrow: false as boolean,
     feedback: false as boolean,
+    renderExtra: null as React.ReactNode,
     onClick: noop as () => void,
   },
 }) {
@@ -30,7 +31,8 @@ export default class XItem extends component({
           }
         </View>
         <View className='extra'>
-          <Text>{extra}</Text>
+          {extra && <Text>{extra}</Text>}
+          {this.props.renderExtra}
         </View>
         {arrow && (
           <View className='arrow'>
