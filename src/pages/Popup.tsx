@@ -1,8 +1,8 @@
 import './Popup.scss'
-import { View } from '@tarojs/components'
-import { Config } from '@tarojs/taro'
+import Taro, { Config } from '@tarojs/taro'
 import { component } from '../components/component'
 import { MPopup } from '../components'
+import { View } from '@tarojs/components'
 
 type PopupPosition = MPopup['props']['position']
 
@@ -39,10 +39,10 @@ export default class Popup extends component({
         <View className='container'>
           {positionList.map(position => (
             <View
+              key={position}
               className={`toggle ${position}`}
               hoverClass='active'
               hoverStayTime={100}
-              key={position}
               onClick={this.handleToggleClick.bind(this, position)}>
               {position}
             </View>

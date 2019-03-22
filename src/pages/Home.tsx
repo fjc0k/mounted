@@ -1,10 +1,11 @@
 import './Home.scss'
-import { View, Image, Text } from '@tarojs/components'
+import Taro from '@tarojs/taro'
 import { component } from '../components/component'
 import { ComponentName } from '../components'
 import { iconLogo } from './assets'
-import { XList, XItem } from './components'
+import { Image, Text, View } from '@tarojs/components'
 import { pageUrls } from '.'
+import { XItem, XList } from './components'
 
 interface ComponentInfo {
   name: ComponentName,
@@ -32,6 +33,11 @@ const componentList: ComponentInfo[] = [
     name: 'Popup',
     chineseName: '弹出层',
     url: pageUrls.Popup,
+  },
+  {
+    name: 'PickerView',
+    chineseName: '选择器视图',
+    url: pageUrls.PickerView,
   },
 ]
 

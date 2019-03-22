@@ -1,6 +1,7 @@
 import './Icon.scss'
-import { View } from '@tarojs/components'
+import Taro from '@tarojs/taro'
 import { component, RequiredProp } from '../../components/component'
+import { View } from '@tarojs/components'
 
 export default class XIcon extends component({
   disableGlobalClass: true,

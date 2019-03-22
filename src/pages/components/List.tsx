@@ -1,6 +1,7 @@
 import './List.scss'
-import { View } from '@tarojs/components'
+import Taro from '@tarojs/taro'
 import { component } from '../../components/component'
+import { View } from '@tarojs/components'
 
 export default class XList extends component({
   disableGlobalClass: true,

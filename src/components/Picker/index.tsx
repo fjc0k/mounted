@@ -1,8 +1,9 @@
-import { View } from '@tarojs/components'
-import { component } from '../component'
+import defaultProps from './defaultProps'
 import MPickerView, { Data } from '../PickerView'
 import MPopup from '../Popup'
-import defaultProps from './defaultProps'
+import Taro from '@tarojs/taro'
+import { component } from '../component'
+import { View } from '@tarojs/components'
 
 class MPicker<D extends Data, V extends (D extends Data<infer VV> ? VV : any) = any> extends component({
   props: defaultProps,

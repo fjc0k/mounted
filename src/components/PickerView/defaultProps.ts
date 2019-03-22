@@ -5,5 +5,6 @@ export default {
   value: [],
   itemHeight: '2.5em' as string,
   visibleItemCount: 5 as number,
+  disabled: false as boolean,
   onChange: noop,
 }

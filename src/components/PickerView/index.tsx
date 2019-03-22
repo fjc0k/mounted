@@ -1,7 +1,8 @@
-import { View, PickerView, PickerViewColumn } from '@tarojs/components'
-import { parseCSSValue, noop, isArray, isEqualArray, isNumber, clamp } from 'vtils'
-import { component } from '../component'
 import defaultProps from './defaultProps'
+import Taro from '@tarojs/taro'
+import { clamp, isArray, isEqualArray, isNumber, noop, parseCSSValue } from 'vtils'
+import { component } from '../component'
+import { PickerView, PickerViewColumn, View } from '@tarojs/components'
 
 export type NormalItem<V = any> = {
   label: string | number,
@@ -154,20 +155,24 @@ class MPickerView<D extends Data, V extends (D extends Data<infer VV> ? VV : any
   }
 
   render() {
+    const { disabled } = this.props
     const { normalizedData, selectedIndexes } = this.state
     const styles = this.computeStyles()
     return (
       <PickerView
         value={selectedIndexes}
+        className={`m-picker-view ${disabled && 'm-picker-view_disabled'}`}
         style={styles.view}
         indicatorStyle={`height:${styles.indicator.height}`}
         onPickStart={this.props.onPickStart}
         onPickEnd={this.props.onPickEnd}
         onChange={this.handleChange}>
         {normalizedData.map((colData, colIndex) => (
+          // eslint-disable-next-line react/no-array-index-key
           <PickerViewColumn key={colIndex}>
             {colData.map((item, itemIndex) => (
-              <View className='m-picker-view__item' key={itemIndex}>
+              // eslint-disable-next-line react/no-array-index-key
+              <View key={itemIndex} className='m-picker-view__item'>
                 <View className='m-picker-view__item__label'>
                   {item.label}
                 </View>

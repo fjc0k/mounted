@@ -1,8 +1,9 @@
-import { View } from '@tarojs/components'
-import { noop } from 'vtils'
+import MTransition from '../Transition'
+import Taro from '@tarojs/taro'
 import { CommonEventFunction } from '@tarojs/components/types/common'
 import { component, RequiredProp } from '../component'
-import MTransition from '../Transition'
+import { noop } from 'vtils'
+import { View } from '@tarojs/components'
 
 type TransitionName = MTransition['props']['name']
 type Position = 'center' | 'top' | 'bottom' | 'right' | 'left'
@@ -18,7 +19,7 @@ const positionToTransitionName: { [k in Position]: TransitionName } = {
 /**
  * 弹出层组件。
  */
-class MPopup extends component({
+export default class MPopup extends component({
   props: {
     /** 弹出层是否可见 */
     visible: false as any as RequiredProp<boolean>,
@@ -113,5 +114,3 @@ class MPopup extends component({
     )
   }
 }
-
-export default MPopup

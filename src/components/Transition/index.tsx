@@ -1,6 +1,7 @@
-import { View } from '@tarojs/components'
-import { noop } from 'vtils'
+import Taro from '@tarojs/taro'
 import { component, RequiredProp } from '../component'
+import { noop } from 'vtils'
+import { View } from '@tarojs/components'
 
 /** 过渡类型 */
 enum TransitionType {

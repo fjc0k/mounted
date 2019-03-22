@@ -1,7 +1,8 @@
-import { Label, View, Button } from '@tarojs/components'
-import { noop } from 'vtils'
-import { component } from '../component'
 import Collector from './Collector'
+import Taro from '@tarojs/taro'
+import { Button, Label, View } from '@tarojs/components'
+import { component } from '../component'
+import { noop } from 'vtils'
 
 /**
  * Form Id 收集组件。

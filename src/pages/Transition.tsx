@@ -1,8 +1,8 @@
 import './Transition.scss'
-import { View } from '@tarojs/components'
-import { Config } from '@tarojs/taro'
+import Taro, { Config } from '@tarojs/taro'
 import { component } from '../components/component'
 import { MTransition } from '../components'
+import { View } from '@tarojs/components'
 
 type TransitionName = MTransition['props']['name']
 

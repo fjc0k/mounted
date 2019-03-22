@@ -1,6 +1,10 @@
 @import '../../styles/settings.scss';
 
 .m-picker-view {
+  &_disabled {
+    pointer-events: none;
+  }
+
   &__item {
     display: flex;
     align-items: center;

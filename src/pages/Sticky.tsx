@@ -1,8 +1,8 @@
-import { View } from '@tarojs/components'
-import { Config } from '@tarojs/taro'
+import Taro, { Config } from '@tarojs/taro'
 import { component } from '../components/component'
 import { MSticky } from '../components'
-import { XTitle, XList, XItem } from './components'
+import { View } from '@tarojs/components'
+import { XItem, XList, XTitle } from './components'
 
 enum HeroType { 射手, 法师, 战士, 刺客 }
 

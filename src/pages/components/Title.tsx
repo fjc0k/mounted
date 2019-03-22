@@ -1,6 +1,7 @@
 import './Title.scss'
-import { View } from '@tarojs/components'
+import Taro from '@tarojs/taro'
 import { component } from '../../components/component'
+import { View } from '@tarojs/components'
 
 export default class XTitle extends component({
   disableGlobalClass: true,

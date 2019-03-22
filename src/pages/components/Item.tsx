@@ -1,8 +1,9 @@
 import './Item.scss'
-import { View, Text } from '@tarojs/components'
-import { noop } from 'vtils'
-import { component } from '../../components/component'
+import Taro from '@tarojs/taro'
 import XIcon from './Icon'
+import { component } from '../../components/component'
+import { noop } from 'vtils'
+import { Text, View } from '@tarojs/components'
 
 export default class XItem extends component({
   disableGlobalClass: true,

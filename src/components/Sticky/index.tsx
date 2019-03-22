@@ -1,6 +1,7 @@
-import { View } from '@tarojs/components'
-import { Disposer, wait } from 'vtils'
+import Taro from '@tarojs/taro'
 import { component } from '../component'
+import { Disposer, wait } from 'vtils'
+import { View } from '@tarojs/components'
 
 /** 页面上存在的吸顶组件 */
 const stickyComponents: MSticky[] = []
@@ -8,7 +9,7 @@ const stickyComponents: MSticky[] = []
 /**
  * 吸顶组件。
  */
-class MSticky extends component({
+export default class MSticky extends component({
   state: {
     /** 是否置顶 */
     fixed: false as boolean,
@@ -94,5 +95,3 @@ class MSticky extends component({
     )
   }
 }
-
-export default MSticky

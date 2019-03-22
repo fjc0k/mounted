@@ -1,7 +1,8 @@
-import { Form, Button } from '@tarojs/components'
-import { noop } from 'vtils'
-import { component, RequiredProp } from '../component'
 import Self from './Collector'
+import Taro from '@tarojs/taro'
+import { Button, Form } from '@tarojs/components'
+import { component, RequiredProp } from '../component'
+import { noop } from 'vtils'
 
 export default class Collector extends component({
   props: {
