@@ -2,6 +2,30 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.5.0"></a>
+# [0.5.0](https://github.com/fjc0k/mounted/compare/v0.4.0...v0.5.0) (2019-03-22)
+
+
+### Bug Fixes
+
+* 修复可能的变量冲突 ([35d6b1a](https://github.com/fjc0k/mounted/commit/35d6b1a))
+* **Transition:** 修复 state.display 的赋值逻辑 ([82b458b](https://github.com/fjc0k/mounted/commit/82b458b))
+* **Transition:** 动画完成即触发 onTransitionEnd 事件 ([4a806d9](https://github.com/fjc0k/mounted/commit/4a806d9))
+* 解决 Sticky 组件的若干问题 ([25d7c4a](https://github.com/fjc0k/mounted/commit/25d7c4a))
+
+
+### Features
+
+* **PickerView:** 类型优化 ([b1f14aa](https://github.com/fjc0k/mounted/commit/b1f14aa))
+* **PickerView:** 类型及注释优化 ([29eb01a](https://github.com/fjc0k/mounted/commit/29eb01a))
+* **Transition:** 新增 zoom, drop 过渡动画 ([10d0e38](https://github.com/fjc0k/mounted/commit/10d0e38))
+* 使用 Taro.PureComponent ([f1ec98d](https://github.com/fjc0k/mounted/commit/f1ec98d))
+* 完善文档 ([4a1a2cf](https://github.com/fjc0k/mounted/commit/4a1a2cf))
+* 添加 logo ([9ee95a9](https://github.com/fjc0k/mounted/commit/9ee95a9))
+* 添加 logo ([f2618b9](https://github.com/fjc0k/mounted/commit/f2618b9))
+
+
+
 <a name="0.4.0"></a>
 # [0.4.0](https://github.com/fjc0k/mounted/compare/v0.3.2...v0.4.0) (2019-03-18)
 
