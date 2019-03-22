@@ -4,8 +4,10 @@ import { clamp, isArray, isEqualArray, isNumber, noop, parseCSSValue } from 'vti
 import { component } from '../component'
 import { PickerView, PickerViewColumn, View } from '@tarojs/components'
 
-export type NormalItem<V = any> = {
+export interface NormalItem<V = any> {
+  /** 标签，用于显示 */
   label: string | number,
+  /** 值 */
   value: V,
 }
 
@@ -13,9 +15,8 @@ export type NormalColData<V = any> = NormalItem<V>[]
 
 export type NormalData<V = any> = NormalColData<V>[]
 
-export type CascadedItem<V = any> = {
-  label: string | number,
-  value: V,
+export interface CascadedItem<V = any> extends NormalItem<V> {
+  /** 下级选项数据 */
   children?: CascadedData<V>,
 }
 
@@ -25,27 +26,43 @@ export type CascadedData<V = any> = CascadedColData<V>
 
 export type ColData<V = any> = NormalColData<V> | CascadedColData<V>
 
+/** 条目 */
+export type Item<V = any> = NormalItem<V> | CascadedItem<V>
+
+/** 选项数据 */
 export type Data<V = any> = NormalData<V> | CascadedData<V>
 
-class MPickerView<D extends Data, V extends (D extends Data<infer VV> ? VV : any) = any> extends component({
+/**
+ * 选择器视图组件。
+ */
+export default class MPickerView<D extends Data, V extends (D extends Data<infer VV> ? VV : any) = any> extends component({
   props: {
     ...defaultProps,
+    /** 选择开始事件 */
     onPickStart: noop as () => void,
+    /** 选择结束事件 */
     onPickEnd: noop as () => void,
   },
   state: {
+    /** 选中条目的索引列表 */
     selectedIndexes: [] as number[],
     normalizedData: [],
   },
 })<{
+  /** 选项数据 */
   data: D,
+  /** 选中条目的值列表 */
   value?: V[],
+  /** 选中值改变事件 */
   onChange?: (value: V[]) => void,
 }, {
+  /** 规范化的选项数据 */
   normalizedData: NormalData<V>,
 }> {
+  /** 是否级联 */
   isCascaded: boolean = false
 
+  /** 上一次选中的值 */
   prevValue: V[] = null
 
   componentWillMount() {
@@ -56,6 +73,14 @@ class MPickerView<D extends Data, V extends (D extends Data<infer VV> ? VV : any
     this.update(nextProps, { ...this.props, value: this.prevValue })
   }
 
+  /**
+   * 更新状态。
+   *
+   * @param nextProps 新的 props 数据
+   * @param prevProps 旧的 props 数据
+   * @param [callback=noop] 更新完成后的回调函数
+   * @param [disableEmitChangeEvent=false] 是否禁止触发 change 事件
+   */
   update(
     { data, value }: MPickerView<D, V>['props'],
     { data: prevData, value: prevValue }: MPickerView<D, V>['props'],
@@ -98,10 +123,11 @@ class MPickerView<D extends Data, V extends (D extends Data<infer VV> ? VV : any
       callback,
     )
 
+    this.prevValue = selectedIndexes.map(
+      (selectedIndex, colIndex) => normalizedData[colIndex][selectedIndex].value,
+    )
+
     if (!disableEmitChangeEvent && data !== prevData) {
-      this.prevValue = selectedIndexes.map(
-        (selectedIndex, colIndex) => normalizedData[colIndex][selectedIndex].value,
-      )
       this.props.onChange(this.prevValue)
     }
   }
@@ -184,5 +210,3 @@ class MPickerView<D extends Data, V extends (D extends Data<infer VV> ? VV : any
     )
   }
 }
-
-export default MPickerView
