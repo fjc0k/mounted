@@ -10,6 +10,7 @@ class App extends component() {
       'pages/Picker',
       'pages/PickerView',
       'pages/Popup',
+      'pages/SinglePicker',
       'pages/Sticky',
       'pages/Transition',
       // @endindex

@@ -4,6 +4,7 @@ export const pageUrls = {
   Picker: '/pages/Picker' as '/pages/Picker',
   PickerView: '/pages/PickerView' as '/pages/PickerView',
   Popup: '/pages/Popup' as '/pages/Popup',
+  SinglePicker: '/pages/SinglePicker' as '/pages/SinglePicker',
   Sticky: '/pages/Sticky' as '/pages/Sticky',
   Transition: '/pages/Transition' as '/pages/Transition',
   // @endindex

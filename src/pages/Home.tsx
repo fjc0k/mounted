@@ -42,7 +42,7 @@ const componentList: ComponentInfo[] = [
   {
     name: 'SinglePicker',
     chineseName: '单项选择器',
-    url: pageUrls.PickerView,
+    url: pageUrls.SinglePicker,
   },
 ]
 
