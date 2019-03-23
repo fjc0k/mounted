@@ -29,6 +29,8 @@ export default class MPopup extends component({
     duration: 300 as number,
     /** 弹出内容位置 */
     position: 'center' as Position,
+    /** 自定义动画过渡 */
+    customTransition: '' as TransitionName,
     /** 可见性变化事件 */
     onVisibleChange: noop as any as RequiredProp<(visible: boolean) => void>,
   },
@@ -81,7 +83,7 @@ export default class MPopup extends component({
   }
 
   render() {
-    const { visible, duration, position } = this.props
+    const { visible, duration, position, customTransition } = this.props
     const { zIndex, display } = this.state
     return (
       <View
@@ -103,7 +105,7 @@ export default class MPopup extends component({
         </MTransition>
         <View className='m-popup__content'>
           <MTransition
-            name={positionToTransitionName[position]}
+            name={customTransition || positionToTransitionName[position]}
             visible={visible}
             duration={duration}
             onTransitionEnd={this.handleTransitionEnd}>
