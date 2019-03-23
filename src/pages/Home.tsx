@@ -30,8 +30,18 @@ const componentList: ComponentInfo[] = [
     url: pageUrls.Popup,
   },
   {
+    name: 'Picker',
+    chineseName: '选择器',
+    url: pageUrls.Picker,
+  },
+  {
     name: 'PickerView',
     chineseName: '选择器视图',
+    url: pageUrls.PickerView,
+  },
+  {
+    name: 'SinglePicker',
+    chineseName: '单项选择器',
     url: pageUrls.PickerView,
   },
 ]

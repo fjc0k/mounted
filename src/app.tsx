@@ -7,6 +7,7 @@ class App extends component() {
     pages: [
       'pages/Home',
       // @index('./pages/*[!Home].tsx', (pp, cc) => `'${pp.path.replace(/^\.\//, '')}',`)
+      'pages/Picker',
       'pages/PickerView',
       'pages/Popup',
       'pages/Sticky',
