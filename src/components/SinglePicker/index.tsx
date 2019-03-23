@@ -1,35 +1,56 @@
-import defaultProps from './defaultProps'
 import MPicker from '../Picker'
 import Taro from '@tarojs/taro'
-import { component } from '../component'
-import { NormalColData } from '../PickerView'
+import { component, RequiredProp } from '../component'
+import { noop } from 'vtils'
+import { NormalData, NormalItem } from '../PickerView'
 
-class MSinglePicker<D extends NormalColData, V extends (D extends NormalColData<infer VV> ? VV : any) = any> extends component({
-  props: defaultProps,
-  state: {
-    localData: [],
-    localValue: [],
+export type Item = NormalItem
+export type Data = Item[]
+
+class MSinglePicker extends component({
+  props: {
+    /** 选项数据 */
+    data: [] as any as RequiredProp<Data>,
+    /** 选中条目的索引 */
+    selectedIndex: 0 as any as RequiredProp<number>,
+    /** 单个条目高度 */
+    itemHeight: '2.5em' as string,
+    /** 显示条目数量 */
+    visibleItemCount: 5 as number,
+    /** 是否禁止选中 */
+    disabled: false as boolean,
+    /** 是否可点击遮罩关闭 */
+    maskClosable: true as boolean,
+    /** 标题 */
+    title: '' as string,
+    /** 是否无取消按钮 */
+    noCancel: false as boolean,
+    /** 取消文字 */
+    cancelText: '取消' as string,
+    /** 确定文字 */
+    confirmText: '确定' as string,
+    /** 点击取消事件 */
+    onCancel: noop as () => void,
+    /** 点击确定事件 */
+    onConfirm: noop as any as RequiredProp<(selectedIndex: number) => void>,
   },
-})<{
-  data: D,
-  value?: V,
-  onConfirm?: (value: V) => void,
-}, {
-  localData: [D],
-  localValue: [V],
-}> {
+  state: {
+    localData: [] as NormalData,
+    localSelectedIndexes: [] as number[],
+  },
+}) {
   componentWillMount() {
-    const { data, value } = this.props
+    const { data, selectedIndex } = this.props
     this.setState({
       localData: [data],
-      localValue: [value],
+      localSelectedIndexes: [selectedIndex],
     })
   }
 
-  componentWillReceiveProps({ data, value }: MSinglePicker<D>['props']) {
+  componentWillReceiveProps({ data, selectedIndex }: MSinglePicker['props']) {
     this.setState({
       localData: [data],
-      localValue: [value],
+      localSelectedIndexes: [selectedIndex],
     })
   }
 
@@ -37,8 +58,8 @@ class MSinglePicker<D extends NormalColData, V extends (D extends NormalColData<
     this.props.onCancel()
   }
 
-  handleConfirm: MPicker<D[]>['props']['onConfirm'] = value => {
-    this.props.onConfirm(value[0])
+  handleConfirm: MPicker['props']['onConfirm'] = selectedIndexes => {
+    this.props.onConfirm(selectedIndexes[0])
   }
 
   render() {
@@ -53,13 +74,13 @@ class MSinglePicker<D extends NormalColData, V extends (D extends NormalColData<
     } = this.props
     const {
       localData,
-      localValue,
+      localSelectedIndexes,
     } = this.state
     return (
       <MPicker
         maskClosable={maskClosable}
         data={localData}
-        value={localValue as any}
+        selectedIndexes={localSelectedIndexes}
         itemHeight={itemHeight}
         visibleItemCount={visibleItemCount}
         noCancel={noCancel}

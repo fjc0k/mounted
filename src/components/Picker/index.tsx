@@ -1,48 +1,71 @@
-import defaultProps from './defaultProps'
 import MPickerView, { Data } from '../PickerView'
 import MPopup from '../Popup'
 import Taro from '@tarojs/taro'
-import { component } from '../component'
+import { component, RequiredProp } from '../component'
+import { noop } from 'vtils'
 import { View } from '@tarojs/components'
 
-class MPicker<D extends Data, V extends (D extends Data<infer VV> ? VV : any) = any> extends component({
-  props: defaultProps,
+/**
+ * 选择器组件。
+ */
+class MPicker extends component({
+  props: {
+    /** 选项数据 */
+    data: [] as any as RequiredProp<Data>,
+    /** 选中条目的索引列表 */
+    selectedIndexes: [] as any as RequiredProp<number[]>,
+    /** 单个条目高度 */
+    itemHeight: '2.5em' as string,
+    /** 显示条目数量 */
+    visibleItemCount: 5 as number,
+    /** 是否禁止选中 */
+    disabled: false as boolean,
+    /** 是否可点击遮罩关闭 */
+    maskClosable: true as boolean,
+    /** 标题 */
+    title: '' as string,
+    /** 是否无取消按钮 */
+    noCancel: false as boolean,
+    /** 取消文字 */
+    cancelText: '取消' as string,
+    /** 确定文字 */
+    confirmText: '确定' as string,
+    /** 点击取消事件 */
+    onCancel: noop as () => void,
+    /** 点击确定事件 */
+    onConfirm: noop as any as RequiredProp<(selectedIndexes: number[]) => void>,
+  },
   state: {
     localVisible: false as boolean,
-    localValue: [],
+    localSelectedIndexes: [],
   },
-})<{
-  data: D,
-  value?: V[],
-  onConfirm?: (value: V[]) => void,
-}, {
-  localValue: V[],
-}> {
+}) {
   canClose: boolean = true
 
   componentWillMount() {
-    const { value } = this.props
+    const { selectedIndexes } = this.props
     this.setState({
-      localValue: value,
+      localSelectedIndexes: selectedIndexes,
     })
   }
 
-  componentWillReceiveProps({ value }: MPicker<D>['props']) {
+  componentWillReceiveProps({ selectedIndexes }: MPicker['props']) {
     this.setState({
-      localValue: value,
+      localSelectedIndexes: selectedIndexes,
     })
   }
 
   handleTriggerClick = () => {
-    this.setState(prevState => ({
-      localVisible: !prevState.localVisible,
+    this.setState(_ => ({
+      localVisible: !_.localVisible,
     }))
   }
 
   handleVisibleChange: MPopup['props']['onVisibleChange'] = visible => {
+    const { selectedIndexes } = this.props
     this.setState({
       localVisible: visible,
-      ...(visible ? {} as any : { localValue: this.props.value }),
+      ...(visible ? {} as any : { localSelectedIndexes: selectedIndexes }),
     })
   }
 
@@ -54,16 +77,16 @@ class MPicker<D extends Data, V extends (D extends Data<infer VV> ? VV : any) = 
     this.canClose = true
   }
 
-  handlePickChange: MPickerView<D>['props']['onChange'] = value => {
+  handlePickChange: MPickerView['props']['onChange'] = selectedIndexes => {
     this.setState({
-      localValue: value,
+      localSelectedIndexes: selectedIndexes,
     })
   }
 
   handleCancelClick = () => {
     if (!this.canClose) return
     this.setState({
-      localValue: this.props.value,
+      localSelectedIndexes: this.props.selectedIndexes,
       localVisible: false,
     }, () => {
       this.props.onCancel()
@@ -75,13 +98,13 @@ class MPicker<D extends Data, V extends (D extends Data<infer VV> ? VV : any) = 
     this.setState({
       localVisible: false,
     }, () => {
-      this.props.onConfirm(this.state.localValue)
+      this.props.onConfirm(this.state.localSelectedIndexes.slice())
     })
   }
 
   render() {
     const { maskClosable, data, itemHeight, visibleItemCount, noCancel, cancelText, confirmText, title } = this.props
-    const { localVisible, localValue } = this.state
+    const { localVisible, localSelectedIndexes } = this.state
     return (
       <View>
         <View onClick={this.handleTriggerClick}>
@@ -110,7 +133,7 @@ class MPicker<D extends Data, V extends (D extends Data<infer VV> ? VV : any) = 
             </View>
             <MPickerView
               data={data}
-              value={localValue as any}
+              selectedIndexes={localSelectedIndexes}
               itemHeight={itemHeight}
               visibleItemCount={visibleItemCount}
               onPickStart={this.handlePickStart}

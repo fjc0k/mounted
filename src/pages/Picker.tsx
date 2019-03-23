@@ -1,6 +1,6 @@
 import Taro, { Config } from '@tarojs/taro'
+import { CascadedData, NormalData, NormalItem } from '../components/PickerView'
 import { component } from '../components/component'
-import { Data, Item } from '../components/PickerView'
 import { MPicker } from '../components'
 import { View } from '@tarojs/components'
 import { XItem, XList, XTitle } from './components'
@@ -8,34 +8,26 @@ import { XItem, XList, XTitle } from './components'
 const shooterList: string[] = ['鲁班七号', '孙尚香', '虞姬', '马可波罗', '狄仁杰']
 const mageList: string[] = ['墨子', '武则天', '安琪拉', '妲己', '张良', '上官婉儿']
 
-const shooterData: Data<string> = [
-  shooterList.map<Item<string>>(
-    name => ({
-      label: name,
-      value: name,
-    }),
+const shooterData: NormalData = [
+  shooterList.map<NormalItem>(
+    name => ({ label: name }),
   ),
 ]
 
-const shooterAndMageData: Data<string> = [
+const shooterAndMageData: NormalData = [
   ...shooterData,
-  mageList.map<Item<string>>(
-    name => ({
-      label: name,
-      value: name,
-    }),
+  mageList.map<NormalItem>(
+    name => ({ label: name }),
   ),
 ]
 
-const heroData: Data<string> = [
+const heroData: CascadedData = [
   {
     label: '射手',
-    value: '射手',
     children: shooterData[0],
   },
   {
     label: '法师',
-    value: '法师',
     children: shooterAndMageData[1],
   },
 ]
@@ -43,9 +35,9 @@ const heroData: Data<string> = [
 export default class Picker extends component({
   disableGlobalClass: true,
   state: {
-    selectedShooter: [shooterList[0]],
-    selectedShooterAndMage: [shooterList[0], mageList[0]],
-    selectedHero: [heroData[0].value, heroData[0].children[0].value],
+    selectedShooterIndexes: [0],
+    selectedShooterAndMageIndexes: [0, 0],
+    selectedHeroIndexes: [0, 0],
   },
 }) {
   config: Config = {
@@ -53,31 +45,36 @@ export default class Picker extends component({
   }
 
   render() {
-    const { selectedShooter, selectedShooterAndMage, selectedHero } = this.state
+    const { selectedShooterIndexes, selectedShooterAndMageIndexes, selectedHeroIndexes } = this.state
     return (
       <View>
         <XTitle>普通选择</XTitle>
         <XList>
           <MPicker
             title='选个射手'
-            value={selectedShooter}
+            selectedIndexes={selectedShooterIndexes}
             data={shooterData}
-            onConfirm={selectedShooter => this.setState({ selectedShooter })}>
+            onConfirm={selectedShooterIndexes => this.setState({ selectedShooterIndexes })}>
             <XItem
               title='选个射手'
-              extra={selectedShooter[0]}
+              extra={shooterData[0][selectedShooterIndexes[0]].label}
               arrow={true}
               feedback={true}
             />
           </MPicker>
           <MPicker
             title='选个射手&法师'
-            value={selectedShooterAndMage}
+            selectedIndexes={selectedShooterAndMageIndexes}
             data={shooterAndMageData}
-            onConfirm={selectedShooterAndMage => this.setState({ selectedShooterAndMage })}>
+            onConfirm={selectedShooterAndMageIndexes => this.setState({ selectedShooterAndMageIndexes })}>
             <XItem
               title='选个射手&法师'
-              extra={selectedShooterAndMage.join(', ')}
+              extra={
+                [
+                  shooterAndMageData[0][selectedShooterAndMageIndexes[0]].label,
+                  shooterAndMageData[1][selectedShooterAndMageIndexes[1]].label,
+                ].join(', ')
+              }
               arrow={true}
               feedback={true}
             />
@@ -87,12 +84,17 @@ export default class Picker extends component({
         <XList>
           <MPicker
             title='选个英雄'
-            value={selectedHero}
+            selectedIndexes={selectedHeroIndexes}
             data={heroData}
-            onConfirm={selectedHero => this.setState({ selectedHero })}>
+            onConfirm={selectedHeroIndexes => this.setState({ selectedHeroIndexes })}>
             <XItem
               title='选个英雄'
-              extra={selectedHero.join(' - ')}
+              extra={
+                [
+                  heroData[selectedHeroIndexes[0]].label,
+                  heroData[selectedHeroIndexes[0]].children[selectedHeroIndexes[1]].label,
+                ].join(' - ')
+              }
               arrow={true}
               feedback={true}
             />

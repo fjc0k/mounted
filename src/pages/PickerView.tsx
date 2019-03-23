@@ -1,6 +1,6 @@
 import Taro, { Config } from '@tarojs/taro'
+import { CascadedData, NormalData, NormalItem } from '../components/PickerView'
 import { component } from '../components/component'
-import { Data, Item } from '../components/PickerView'
 import { Input, Switch, View } from '@tarojs/components'
 import { MPickerView } from '../components'
 import { XItem, XList, XTitle } from './components'
@@ -8,34 +8,26 @@ import { XItem, XList, XTitle } from './components'
 const shooterList: string[] = ['鲁班七号', '孙尚香', '虞姬', '马可波罗', '狄仁杰']
 const mageList: string[] = ['墨子', '武则天', '安琪拉', '妲己', '张良', '上官婉儿']
 
-const shooterData: Data<string> = [
-  shooterList.map<Item<string>>(
-    name => ({
-      label: name,
-      value: name,
-    }),
+const shooterData: NormalData = [
+  shooterList.map<NormalItem>(
+    name => ({ label: name }),
   ),
 ]
 
-const shooterAndMageData: Data<string> = [
+const shooterAndMageData: NormalData = [
   ...shooterData,
-  mageList.map<Item<string>>(
-    name => ({
-      label: name,
-      value: name,
-    }),
+  mageList.map<NormalItem>(
+    name => ({ label: name }),
   ),
 ]
 
-const heroData: Data<string> = [
+const heroData: CascadedData = [
   {
     label: '射手',
-    value: '射手',
     children: shooterData[0],
   },
   {
     label: '法师',
-    value: '法师',
     children: shooterAndMageData[1],
   },
 ]
@@ -45,22 +37,16 @@ export default class PickerView extends component({
   state: {
     normal: {
       data: shooterAndMageData,
-      value: [
-        shooterAndMageData[0][0].value,
-        shooterAndMageData[1][0].value,
-      ],
+      selectedIndexes: [0, 0],
       visibleItemCount: 5,
       disabled: false,
-    } as MPickerView['props'],
+    },
     cascaded: {
       data: heroData,
-      value: [
-        heroData[0].value,
-        heroData[0].children[0].value,
-      ],
+      selectedIndexes: [0, 0],
       visibleItemCount: 5,
       disabled: false,
-    } as MPickerView['props'],
+    },
   },
 }) {
   config: Config = {
@@ -74,8 +60,18 @@ export default class PickerView extends component({
         <XTitle>普通选择</XTitle>
         <XList>
           <XItem
-            title='选中值'
-            extra={JSON.stringify(normal.value)}
+            title='选中项索引'
+            extra={JSON.stringify(normal.selectedIndexes)}
+          />
+          <XItem
+            title='选中项标签'
+            extra={
+              JSON.stringify(
+                normal.data.map(
+                  (list, index) => list[normal.selectedIndexes[index]].label,
+                ),
+              )
+            }
           />
           <XItem
             title='可见条目数量'
@@ -115,14 +111,14 @@ export default class PickerView extends component({
           <XItem>
             <MPickerView
               data={normal.data}
-              value={normal.value}
+              selectedIndexes={normal.selectedIndexes}
               visibleItemCount={normal.visibleItemCount}
               disabled={normal.disabled}
-              onChange={value => {
+              onChange={selectedIndexes => {
                 this.setState(_ => ({
                   normal: {
                     ..._.normal,
-                    value: value,
+                    selectedIndexes: selectedIndexes,
                   },
                 }))
               }}
@@ -132,8 +128,17 @@ export default class PickerView extends component({
         <XTitle>级联选择</XTitle>
         <XList>
           <XItem
-            title='选中值'
-            extra={JSON.stringify(cascaded.value)}
+            title='选中项索引'
+            extra={JSON.stringify(cascaded.selectedIndexes)}
+          />
+          <XItem
+            title='选中项标签'
+            extra={
+              JSON.stringify([
+                cascaded.data[cascaded.selectedIndexes[0]].label,
+                cascaded.data[cascaded.selectedIndexes[0]].children[cascaded.selectedIndexes[1]].label,
+              ])
+            }
           />
           <XItem
             title='可见条目数量'
@@ -173,14 +178,14 @@ export default class PickerView extends component({
           <XItem>
             <MPickerView
               data={cascaded.data}
-              value={cascaded.value}
+              selectedIndexes={cascaded.selectedIndexes}
               visibleItemCount={cascaded.visibleItemCount}
               disabled={cascaded.disabled}
-              onChange={value => {
+              onChange={selectedIndexes => {
                 this.setState(_ => ({
                   cascaded: {
                     ..._.cascaded,
-                    value: value,
+                    selectedIndexes: selectedIndexes,
                   },
                 }))
               }}

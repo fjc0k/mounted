@@ -1,6 +1,6 @@
 import Taro from '@tarojs/taro'
 import { component } from '../components/component'
-import { Data } from '../components/PickerView'
+import { Data } from '../components/SinglePicker'
 import { MSinglePicker } from '../components'
 import { View } from '@tarojs/components'
 import { XItem, XList, XTitle } from './components'
@@ -27,23 +27,23 @@ const countryData: Data = [
 export default class SinglePicker extends component({
   disableGlobalClass: true,
   state: {
-    selectedCountry: countryData[0].value,
+    selectedCountryIndex: 0,
   },
 }) {
   render() {
-    const { selectedCountry } = this.state
+    const { selectedCountryIndex } = this.state
     return (
       <View>
         <XTitle>单项选择</XTitle>
         <XList>
           <MSinglePicker
             title='选个国家'
-            value={selectedCountry}
+            selectedIndex={selectedCountryIndex}
             data={countryData as any}
-            onConfirm={selectedCountry => this.setState({ selectedCountry })}>
+            onConfirm={selectedCountryIndex => this.setState({ selectedCountryIndex })}>
             <XItem
               title='选个国家'
-              extra={selectedCountry}
+              extra={countryData[selectedCountryIndex].label}
               arrow={true}
               feedback={true}
             />

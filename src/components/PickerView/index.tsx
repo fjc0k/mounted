@@ -1,43 +1,59 @@
-import defaultProps from './defaultProps'
 import Taro from '@tarojs/taro'
 import { clamp, isArray, isEqualArray, isNumber, noop, parseCSSValue } from 'vtils'
-import { component } from '../component'
+import { component, RequiredProp } from '../component'
 import { PickerView, PickerViewColumn, View } from '@tarojs/components'
 
-export interface NormalItem<V = any> {
+/** 普通条目 */
+export interface NormalItem {
   /** 标签，用于显示 */
-  label: string | number,
-  /** 值 */
-  value: V,
+  label: string,
+  [key: string]: any,
 }
 
-export type NormalColData<V = any> = NormalItem<V>[]
+/** 普通列表 */
+export type NormalList = NormalItem[]
 
-export type NormalData<V = any> = NormalColData<V>[]
+/** 普通数据 */
+export type NormalData = NormalList[]
 
-export interface CascadedItem<V = any> extends NormalItem<V> {
+/** 级联条目 */
+export interface CascadedItem extends NormalItem {
   /** 下级选项数据 */
-  children?: CascadedData<V>,
+  children?: CascadedData,
 }
 
-export type CascadedColData<V = any> = CascadedItem<V>[]
+/** 级联列表 */
+export type CascadedList = CascadedItem[]
 
-export type CascadedData<V = any> = CascadedColData<V>
-
-export type ColData<V = any> = NormalColData<V> | CascadedColData<V>
+/** 级联数据 */
+export type CascadedData = CascadedList
 
 /** 条目 */
-export type Item<V = any> = NormalItem<V> | CascadedItem<V>
+export type Item = NormalItem | CascadedItem
 
-/** 选项数据 */
-export type Data<V = any> = NormalData<V> | CascadedData<V>
+/** 列表 */
+export type List = NormalList | CascadedList
+
+/** 数据 */
+export type Data = NormalData | CascadedData
 
 /**
  * 选择器视图组件。
  */
-export default class MPickerView<D extends Data = Data, V extends (D extends Data<infer VV> ? VV : any) = any> extends component({
+export default class MPickerView extends component({
   props: {
-    ...defaultProps,
+    /** 选项数据 */
+    data: [] as any as RequiredProp<Data>,
+    /** 选中条目的索引列表 */
+    selectedIndexes: [] as any as RequiredProp<number[]>,
+    /** 单个条目高度 */
+    itemHeight: '2.5em' as string,
+    /** 显示条目数量 */
+    visibleItemCount: 5 as number,
+    /** 是否禁止选中 */
+    disabled: false as boolean,
+    /** 选中值改变事件 */
+    onChange: noop as any as RequiredProp<(selectedIndexes: number[]) => void>,
     /** 选择开始事件 */
     onPickStart: noop as () => void,
     /** 选择结束事件 */
@@ -45,32 +61,32 @@ export default class MPickerView<D extends Data = Data, V extends (D extends Dat
   },
   state: {
     /** 选中条目的索引列表 */
-    selectedIndexes: [] as number[],
-    normalizedData: [],
+    localSelectedIndexes: [] as number[],
+    /** 规范化的选项数据 */
+    normalizedData: [] as NormalData,
   },
-})<{
-  /** 选项数据 */
-  data: D,
-  /** 选中条目的值列表 */
-  value?: V[],
-  /** 选中值改变事件 */
-  onChange?: (value: V[]) => void,
-}, {
-  /** 规范化的选项数据 */
-  normalizedData: NormalData<V>,
-}> {
+}) {
   /** 是否级联 */
   isCascaded: boolean = false
 
-  /** 上一次选中的值 */
-  prevValue: V[] = null
-
   componentWillMount() {
-    this.update(this.props, { data: null, value: this.prevValue })
+    this.update(
+      this.props,
+      {
+        data: null,
+        selectedIndexes: this.state.localSelectedIndexes,
+      },
+    )
   }
 
-  componentWillReceiveProps(nextProps: MPickerView<any>['props']) {
-    this.update(nextProps, { ...this.props, value: this.prevValue })
+  componentWillReceiveProps(nextProps: MPickerView['props']) {
+    this.update(
+      nextProps,
+      {
+        data: this.props.data,
+        selectedIndexes: this.state.localSelectedIndexes,
+      },
+    )
   }
 
   /**
@@ -82,53 +98,46 @@ export default class MPickerView<D extends Data = Data, V extends (D extends Dat
    * @param [disableEmitChangeEvent=false] 是否禁止触发 change 事件
    */
   update(
-    { data, value }: MPickerView<D, V>['props'],
-    { data: prevData, value: prevValue }: MPickerView<D, V>['props'],
+    { data, selectedIndexes }: Pick<MPickerView['props'], 'data' | 'selectedIndexes'>,
+    { data: prevData, selectedIndexes: prevSelectedIndexes }: Pick<MPickerView['props'], 'data' | 'selectedIndexes'>,
     callback: () => void = noop,
     disableEmitChangeEvent: boolean = false,
   ) {
     this.isCascaded = !isArray(data[0])
 
-    // 若数据未变，且 value 未变，则不触发更新
-    if (data === prevData && isEqualArray(value, prevValue)) return
+    // 若数据未变，且 selectedIndexes 未变，则不触发更新
+    if (data === prevData && isEqualArray(selectedIndexes, prevSelectedIndexes)) return
 
     const shouldRestoreSelectedIndex = data !== prevData
-    const prevSelectedIndexes: number[] = this.state.selectedIndexes
-    const normalizedData: NormalData<V> = []
-    const selectedIndexes: number[] = []
+    const normalizedData: NormalData = []
+    const revisedSelectedIndexes: number[] = []
 
     let colIndex = 0
-    let colData: ColData<V> = this.isCascaded ? data as CascadedColData<V> : data[0] as NormalColData<V>
+    let colData: List = this.isCascaded ? data as CascadedList : data[0] as NormalList
     while (colData) {
       const selectedIndex = clamp(
         shouldRestoreSelectedIndex && isNumber(prevSelectedIndexes[colIndex])
           ? prevSelectedIndexes[colIndex]
-          : colData.findIndex(
-            item => item.value === value[colIndex],
-          ),
+          : selectedIndexes[colIndex],
         0,
         colData.length - 1,
       )
       normalizedData.push(colData)
-      selectedIndexes.push(selectedIndex)
+      revisedSelectedIndexes.push(selectedIndex)
       colIndex++
-      colData = this.isCascaded ? (colData[selectedIndex] as CascadedItem<V>).children : data[colIndex] as NormalColData<V>
+      colData = this.isCascaded ? (colData[selectedIndex] as CascadedItem).children : data[colIndex] as NormalList
     }
 
     this.setState(
       {
         normalizedData,
-        selectedIndexes,
+        localSelectedIndexes: revisedSelectedIndexes,
       },
       callback,
     )
 
-    this.prevValue = selectedIndexes.map(
-      (selectedIndex, colIndex) => normalizedData[colIndex][selectedIndex].value,
-    )
-
     if (!disableEmitChangeEvent && data !== prevData) {
-      this.props.onChange(this.prevValue)
+      this.props.onChange(revisedSelectedIndexes.slice())
     }
   }
 
@@ -149,44 +158,40 @@ export default class MPickerView<D extends Data = Data, V extends (D extends Dat
   handleChange = (e: { detail: { value: number[] } }) => {
     const { normalizedData } = this.state
 
-    // fix: 尽管数据列数有变化，value 却仍是之前的长度
+    // fix: 尽管数据列数有变化，selectedIndexes 却仍是之前的长度
     const selectedIndexes = e.detail.value.slice(0, normalizedData.length)
 
-    this.setState({ selectedIndexes }, () => {
-      this.prevValue = selectedIndexes.map(
-        (selectedIndex, colIndex) => normalizedData[colIndex][selectedIndex].value,
-      )
+    this.setState({ localSelectedIndexes: selectedIndexes }, () => {
       if (this.isCascaded) {
         // 级联数据应先更新再触发 change 事件
         this.update(
           {
-            ...this.props,
             data: { ...this.props.data }, // 触发索引记忆
-            value: this.prevValue,
+            selectedIndexes: selectedIndexes,
           },
-          this.props,
+          {
+            data: this.props.data,
+            selectedIndexes: selectedIndexes,
+          },
           () => {
-            const { normalizedData, selectedIndexes } = this.state
-            this.prevValue = selectedIndexes.map(
-              (selectedIndex, colIndex) => normalizedData[colIndex][selectedIndex].value,
-            )
-            this.props.onChange(this.prevValue)
+            const { localSelectedIndexes } = this.state
+            this.props.onChange(localSelectedIndexes.slice())
           },
           true,
         )
       } else {
-        this.props.onChange(this.prevValue)
+        this.props.onChange(selectedIndexes.slice())
       }
     })
   }
 
   render() {
     const { disabled } = this.props
-    const { normalizedData, selectedIndexes } = this.state
+    const { normalizedData, localSelectedIndexes } = this.state
     const styles = this.computeStyles()
     return (
       <PickerView
-        value={selectedIndexes}
+        value={localSelectedIndexes}
         className={`m-picker-view ${disabled && 'm-picker-view_disabled'}`}
         style={styles.view}
         indicatorStyle={`height:${styles.indicator.height}`}
