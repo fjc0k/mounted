@@ -15,11 +15,6 @@ interface ComponentInfo {
 
 const componentList: ComponentInfo[] = [
   {
-    name: 'FormIdCollector',
-    chineseName: 'formId 收集器',
-    url: '',
-  },
-  {
     name: 'Sticky',
     chineseName: '内容吸顶',
     url: pageUrls.Sticky,
@@ -45,7 +40,7 @@ export default class Home extends component({
   disableGlobalClass: true,
 }) {
   handleItemClick = (index: number) => {
-    wx.navigateTo({
+    Taro.navigateTo({
       url: componentList[index].url,
     })
   }
@@ -61,7 +56,7 @@ export default class Home extends component({
             className='image'
           />
           <View className='desc'>
-            <Text>一款基于 Taro 的微信小程序组件库。</Text>
+            <Text>一款基于 Taro 的小程序组件库。</Text>
           </View>
         </View>
         {/* 组件列表 */}

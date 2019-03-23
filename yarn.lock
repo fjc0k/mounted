@@ -234,12 +234,12 @@
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-0.7.0.tgz#9a06f4f137ee84d7df0460c1fdb1135ffa6c50fd"
 
-"@tarojs/cli@1.2.20":
-  version "1.2.20"
-  resolved "https://registry.yarnpkg.com/@tarojs/cli/-/cli-1.2.20.tgz#d9e4cd236fcef3dae409bfa1430322dda3f94488"
+"@tarojs/cli@1.2.21":
+  version "1.2.21"
+  resolved "https://registry.yarnpkg.com/@tarojs/cli/-/cli-1.2.21.tgz#6dc7609b1067e2523cd949c1b65b8c527368458f"
   dependencies:
-    "@tarojs/taroize" "1.2.20"
-    "@tarojs/transformer-wx" "1.2.20"
+    "@tarojs/taroize" "1.2.21"
+    "@tarojs/transformer-wx" "1.2.21"
     autoprefixer "^8.4.1"
     babel-core "^6.26.3"
     babel-generator "^6.26.1"
@@ -247,7 +247,7 @@
     babel-plugin-remove-dead-code "^1.3.2"
     babel-plugin-transform-decorators-legacy "^1.3.4"
     babel-plugin-transform-define "^1.3.0"
-    babel-plugin-transform-jsx-to-stylesheet "1.2.20"
+    babel-plugin-transform-jsx-to-stylesheet "1.2.21"
     babel-plugin-transform-react-jsx "^6.24.1"
     babel-template "^6.26.0"
     babel-traverse "^6.26.0"
@@ -279,21 +279,25 @@
     postcss-modules-resolve-imports "^1.3.0"
     postcss-modules-scope "^1.1.0"
     postcss-modules-values "^1.3.0"
-    postcss-pxtransform "1.2.20"
-    postcss-taro-unit-transform "1.2.20"
+    postcss-pxtransform "1.2.21"
+    postcss-reporter "^6.0.1"
+    postcss-taro-unit-transform "1.2.15"
     postcss-url "^7.3.2"
     prettier "^1.14.3"
     prop-types "^15.6.1"
     resolve "^1.6.0"
     semver "^5.5.0"
     shelljs "^0.8.1"
+    stylelint "^9.10.1"
+    stylelint-config-taro-rn "1.2.21"
+    stylelint-taro-rn "1.2.21"
     through2 "^2.0.3"
     vinyl "^2.1.0"
     vinyl-fs "^3.0.2"
 
-"@tarojs/components@1.2.20":
-  version "1.2.20"
-  resolved "https://registry.yarnpkg.com/@tarojs/components/-/components-1.2.20.tgz#24df65b1cc93ca58931554722248dc69dadd461e"
+"@tarojs/components@1.2.21":
+  version "1.2.21"
+  resolved "https://registry.yarnpkg.com/@tarojs/components/-/components-1.2.21.tgz#af892b1d5a32e04fce2bbf4a6725408382362489"
   dependencies:
     better-scroll "^1.14.1"
     classnames "^2.2.5"
@@ -303,46 +307,64 @@
     swiper "^4.4.2"
     weui "^1.1.2"
 
-"@tarojs/plugin-babel@1.2.20":
-  version "1.2.20"
-  resolved "https://registry.yarnpkg.com/@tarojs/plugin-babel/-/plugin-babel-1.2.20.tgz#add3e24a926aed157f323455aa315cd061f2d3d1"
+"@tarojs/plugin-babel@1.2.21":
+  version "1.2.21"
+  resolved "https://registry.yarnpkg.com/@tarojs/plugin-babel/-/plugin-babel-1.2.21.tgz#38d7747d3f62d9dda309ece4afee9014da0a51ac"
   dependencies:
     babel-core "^6.26.0"
 
-"@tarojs/plugin-csso@1.2.20":
-  version "1.2.20"
-  resolved "https://registry.yarnpkg.com/@tarojs/plugin-csso/-/plugin-csso-1.2.20.tgz#67fbe47da58e0bb38ce0949a60f745d3041c5b9b"
+"@tarojs/plugin-csso@1.2.21":
+  version "1.2.21"
+  resolved "https://registry.yarnpkg.com/@tarojs/plugin-csso/-/plugin-csso-1.2.21.tgz#11ff2be21ab781714cbb06461a8d37ec0da3b0c9"
   dependencies:
     csso "^3.5.0"
 
-"@tarojs/plugin-sass@1.2.20":
-  version "1.2.20"
-  resolved "https://registry.yarnpkg.com/@tarojs/plugin-sass/-/plugin-sass-1.2.20.tgz#2fd5f3c68290861f7c0c89db864f57da323b6539"
+"@tarojs/plugin-sass@1.2.21":
+  version "1.2.21"
+  resolved "https://registry.yarnpkg.com/@tarojs/plugin-sass/-/plugin-sass-1.2.21.tgz#2fbf3555b2f77eb2d3719ef07e99c655e3b554a4"
   dependencies:
     node-sass "^4.11.0"
 
-"@tarojs/plugin-uglifyjs@1.2.20":
-  version "1.2.20"
-  resolved "https://registry.yarnpkg.com/@tarojs/plugin-uglifyjs/-/plugin-uglifyjs-1.2.20.tgz#5a16082bda4830b75a378584735285696d8a9c32"
+"@tarojs/plugin-uglifyjs@1.2.21":
+  version "1.2.21"
+  resolved "https://registry.yarnpkg.com/@tarojs/plugin-uglifyjs/-/plugin-uglifyjs-1.2.21.tgz#c24d408dd5f3310993db94e89ccf58774b6d5f30"
   dependencies:
     uglify-js "^3.3.24"
 
-"@tarojs/taro-weapp@1.2.20":
-  version "1.2.20"
-  resolved "https://registry.yarnpkg.com/@tarojs/taro-weapp/-/taro-weapp-1.2.20.tgz#b4a61c488da748f0de4ed237b7faa513ee2ff6c5"
+"@tarojs/taro-alipay@1.2.21":
+  version "1.2.21"
+  resolved "https://registry.yarnpkg.com/@tarojs/taro-alipay/-/taro-alipay-1.2.21.tgz#8ea1027bf86003aa46321b6ebda073766d1e1a92"
   dependencies:
-    "@tarojs/taro" "1.2.20"
-    "@tarojs/utils" "1.2.20"
+    "@tarojs/taro" "1.2.21"
+    "@tarojs/utils" "1.2.21"
     lodash "^4.17.10"
     prop-types "^15.6.1"
 
-"@tarojs/taro@1.2.20":
-  version "1.2.20"
-  resolved "https://registry.yarnpkg.com/@tarojs/taro/-/taro-1.2.20.tgz#6d1017989f439236bd45b2ea023e407ab8474d24"
+"@tarojs/taro-swan@1.2.21":
+  version "1.2.21"
+  resolved "https://registry.yarnpkg.com/@tarojs/taro-swan/-/taro-swan-1.2.21.tgz#41ea57e6a4b645746dc5a339bb2899c31f90ce9f"
+  dependencies:
+    "@tarojs/taro" "1.2.21"
+    "@tarojs/utils" "1.2.21"
+    lodash "^4.17.10"
+    prop-types "^15.6.1"
 
-"@tarojs/taroize@1.2.20":
-  version "1.2.20"
-  resolved "https://registry.yarnpkg.com/@tarojs/taroize/-/taroize-1.2.20.tgz#e79d4976ca23651c2049ef22c9b8f52c0730a364"
+"@tarojs/taro-weapp@1.2.21":
+  version "1.2.21"
+  resolved "https://registry.yarnpkg.com/@tarojs/taro-weapp/-/taro-weapp-1.2.21.tgz#3bd71a5e0f7fce4bec7242810554e9695b460070"
+  dependencies:
+    "@tarojs/taro" "1.2.21"
+    "@tarojs/utils" "1.2.21"
+    lodash "^4.17.10"
+    prop-types "^15.6.1"
+
+"@tarojs/taro@1.2.21":
+  version "1.2.21"
+  resolved "https://registry.yarnpkg.com/@tarojs/taro/-/taro-1.2.21.tgz#87eda010381802bd71ab690e6e4ce02080b485d7"
+
+"@tarojs/taroize@1.2.21":
+  version "1.2.21"
+  resolved "https://registry.yarnpkg.com/@tarojs/taroize/-/taroize-1.2.21.tgz#b6cb5a0434d04bd3a221238543ea2abd4528b554"
   dependencies:
     "@babel/code-frame" "^7.0.0"
     babel-core "^6.26.3"
@@ -355,9 +377,9 @@
     lodash "^4.17.5"
     typescript "^3.0.1"
 
-"@tarojs/transformer-wx@1.2.20":
-  version "1.2.20"
-  resolved "https://registry.yarnpkg.com/@tarojs/transformer-wx/-/transformer-wx-1.2.20.tgz#17abb180f01006ff7562ec50e4131e54693c78b4"
+"@tarojs/transformer-wx@1.2.21":
+  version "1.2.21"
+  resolved "https://registry.yarnpkg.com/@tarojs/transformer-wx/-/transformer-wx-1.2.21.tgz#d4bd94b684034082deb7a4ae72ed5b4c67de1ed0"
   dependencies:
     "@babel/code-frame" "^7.0.0-beta.44"
     babel-core "^6.26.3"
@@ -376,15 +398,15 @@
     babel-traverse "^6.26.0"
     babel-types "^6.26.0"
     eslint "^4.15.0"
-    eslint-plugin-taro "1.2.20"
+    eslint-plugin-taro "1.2.21"
     html "^1.0.0"
     lodash "^4.17.5"
     prettier "^1.14.2"
     typescript "^3.2.2"
 
-"@tarojs/utils@1.2.20":
-  version "1.2.20"
-  resolved "https://registry.yarnpkg.com/@tarojs/utils/-/utils-1.2.20.tgz#7af8274b724f719ee52538b16411faf2c52d22e5"
+"@tarojs/utils@1.2.21":
+  version "1.2.21"
+  resolved "https://registry.yarnpkg.com/@tarojs/utils/-/utils-1.2.21.tgz#678547cb8233302a02223ec68e2e2da0eafb5db4"
 
 "@types/events@*":
   version "3.0.0"
@@ -1220,9 +1242,9 @@ babel-plugin-transform-jsx-stylesheet@^0.6.5:
   dependencies:
     camelcase "^3.0.0"
 
-babel-plugin-transform-jsx-to-stylesheet@1.2.20:
-  version "1.2.20"
-  resolved "https://registry.yarnpkg.com/babel-plugin-transform-jsx-to-stylesheet/-/babel-plugin-transform-jsx-to-stylesheet-1.2.20.tgz#6e381001f5c302d36148dccda2e5ef7f02ef5673"
+babel-plugin-transform-jsx-to-stylesheet@1.2.21:
+  version "1.2.21"
+  resolved "https://registry.yarnpkg.com/babel-plugin-transform-jsx-to-stylesheet/-/babel-plugin-transform-jsx-to-stylesheet-1.2.21.tgz#d147eb73ac78704622cbcf1ae3d0c036073700ad"
 
 babel-plugin-transform-object-rest-spread@^6.26.0:
   version "6.26.0"
@@ -2411,9 +2433,9 @@ eslint-plugin-sort-imports-es6-autofix@^0.4.0:
   dependencies:
     eslint "^5.14.1"
 
-eslint-plugin-taro@1.2.20:
-  version "1.2.20"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-taro/-/eslint-plugin-taro-1.2.20.tgz#d1f9a854eacf86d94ccdbd956f396531a13477c5"
+eslint-plugin-taro@1.2.21:
+  version "1.2.21"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-taro/-/eslint-plugin-taro-1.2.21.tgz#68c7f5b431829c64cd503c6e0680c717c4a94585"
   dependencies:
     has "^1.0.1"
 
@@ -4908,14 +4930,14 @@ postcss-pxtorem@^4.0.1:
     object-assign "^4.1.0"
     postcss "^5.2.10"
 
-postcss-pxtransform@1.2.20:
-  version "1.2.20"
-  resolved "https://registry.yarnpkg.com/postcss-pxtransform/-/postcss-pxtransform-1.2.20.tgz#677475d6ae12dfd3667df63a23761f7fcfbbb367"
+postcss-pxtransform@1.2.21:
+  version "1.2.21"
+  resolved "https://registry.yarnpkg.com/postcss-pxtransform/-/postcss-pxtransform-1.2.21.tgz#d91725ce1ef96c2fd442fb436d9a5ee767006a0e"
   dependencies:
     postcss "^6.0.16"
     postcss-pxtorem "^4.0.1"
 
-postcss-reporter@^6.0.0:
+postcss-reporter@^6.0.0, postcss-reporter@^6.0.1:
   version "6.0.1"
   resolved "https://registry.yarnpkg.com/postcss-reporter/-/postcss-reporter-6.0.1.tgz#7c055120060a97c8837b4e48215661aafb74245f"
   dependencies:
@@ -4967,9 +4989,9 @@ postcss-syntax@^0.36.2:
   version "0.36.2"
   resolved "https://registry.yarnpkg.com/postcss-syntax/-/postcss-syntax-0.36.2.tgz#f08578c7d95834574e5593a82dfbfa8afae3b51c"
 
-postcss-taro-unit-transform@1.2.20:
-  version "1.2.20"
-  resolved "https://registry.yarnpkg.com/postcss-taro-unit-transform/-/postcss-taro-unit-transform-1.2.20.tgz#1139b256ff24c7a38a159e5b78902f9236947e10"
+postcss-taro-unit-transform@1.2.15:
+  version "1.2.15"
+  resolved "https://registry.yarnpkg.com/postcss-taro-unit-transform/-/postcss-taro-unit-transform-1.2.15.tgz#bfb3f327c7a529995ccf6bfecca6d606b2fb9f45"
   dependencies:
     postcss "^6.0.21"
 
@@ -5108,6 +5130,10 @@ rc@^1.0.1, rc@^1.1.6, rc@^1.2.7:
     ini "~1.3.0"
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
+
+react-native-known-styling-properties@^1.0.4:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/react-native-known-styling-properties/-/react-native-known-styling-properties-1.0.5.tgz#dd99690d579c5136541e1df836e75088af6e7356"
 
 read-pkg-up@^1.0.1:
   version "1.0.1"
@@ -5885,6 +5911,10 @@ stylelint-config-standard@^18.2.0:
   dependencies:
     stylelint-config-recommended "^2.1.0"
 
+stylelint-config-taro-rn@1.2.21:
+  version "1.2.21"
+  resolved "https://registry.yarnpkg.com/stylelint-config-taro-rn/-/stylelint-config-taro-rn-1.2.21.tgz#5675e7bae955af1dfd4141155782a987070df8b1"
+
 stylelint-scss@^3.5.4:
   version "3.5.4"
   resolved "https://registry.yarnpkg.com/stylelint-scss/-/stylelint-scss-3.5.4.tgz#ff3ee989ac48f5c4f57313523b5ace059ffd6cc2"
@@ -5894,6 +5924,12 @@ stylelint-scss@^3.5.4:
     postcss-resolve-nested-selector "^0.1.1"
     postcss-selector-parser "^5.0.0"
     postcss-value-parser "^3.3.1"
+
+stylelint-taro-rn@1.2.21:
+  version "1.2.21"
+  resolved "https://registry.yarnpkg.com/stylelint-taro-rn/-/stylelint-taro-rn-1.2.21.tgz#bd3632dd02bdca3f1b2e980dfbbbb2c0d8db5bc7"
+  dependencies:
+    react-native-known-styling-properties "^1.0.4"
 
 stylelint@^9.10.1:
   version "9.10.1"
