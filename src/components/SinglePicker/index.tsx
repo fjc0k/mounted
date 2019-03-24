@@ -7,6 +7,9 @@ import { NormalData, NormalItem } from '../PickerView'
 export type Item = NormalItem
 export type Data = Item[]
 
+/**
+ * 单项选择器组件。
+ */
 class MSinglePicker extends component({
   props: {
     /** 选项数据 */

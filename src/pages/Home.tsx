@@ -1,5 +1,5 @@
 import './Home.scss'
-import Taro from '@tarojs/taro'
+import Taro, { ShareAppMessageReturn } from '@tarojs/taro'
 import { component } from '../components/component'
 import { ComponentName } from '../components'
 import { iconLogo } from './assets'
@@ -49,6 +49,13 @@ const componentList: ComponentInfo[] = [
 export default class Home extends component({
   disableGlobalClass: true,
 }) {
+  onShareAppMessage(): ShareAppMessageReturn {
+    return {
+      title: 'Mounted 小程序组件库',
+      path: pageUrls.Home,
+    }
+  }
+
   handleItemClick = (index: number) => {
     Taro.navigateTo({
       url: componentList[index].url,

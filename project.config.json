@@ -2,7 +2,7 @@
 	"miniprogramRoot": "dist/",
 	"projectname": "Mounted",
 	"description": "基于 Taro 的微信小程序组件库。",
-	"appid": "wx7eb056f3c0aac3ad",
+	"appid": "wx94954e09b616564f",
 	"setting": {
 		"urlCheck": false,
 		"es6": false,

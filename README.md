@@ -4,12 +4,12 @@
 
 # Mounted
 
-一款基于 [Taro](https://github.com/NervJS/taro) 的微信小程序组件库。
+一款基于 [Taro](https://github.com/NervJS/taro) 的小程序组件库。
 
 ## 特性
 
 - 使用 **TypeScript** 编写
-- 专注 **微信小程序**
+- 专注 **小程序**
 - 只产出与业务低耦合的 **基础组件**
 - 支持 **自定义主题**
 
@@ -85,13 +85,12 @@ $designWidth: 750;
 
 下面列出 `mounted` 包含的组件，点击相应组件名称进入可查看其 **~~文档~~** 代码：
 
-- [FormIdCollector - Form ID 收集器](./src/components/FormIdCollector/index.tsx#L6)
-- Picker - 选择器
-- PickerView - 选择器视图
-- [Popup - 弹出层](./src/components/Popup/index.tsx#L17)
-- SinglePicker - 单项选择器
-- [Sticky - 内容吸顶](./src/components/Sticky/index.tsx#L8)
-- [Transition - 动画过渡](./src/components/Transition/index.tsx#L13)
+- [Picker - 选择器](./src/components/Picker/index.tsx#L8)
+- [PickerView - 选择器视图](./src/components/PickerView/index.tsx#L40)
+- [Popup - 弹出层](./src/components/Popup/index.tsx#L19)
+- [SinglePicker - 单项选择器](./src/components/SinglePicker/index.tsx#L10)
+- [Sticky - 内容吸顶](./src/components/Sticky/index.tsx#L9)
+- [Transition - 动画过渡](./src/components/Transition/index.tsx#L14)
 
 ## 许可
 
