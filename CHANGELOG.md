@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.7.0"></a>
+# [0.7.0](https://github.com/fjc0k/mounted/compare/v0.6.0...v0.7.0) (2019-03-24)
+
+
+### Features
+
+* Picker 系列组件重写 ([947d98a](https://github.com/fjc0k/mounted/commit/947d98a))
+* 完善文档 ([7b48aad](https://github.com/fjc0k/mounted/commit/7b48aad))
+* **demo:** 新增 SinglePicker 页面 ([06f93e0](https://github.com/fjc0k/mounted/commit/06f93e0))
+* 移除 FormIdCollector 组件 ([e9682ea](https://github.com/fjc0k/mounted/commit/e9682ea))
+
+
+
 <a name="0.6.0"></a>
 # [0.6.0](https://github.com/fjc0k/mounted/compare/v0.5.0...v0.6.0) (2019-03-23)
 
