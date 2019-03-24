@@ -6,6 +6,10 @@
 
 一款基于 [Taro](https://github.com/NervJS/taro) 的小程序组件库。
 
+## ⚠ 注意
+
+目前仅支持 **微信小程序**。
+
 ## 特性
 
 - 使用 **TypeScript** 编写
