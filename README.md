@@ -6,7 +6,7 @@
 
 一款基于 [Taro](https://github.com/NervJS/taro) 的小程序组件库。
 
-<img src="https://raw.githubusercontent.com/fjc0k/mounted/master/assets/weapp.jpg" width="230" />
+<img src="https://raw.githubusercontent.com/fjc0k/mounted/master/assets/weapp.jpg?v=1" width="250" />
 
 ## ⚠ 注意
 
