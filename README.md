@@ -91,7 +91,7 @@ $designWidth: 750;
 
 ## 组件列表
 
-下面列出 `mounted` 包含的组件，点击相应组件名称进入可查看其文档（**请先阅读：[文档即代码说明](#文档即代码说明)**）：
+下面列出 `mounted` 包含的组件，点击相应组件名称进入可查看其文档（**请先阅读：[代码即文档说明](#代码即文档说明)**）：
 
 - [Picker - 选择器](./src/components/Picker/index.tsx#L8)
 - [PickerView - 选择器视图](./src/components/PickerView/index.tsx#L40)
@@ -100,7 +100,7 @@ $designWidth: 750;
 - [Sticky - 内容吸顶](./src/components/Sticky/index.tsx#L9)
 - [Transition - 动画过渡](./src/components/Transition/index.tsx#L14)
 
-### 文档即代码说明
+### 代码即文档说明
 
 每个组件的代码都类似：
 
