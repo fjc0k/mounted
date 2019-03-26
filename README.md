@@ -6,16 +6,20 @@
 
 一款基于 [Taro](https://github.com/NervJS/taro) 的小程序组件库。
 
+<img src="https://raw.githubusercontent.com/fjc0k/mounted/master/assets/weapp.jpg" width="230" />
+
 ## ⚠ 注意
 
-目前仅支持 **微信小程序**。
+- 目前仅支持 **微信小程序**。
+
+- 推荐和 **TypeScript** 一起使用。
 
 ## 特性
 
-- 使用 **TypeScript** 编写
-- 专注 **小程序**
-- 只产出与业务低耦合的 **基础组件**
-- 支持 **自定义主题**
+- 使用 **TypeScript** 编写。
+- 专注 **小程序**。
+- 只产出与业务低耦合的 **基础组件**。
+- 支持 **自定义主题**。
 
 ## 使用
 
@@ -34,7 +38,7 @@ npm i mounted --save
 > 若你未使用 `scss`，请在 `app.js` 同级目录新建 `app.scss`，并在 `app.js` 中引入：`import './app.scss'`。
 
 ```scss
-@import '~mounted/src/styles/components.scss';
+@import '../node_modules/mounted/src/styles/components.scss';
 ```
 
 最后，在页面中按需引入组件：
@@ -67,7 +71,7 @@ export default class Demo extends Taro.Component {
 // 主色调
 $primaryColor: #1AAD19;
 
-@import '~mounted/src/styles/components.scss';
+@import '../node_modules/mounted/src/styles/components.scss';
 ```
 
 > 组件库所使用的样式变量都在 [src/styles/settings.scss](./src/styles/settings.scss) 文件内。
@@ -82,12 +86,12 @@ $primaryColor: #1AAD19;
 // 设计稿尺寸
 $designWidth: 750;
 
-@import '~mounted/src/styles/components.scss';
+@import '../node_modules/mounted/src/styles/components.scss';
 ```
 
 ## 组件列表
 
-下面列出 `mounted` 包含的组件，点击相应组件名称进入可查看其 **~~文档~~** 代码：
+下面列出 `mounted` 包含的组件，点击相应组件名称进入可查看其文档（**请先阅读：[文档即代码说明](#文档即代码说明)**）：
 
 - [Picker - 选择器](./src/components/Picker/index.tsx#L8)
 - [PickerView - 选择器视图](./src/components/PickerView/index.tsx#L40)
@@ -95,6 +99,27 @@ $designWidth: 750;
 - [SinglePicker - 单项选择器](./src/components/SinglePicker/index.tsx#L10)
 - [Sticky - 内容吸顶](./src/components/Sticky/index.tsx#L9)
 - [Transition - 动画过渡](./src/components/Transition/index.tsx#L14)
+
+### 文档即代码说明
+
+每个组件的代码都类似：
+
+```ts
+export default class MDemo extends component({
+  props: {
+    a: 'A' as string,
+    b: false as any as RequiredProp<boolean>,
+  }
+}) {
+  // ...
+}
+```
+
+以上面的 `MDemo` 组件为例：
+
+- `a: 'A' as string`：表示该组件拥有一个非必需属性 `a`，其默认值为 `A`，类型为 `string`。
+
+- `b: false as any as RequiredProp<boolean>`：表示该组件拥有一个必需属性 `b`，其默认值为 `false`，类型为 `boolean`。
 
 ## 许可
 
