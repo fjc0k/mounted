@@ -1,8 +1,6 @@
-// const cssNames = new Map()
-
 const config = {
   projectName: 'Mounted',
-  date: '2019-1-28',
+  date: '2019-3-26',
   designWidth: 375,
   deviceRatio: {
     375: 1 / 2,
@@ -16,7 +14,9 @@ const config = {
     babel: {
       sourceMap: true,
       presets: [
-        'env',
+        ['env', {
+          modules: false,
+        }],
       ],
       plugins: [
         'transform-decorators-legacy',
@@ -59,18 +59,10 @@ const config = {
           },
         },
         cssModules: {
-          enable: true, // 默认为 false，如需使用 css modules 功能，则设为 true
+          enable: false, // 默认为 false，如需使用 css modules 功能，则设为 true
           config: {
             namingPattern: 'module', // 转换模式，取值为 global/module
             generateScopedName: '[name]__[local]___[hash:base64:5]',
-            // generateScopedName: function (local, path) {
-            //   const cssNameKey = `${path}___${local}`
-            //   const componentName = String(path).match(/src\/components\/(.+?)\//)[1]
-            //   if (!cssNames.has(cssNameKey)) {
-            //     cssNames.set(cssNameKey, `m-${componentName.toLowerCase() === local ? '' : (`${componentName.toLowerCase()}-`)}${local}`)
-            //   }
-            //   return cssNames.get(cssNameKey)
-            // },
           },
         },
       },
@@ -92,7 +84,7 @@ const config = {
           },
         },
         cssModules: {
-          enable: true, // 默认为 false，如需使用 css modules 功能，则设为 true
+          enable: false, // 默认为 false，如需使用 css modules 功能，则设为 true
           config: {
             namingPattern: 'module', // 转换模式，取值为 global/module
             generateScopedName: '[name]__[local]___[hash:base64:5]',

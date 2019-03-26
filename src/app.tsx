@@ -1,8 +1,8 @@
 import './app.scss'
+import Home from './pages/Home'
 import Taro from '@tarojs/taro'
-import { component } from './components/component'
 
-class App extends component() {
+class App extends Taro.Component {
   config: Taro.Config = {
     pages: [
       // @index('./pages/*.tsx', (pp, cc) => `'${pp.path.replace(/^\.\//, '')}',`)
@@ -24,8 +24,10 @@ class App extends component() {
     },
   }
 
-  render(): any {
-    return null
+  render() {
+    return (
+      <Home />
+    )
   }
 }
 
