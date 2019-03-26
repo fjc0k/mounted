@@ -1,0 +1,34 @@
+@import '../../styles/settings.scss';
+
+/**
+ * 去除原生 Button 组件自带的样式。
+ * 现在它与 View 组件的唯一区别：
+ * 内容默认居中。
+ */
+button.m-pure-button {
+  position: relative;
+  display: block;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  font: inherit;
+  border-radius: 0;
+  border: none;
+  color: inherit;
+  background: inherit;
+  overflow: auto;
+  box-sizing: content-box;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+
+  &.button-hover {
+    color: inherit;
+    background: inherit;
+  }
+
+  &::before,
+  &::after {
+    content: none;
+  }
+}

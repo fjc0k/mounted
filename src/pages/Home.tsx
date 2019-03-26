@@ -44,6 +44,11 @@ const componentList: ComponentInfo[] = [
     chineseName: '单项选择器',
     url: pageUrls.SinglePicker,
   },
+  {
+    name: 'Style' as any,
+    chineseName: '样式',
+    url: pageUrls.Style,
+  },
 ]
 
 export default class Home extends component({

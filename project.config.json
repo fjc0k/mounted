@@ -30,8 +30,15 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 5,
+			"current": 7,
 			"list": [
+				{
+					"id": -1,
+					"name": "pages/Home",
+					"pathName": "pages/Home",
+					"query": "",
+					"scene": null
+				},
 				{
 					"id": -1,
 					"name": "pages/Sticky",
@@ -71,6 +78,14 @@
 					"id": -1,
 					"name": "pages/SinglePicker",
 					"pathName": "pages/SinglePicker",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 6,
+					"name": "pages/Style",
+					"pathName": "pages/Style",
+					"query": "",
 					"scene": null
 				}
 			]

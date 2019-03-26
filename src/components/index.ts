@@ -1,4 +1,4 @@
-// @index('./[A-Z]*', (pp, cc) => `export { default as M${pp.name} } from '${pp.path}'`)
+// @index(['./[A-Z]*', '!./Style'], (pp, cc) => `export { default as M${pp.name} } from '${pp.path}'`)
 export { default as MPicker } from './Picker'
 export { default as MPickerView } from './PickerView'
 export { default as MPopup } from './Popup'
@@ -8,7 +8,7 @@ export { default as MTransition } from './Transition'
 // @endindex
 
 export type ComponentName = (
-  // @index('./[A-Z]*', (pp, cc, { last }) => `'${pp.name}'${last ? '' : ' |'}`)
+  // @index(['./[A-Z]*', '!./Style'], (pp, cc, { last }) => `'${pp.name}'${last ? '' : ' |'}`)
   'Picker' |
   'PickerView' |
   'Popup' |
