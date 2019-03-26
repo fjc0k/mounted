@@ -8,7 +8,7 @@ export { default as MTransition } from './Transition'
 // @endindex
 
 export type ComponentName = (
-  // @index('../components/[A-Z]*', (pp, cc, { last }) => `'${pp.name}'${last ? '' : ' |'}`)
+  // @index('./[A-Z]*', (pp, cc, { last }) => `'${pp.name}'${last ? '' : ' |'}`)
   'Picker' |
   'PickerView' |
   'Popup' |
