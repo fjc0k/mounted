@@ -1,6 +1,6 @@
 {
   "name": "mounted",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "description": "一款基于 Taro 的小程序组件库。",
   "main": "src/components/index.ts",
   "scripts": {
