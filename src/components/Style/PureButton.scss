@@ -12,7 +12,8 @@ button.m-pure-button {
   margin: 0;
   padding: 0;
   outline: none;
-  font: inherit;
+  font-size: inherit;
+  line-height: inherit;
   border-radius: 0;
   border: none;
   color: inherit;
@@ -21,11 +22,6 @@ button.m-pure-button {
   box-sizing: content-box;
   text-decoration: none;
   -webkit-tap-highlight-color: transparent;
-
-  &.button-hover {
-    color: inherit;
-    background: inherit;
-  }
 
   &::before,
   &::after {

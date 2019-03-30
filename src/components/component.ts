@@ -50,7 +50,9 @@ const component = <
 
     constructor() {
       super(...arguments)
-      this.props = props as any
+      if (Taro.getEnv() !== Taro.ENV_TYPE.WEB) {
+        this.props = props as any
+      }
       this.state = state as any
     }
   }
