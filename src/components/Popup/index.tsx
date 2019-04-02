@@ -83,11 +83,11 @@ export default class MPopup extends component({
   }
 
   render() {
-    const { visible, duration, position, customTransition } = this.props
+    const { visible, duration, position, customTransition, className } = this.props
     const { zIndex, display } = this.state
     return (
       <View
-        className={`m-popup m-popup_${position}`}
+        className={`m-popup m-popup_${position} ${className}`}
         style={{
           zIndex,
           ...(display ? {} : { display: 'none' }),
