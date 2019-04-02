@@ -23,6 +23,8 @@ export default class MPopup extends component({
   props: {
     /** 弹出层是否可见 */
     visible: false as any as RequiredProp<boolean>,
+    /** 是否无遮罩 */
+    noMask: false as boolean,
     /** 点击遮罩是否可关闭 */
     maskClosable: true as boolean,
     /** 动画时长，单位：毫秒 */
@@ -73,17 +75,24 @@ export default class MPopup extends component({
   }
 
   handleTransitionEnd = () => {
-    this.transitionEndCounter++
-    if (this.transitionEndCounter >= 2) {
+    const action = () => {
       this.transitionEndCounter = 0
       this.setState({
         display: this.props.visible,
       })
     }
+    if (this.props.noMask) {
+      action()
+    } else {
+      this.transitionEndCounter++
+      if (this.transitionEndCounter >= 2) {
+        action()
+      }
+    }
   }
 
   render() {
-    const { visible, duration, position, customTransition, className } = this.props
+    const { visible, noMask, duration, position, customTransition, className } = this.props
     const { zIndex, display } = this.state
     return (
       <View
@@ -93,16 +102,18 @@ export default class MPopup extends component({
           ...(display ? {} : { display: 'none' }),
         }}
         onTouchMove={this.handleTouchMove}>
-        <MTransition
-          name='fade'
-          visible={visible}
-          duration={duration}
-          onTransitionEnd={this.handleTransitionEnd}>
-          <View
-            className='m-popup__mask'
-            onClick={this.handleMaskClick}
-          />
-        </MTransition>
+        {noMask ? null : (
+          <MTransition
+            name='fade'
+            visible={visible}
+            duration={duration}
+            onTransitionEnd={this.handleTransitionEnd}>
+            <View
+              className='m-popup__mask'
+              onClick={this.handleMaskClick}
+            />
+          </MTransition>
+        )}
         <View className='m-popup__content'>
           <MTransition
             name={customTransition || positionToTransitionName[position]}

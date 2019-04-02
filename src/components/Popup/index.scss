@@ -7,6 +7,7 @@
   bottom: 0;
   right: 0;
   display: flex;
+  pointer-events: none;
 
   &__mask {
     position: absolute;
@@ -15,11 +16,13 @@
     bottom: 0;
     right: 0;
     background: rgba(black, 0.6);
+    pointer-events: auto;
   }
 
   &__content {
     position: relative;
     z-index: 1;
+    pointer-events: auto;
   }
 
   &_center {
