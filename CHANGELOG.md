@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.11.0"></a>
+# [0.11.0](https://github.com/fjc0k/mounted/compare/v0.10.0...v0.11.0) (2019-04-02)
+
+
+### Features
+
+* **Popup:** 添加 noMask 属性 ([a2d2425](https://github.com/fjc0k/mounted/commit/a2d2425))
+* 全部组件支持 className 属性 ([d9c45fc](https://github.com/fjc0k/mounted/commit/d9c45fc))
+
+
+
 <a name="0.10.0"></a>
 # [0.10.0](https://github.com/fjc0k/mounted/compare/v0.9.0...v0.10.0) (2019-04-02)
 
