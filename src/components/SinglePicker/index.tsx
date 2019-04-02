@@ -74,6 +74,7 @@ class MSinglePicker extends component({
       cancelText,
       confirmText,
       title,
+      className,
     } = this.props
     const {
       localData,
@@ -90,6 +91,7 @@ class MSinglePicker extends component({
         cancelText={cancelText}
         confirmText={confirmText}
         title={title}
+        className={className}
         onCancel={this.handleCancel}
         onConfirm={this.handleConfirm}>
         {this.props.children}

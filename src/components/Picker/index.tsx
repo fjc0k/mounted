@@ -103,10 +103,10 @@ class MPicker extends component({
   }
 
   render() {
-    const { maskClosable, data, itemHeight, visibleItemCount, noCancel, cancelText, confirmText, title } = this.props
+    const { maskClosable, data, itemHeight, visibleItemCount, noCancel, cancelText, confirmText, title, className } = this.props
     const { localVisible, localSelectedIndexes } = this.state
     return (
-      <View>
+      <View className={className}>
         <View onClick={this.handleTriggerClick}>
           {this.props.children}
         </View>

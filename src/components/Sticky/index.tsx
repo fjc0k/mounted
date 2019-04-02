@@ -83,10 +83,11 @@ export default class MSticky extends component({
   }
 
   render() {
+    const { className } = this.props
     const { fixed, contentHeight } = this.state
     return (
       <View
-        className={`m-sticky ${fixed && 'm-sticky_fixed'}`}
+        className={`m-sticky ${fixed && 'm-sticky_fixed'} ${className}`}
         style={contentHeight ? { height: `${contentHeight}px` } : {}}>
         <View className='m-sticky__content'>
           {this.props.children}

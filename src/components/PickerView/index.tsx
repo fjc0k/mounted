@@ -186,13 +186,13 @@ export default class MPickerView extends component({
   }
 
   render() {
-    const { disabled } = this.props
+    const { disabled, className } = this.props
     const { normalizedData, localSelectedIndexes } = this.state
     const styles = this.computeStyles()
     return (
       <PickerView
         value={localSelectedIndexes}
-        className={`m-picker-view ${disabled && 'm-picker-view_disabled'}`}
+        className={`m-picker-view ${disabled && 'm-picker-view_disabled'} ${className}`}
         style={styles.view}
         indicatorStyle={`height:${styles.indicator.height}`}
         onPickStart={this.props.onPickStart}
