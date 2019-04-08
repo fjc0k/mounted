@@ -4,7 +4,7 @@
   "description": "一款基于 Taro 的小程序组件库。",
   "main": "src/components/index.ts",
   "scripts": {
-    "dev:weapp": "npm run build:weapp -- --watch",
+    "dev:weapp": "wedevtools open && npm run build:weapp -- --watch",
     "dev:swan": "npm run build:swan -- --watch",
     "dev:alipay": "npm run build:alipay -- --watch",
     "dev:tt": "npm run build:tt -- --watch",
@@ -16,7 +16,7 @@
     "build:tt": "taro build --type tt",
     "build:h5": "taro build --type h5",
     "build:rn": "taro build --type rn",
-    "release": "standard-version -a && git push --follow-tags origin master && npm publish"
+    "release": "standard-version -a && git push --follow-tags origin master && npm publish && wedevtools upload"
   },
   "author": {
     "name": "Jay Fong",
@@ -95,6 +95,7 @@
     "standard-version": "^4.4.0",
     "stylelint": "^9.10.1",
     "stylelint-config-io": "^0.1.0",
-    "typescript": "^3.3.3333"
+    "typescript": "^3.3.3333",
+    "wedevtools-cli": "^0.1.0"
   }
 }
