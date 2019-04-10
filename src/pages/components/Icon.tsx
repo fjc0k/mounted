@@ -6,7 +6,7 @@ import { View } from '@tarojs/components'
 export default class XIcon extends component({
   disableGlobalClass: true,
   props: {
-    name: '' as any as RequiredProp<'rightArrow'>,
+    name: '' as any as RequiredProp<'rightArrow' | 'home'>,
   },
 }) {
   render() {

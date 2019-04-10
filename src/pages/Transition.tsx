@@ -1,8 +1,10 @@
 import './Transition.scss'
-import Taro, { Config } from '@tarojs/taro'
+import Taro, { Config, ShareAppMessageReturn } from '@tarojs/taro'
 import { component } from '../components/component'
 import { MTransition } from '../components'
+import { pageUrls } from '.'
 import { View } from '@tarojs/components'
+import { XBackHome } from './components'
 
 type TransitionName = MTransition['props']['name']
 
@@ -42,6 +44,13 @@ export default class Transition extends component({
     navigationBarTitleText: 'Transition',
   }
 
+  onShareAppMessage(): ShareAppMessageReturn {
+    return {
+      title: 'Transition',
+      path: pageUrls.Transition,
+    }
+  }
+
   handleToggleClick = (transitionName: TransitionName) => {
     this.setState(_ => ({
       transitionName: transitionName,
@@ -76,6 +85,7 @@ export default class Transition extends component({
             ))}
           </View>
         </MTransition>
+        <XBackHome />
       </View>
     )
   }

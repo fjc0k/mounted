@@ -1,8 +1,9 @@
-import Taro, { Config } from '@tarojs/taro'
+import Taro, { Config, ShareAppMessageReturn } from '@tarojs/taro'
 import { component } from '../components/component'
 import { MSticky } from '../components'
+import { pageUrls } from '.'
 import { View } from '@tarojs/components'
-import { XItem, XList, XTitle } from './components'
+import { XBackHome, XItem, XList, XTitle } from './components'
 
 enum HeroType { 射手, 法师, 战士, 刺客 }
 
@@ -27,6 +28,13 @@ export default class Sticky extends component({
     navigationBarTitleText: 'Sticky',
   }
 
+  onShareAppMessage(): ShareAppMessageReturn {
+    return {
+      title: 'Sticky',
+      path: pageUrls.Sticky,
+    }
+  }
+
   render() {
     return (
       <View>
@@ -47,6 +55,7 @@ export default class Sticky extends component({
             </XList>
           </View>
         ))}
+        <XBackHome />
       </View>
     )
   }

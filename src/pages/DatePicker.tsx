@@ -1,8 +1,9 @@
-import Taro, { Config } from '@tarojs/taro'
+import Taro, { Config, ShareAppMessageReturn } from '@tarojs/taro'
 import { component } from '../components/component'
 import { Image, View } from '@tarojs/components'
 import { MDatePicker } from '../components'
-import { XItem, XList, XTitle } from './components'
+import { pageUrls } from '.'
+import { XBackHome, XItem, XList, XTitle } from './components'
 
 const codeImg = 'https://ws1.sinaimg.cn/mw690/0060lm7Tly1g1xvd93cvtj30hi13qjw1.jpg'
 
@@ -13,6 +14,13 @@ export default class DatePicker extends component({
 }) {
   config: Config = {
     navigationBarTitleText: 'DatePicker',
+  }
+
+  onShareAppMessage(): ShareAppMessageReturn {
+    return {
+      title: 'DatePicker',
+      path: pageUrls.DatePicker,
+    }
   }
 
   render() {
@@ -72,6 +80,7 @@ export default class DatePicker extends component({
             />
           </XItem>
         </XList>
+        <XBackHome />
       </View>
     )
   }

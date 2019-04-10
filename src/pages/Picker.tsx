@@ -1,9 +1,10 @@
-import Taro, { Config } from '@tarojs/taro'
+import Taro, { Config, ShareAppMessageReturn } from '@tarojs/taro'
 import { CascadedData, NormalData, NormalItem } from '../components/PickerView'
 import { component } from '../components/component'
 import { MPicker } from '../components'
+import { pageUrls } from '.'
 import { View } from '@tarojs/components'
-import { XItem, XList, XTitle } from './components'
+import { XBackHome, XItem, XList, XTitle } from './components'
 
 const shooterList: string[] = ['鲁班七号', '孙尚香', '虞姬', '马可波罗', '狄仁杰']
 const mageList: string[] = ['墨子', '武则天', '安琪拉', '妲己', '张良', '上官婉儿']
@@ -42,6 +43,13 @@ export default class Picker extends component({
 }) {
   config: Config = {
     navigationBarTitleText: 'Picker',
+  }
+
+  onShareAppMessage(): ShareAppMessageReturn {
+    return {
+      title: 'Picker',
+      path: pageUrls.Picker,
+    }
   }
 
   render() {
@@ -100,6 +108,7 @@ export default class Picker extends component({
             />
           </MPicker>
         </XList>
+        <XBackHome />
       </View>
     )
   }

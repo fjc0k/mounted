@@ -1,8 +1,10 @@
 import './Popup.scss'
-import Taro, { Config } from '@tarojs/taro'
+import Taro, { Config, ShareAppMessageReturn } from '@tarojs/taro'
 import { component } from '../components/component'
 import { MPopup } from '../components'
+import { pageUrls } from '.'
 import { View } from '@tarojs/components'
+import { XBackHome } from './components'
 
 type PopupPosition = MPopup['props']['position']
 
@@ -23,6 +25,13 @@ export default class Popup extends component({
 }) {
   config: Config = {
     navigationBarTitleText: 'Popup',
+  }
+
+  onShareAppMessage(): ShareAppMessageReturn {
+    return {
+      title: 'Popup',
+      path: pageUrls.Popup,
+    }
   }
 
   handleToggleClick = (position: PopupPosition) => {
@@ -56,6 +65,7 @@ export default class Popup extends component({
             {position.toUpperCase()}
           </View>
         </MPopup>
+        <XBackHome />
       </View>
     )
   }

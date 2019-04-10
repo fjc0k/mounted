@@ -1,0 +1,20 @@
+@import '../../settings.scss';
+
+.button {
+  position: fixed;
+  left: 20px;
+  bottom: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba($primaryColor, 0.8);
+  color: white;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &.active {
+    opacity: 0.9;
+  }
+}
