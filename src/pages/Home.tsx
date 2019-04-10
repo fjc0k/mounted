@@ -2,8 +2,8 @@ import './Home.scss'
 import Taro, { ShareAppMessageReturn } from '@tarojs/taro'
 import { component } from '../components/component'
 import { ComponentName } from '../components'
-import { iconLogo } from './assets'
 import { Image, Text, View } from '@tarojs/components'
+import { imgLogo } from './assets'
 import { pageUrls } from '.'
 import { XItem, XList } from './components'
 
@@ -44,6 +44,11 @@ const componentList: ComponentInfo[] = [
     chineseName: '单项选择器',
     url: pageUrls.SinglePicker,
   },
+  {
+    name: 'DatePicker',
+    chineseName: '日期选择器',
+    url: pageUrls.DatePicker,
+  },
 ]
 
 export default class Home extends component({
@@ -68,7 +73,7 @@ export default class Home extends component({
         {/* Logo */}
         <View className='logo'>
           <Image
-            src={iconLogo}
+            src={imgLogo}
             mode='widthFix'
             className='image'
           />

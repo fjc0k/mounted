@@ -125,7 +125,19 @@ export default class MPickerView extends component({
       normalizedData.push(colData)
       revisedSelectedIndexes.push(selectedIndex)
       colIndex++
-      colData = this.isCascaded ? (colData[selectedIndex] as CascadedItem).children : data[colIndex] as NormalList
+      colData = (
+        this.isCascaded
+          ? (
+            colData[selectedIndex]
+              ? (
+                (colData[selectedIndex] as CascadedItem).children && (colData[selectedIndex] as CascadedItem).children.length
+                  ? (colData[selectedIndex] as CascadedItem).children
+                  : undefined
+              )
+              : undefined
+          )
+          : data[colIndex] as NormalList
+      )
     }
 
     this.setState(

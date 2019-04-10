@@ -74,7 +74,7 @@ $primaryColor: #1AAD19;
 @import '../node_modules/mounted/src/styles/components.scss';
 ```
 
-> 组件库所使用的样式变量都在 [src/styles/settings.scss](./src/styles/settings.scss) 文件内。
+> 组件库所使用的样式变量都在 [src/styles/settings.scss](https://github.com/fjc0k/mounted/blob/master/src/styles/settings.scss) 文件内。
 
 ## 设计稿尺寸
 
@@ -93,12 +93,13 @@ $designWidth: 750;
 
 下面列出 `mounted` 包含的组件，点击相应组件名称进入可查看其文档（**请先阅读：[代码即文档说明](#代码即文档说明)**）：
 
-- [Picker - 选择器](./src/components/Picker/index.tsx#L8)
-- [PickerView - 选择器视图](./src/components/PickerView/index.tsx#L40)
-- [Popup - 弹出层](./src/components/Popup/index.tsx#L19)
-- [SinglePicker - 单项选择器](./src/components/SinglePicker/index.tsx#L10)
-- [Sticky - 内容吸顶](./src/components/Sticky/index.tsx#L9)
-- [Transition - 动画过渡](./src/components/Transition/index.tsx#L14)
+- [Picker - 选择器](https://github.com/fjc0k/mounted/blob/master/src/components/Picker/index.tsx#L8)
+- [PickerView - 选择器视图](https://github.com/fjc0k/mounted/blob/master/src/components/PickerView/index.tsx#L40)
+- [Popup - 弹出层](https://github.com/fjc0k/mounted/blob/master/src/components/Popup/index.tsx#L19)
+- [SinglePicker - 单项选择器](https://github.com/fjc0k/mounted/blob/master/src/components/SinglePicker/index.tsx#L10)
+- [Sticky - 内容吸顶](https://github.com/fjc0k/mounted/blob/master/src/components/Sticky/index.tsx#L9)
+- [Transition - 动画过渡](https://github.com/fjc0k/mounted/blob/master/src/components/Transition/index.tsx#L14)
+- [DatePicker - 日期选择器](https://github.com/fjc0k/mounted/blob/master/src/components/DatePicker/index.tsx#L12)
 
 ### 代码即文档说明
 

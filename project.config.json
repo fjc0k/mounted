@@ -32,7 +32,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 7,
+			"current": 8,
 			"list": [
 				{
 					"id": -1,
@@ -88,6 +88,12 @@
 					"name": "pages/Style",
 					"pathName": "pages/Style",
 					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/DatePicker",
+					"pathName": "pages/DatePicker",
 					"scene": null
 				}
 			]

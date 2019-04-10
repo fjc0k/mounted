@@ -1,5 +1,6 @@
 export const pageUrls = {
   // @index('./*.tsx', (pp, cc) => `${pp.path.replace(/[^a-zA-Z]/g, '')}: '${pp.path.replace('./', '/pages/')}' as '${pp.path.replace('./', '/pages/')}',`)
+  DatePicker: '/pages/DatePicker' as '/pages/DatePicker',
   Home: '/pages/Home' as '/pages/Home',
   Picker: '/pages/Picker' as '/pages/Picker',
   PickerView: '/pages/PickerView' as '/pages/PickerView',

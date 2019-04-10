@@ -1,0 +1,78 @@
+import Taro, { Config } from '@tarojs/taro'
+import { component } from '../components/component'
+import { Image, View } from '@tarojs/components'
+import { MDatePicker } from '../components'
+import { XItem, XList, XTitle } from './components'
+
+const codeImg = 'https://ws1.sinaimg.cn/mw690/0060lm7Tly1g1xvd93cvtj30hi13qjw1.jpg'
+
+export default class DatePicker extends component({
+  state: {
+    selectedDate: [2019, 5, 20],
+  },
+}) {
+  config: Config = {
+    navigationBarTitleText: 'DatePicker',
+  }
+
+  render() {
+    const { selectedDate } = this.state
+    return (
+      <View>
+        <XTitle>单项选择</XTitle>
+        <XList>
+          <MDatePicker
+            title='选个日期'
+            selectedDate={selectedDate}
+            startYear={2010}
+            endYear={2020}
+            onFilterYear={payload => {
+              if (
+                payload.year === 2011
+                  || payload.year === 2019
+              ) {
+                payload.reject()
+              }
+            }}
+            onFilterMonth={payload => {
+              if (payload.month % 3 === 0) {
+                payload.reject()
+              }
+            }}
+            onFilterDay={payload => {
+              if (
+                payload.year === 2020
+                  && payload.month === 5
+                  && payload.day === 19
+              ) {
+                payload.reject()
+              }
+            }}
+            onConfirm={selectedDate => {
+              this.setState({ selectedDate })
+            }}>
+            <XItem
+              title='选个日期'
+              extra={selectedDate.join('-')}
+              arrow={true}
+              feedback={true}
+            />
+          </MDatePicker>
+          <XItem>
+            <Image
+              src={codeImg}
+              style={{ width: '100%' }}
+              mode='widthFix'
+              onClick={() => {
+                Taro.previewImage({
+                  current: codeImg,
+                  urls: [codeImg],
+                })
+              }}
+            />
+          </XItem>
+        </XList>
+      </View>
+    )
+  }
+}

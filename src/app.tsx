@@ -6,6 +6,7 @@ class App extends Taro.Component {
   config: Taro.Config = {
     pages: [
       // @index('./pages/*.tsx', (pp, cc) => `'${pp.path.replace(/^\.\//, '')}',`)
+      'pages/DatePicker',
       'pages/Home',
       'pages/Picker',
       'pages/PickerView',
