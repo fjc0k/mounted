@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.14.0"></a>
+# [0.14.0](https://github.com/fjc0k/mounted/compare/v0.12.0...v0.14.0) (2019-04-10)
+
+
+### Features
+
+* **DatePicker:** 以 startDate, endDate 取代 startYear, endYear ([fd5f53f](https://github.com/fjc0k/mounted/commit/fd5f53f))
+
+
+
 <a name="0.12.0"></a>
 # [0.12.0](https://github.com/fjc0k/mounted/compare/v0.11.0...v0.12.0) (2019-04-10)
 
