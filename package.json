@@ -63,7 +63,7 @@
     "src/styles"
   ],
   "dependencies": {
-    "vtils": "^0.86.0"
+    "vtils": "^0.91.0"
   },
   "devDependencies": {
     "@tarojs/cli": "1.2.21",

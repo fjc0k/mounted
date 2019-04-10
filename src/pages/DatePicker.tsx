@@ -5,7 +5,7 @@ import { MDatePicker } from '../components'
 import { pageUrls } from '.'
 import { XBackHome, XItem, XList, XTitle } from './components'
 
-const codeImg = 'https://ws1.sinaimg.cn/mw690/0060lm7Tly1g1xvd93cvtj30hi13qjw1.jpg'
+const codeImg = 'https://ws1.sinaimg.cn/large/d9ddb3f8gy1g1y0d6xf7cj20hi16qdgw.jpg'
 
 export default class DatePicker extends component({
   state: {
@@ -34,6 +34,9 @@ export default class DatePicker extends component({
             selectedDate={selectedDate}
             startYear={2010}
             endYear={2020}
+            formatYear='yyyy年'
+            formatMonth='mm月'
+            formatDay='dd日'
             onFilterYear={payload => {
               if (
                 payload.year === 2011

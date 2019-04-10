@@ -3621,6 +3621,10 @@ fast-levenshtein@~2.0.4:
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/fast-levenshtein/-/fast-levenshtein-2.0.6.tgz#3d8a5c66883a16a30ca8643e851f19baa7797917"
 
+fast-memoize@^2.5.1:
+  version "2.5.1"
+  resolved "https://registry.yarnpkg.com/fast-memoize/-/fast-memoize-2.5.1.tgz#c3519241e80552ce395e1a32dcdde8d1fd680f5d"
+
 fastparse@^1.1.1:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/fastparse/-/fastparse-1.1.2.tgz#91728c5a5942eced8531283c79441ee4122c35a9"
@@ -8792,10 +8796,11 @@ vtils@^0.85.0:
   dependencies:
     is-chinese-phone-number "^0.1.9"
 
-vtils@^0.86.0:
-  version "0.86.0"
-  resolved "https://registry.yarnpkg.com/vtils/-/vtils-0.86.0.tgz#cad26706dfdbd96b29530ed27c77344c134bdb79"
+vtils@^0.91.0:
+  version "0.91.0"
+  resolved "https://registry.yarnpkg.com/vtils/-/vtils-0.91.0.tgz#8ea50d4cebde9998faae056c52ba31f32b6c789a"
   dependencies:
+    fast-memoize "^2.5.1"
     is-chinese-phone-number "^0.1.9"
 
 warning@4.0.2:
