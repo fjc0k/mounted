@@ -2,7 +2,7 @@ import MPicker from '../Picker'
 import Taro from '@tarojs/taro'
 import { CascadedData, NormalItem } from '../PickerView'
 import { component, RequiredProp } from '../component'
-import { formatTemplate, getDaysInMonth, memoize, noop } from 'vtils'
+import { formatTemplate, getDaysInMonth, memoize, noop, toDate } from 'vtils'
 
 export type Item = NormalItem
 export type Data = Item[]
@@ -27,17 +27,23 @@ const currentYear = new Date().getFullYear()
 class MDatePicker extends component({
   props: {
     /**
-     * 开始年份。
+     * 开始日期。可以是：
      *
-     * @default new Date().getFullYear() - 10
+     * - 字符串: `2019-2-03`
+     * - Unix 时间戳: `1554916837`
+     *
+     * @default `${currentYear - 10}-1-1`
      */
-    startYear: (currentYear - 10) as number,
+    startDate: `${currentYear - 10}-1-1` as string | number,
     /**
-     * 结束年份。
+     * 结束日期。可以是：
      *
-     * @default new Date().getFullYear() + 10
+     * - 字符串: `2019-2-03`
+     * - Unix 时间戳: `1554916837`
+     *
+     * @default `${currentYear + 10}-12-31`
      */
-    endYear: (currentYear + 10) as number,
+    endDate: `${currentYear + 10}-12-31` as string | number,
     /**
      * 格式化年份。
      *
@@ -210,13 +216,23 @@ class MDatePicker extends component({
       pass = false
     }
 
+    const startDate = toDate(props.startDate)
+    const startYear = startDate.getFullYear()
+    const startMonth = startDate.getMonth() + 1
+    const startDay = startDate.getDate()
+
+    const endDate = toDate(props.endDate)
+    const endYear = endDate.getFullYear()
+    const endMonth = endDate.getMonth() + 1
+    const endDay = endDate.getDate()
+
     const useRawYearValue = props.formatYear === '' || props.formatYear === 'y' || props.formatYear === 'yyyy'
     const useRawMonthValue = props.formatMonth === '' || props.formatMonth === 'm'
     const useRawDayValue = props.formatDay === '' || props.formatDay === 'd'
 
     const yearList: CascadedData = []
     const selectedIndexes: number[] = []
-    for (let year = props.startYear; year <= props.endYear; year++) {
+    for (let year = startYear; year <= endYear; year++) {
       this.props.onFilterYear({
         year: year,
         reject: reject,
@@ -231,7 +247,8 @@ class MDatePicker extends component({
           value: year,
           children: monthList,
         })
-        for (let month = 1; month <= 12; month++) {
+        const months = year === endYear ? endMonth : 12
+        for (let month = (year === startYear ? startMonth : 1); month <= months; month++) {
           this.props.onFilterMonth({
             year: year,
             month: month,
@@ -247,8 +264,8 @@ class MDatePicker extends component({
               value: month,
               children: dayList,
             })
-            const days = getDaysInMonth(month, year)
-            for (let day = 1; day <= days; day++) {
+            const days = year === endYear && month === endMonth ? endDay : getDaysInMonth(month, year)
+            for (let day = (year === startYear && month === startMonth ? startDay : 1); day <= days; day++) {
               this.props.onFilterDay({
                 year: year,
                 month: month,
