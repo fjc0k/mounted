@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.12.0"></a>
+# [0.12.0](https://github.com/fjc0k/mounted/compare/v0.11.0...v0.12.0) (2019-04-10)
+
+
+### Features
+
+* **DatePicker:** 支持 formatYear, formatMonth, formatDay 属性 ([ae5ece5](https://github.com/fjc0k/mounted/commit/ae5ece5))
+* 新增 DatePicker 组件 ([4f32fdf](https://github.com/fjc0k/mounted/commit/4f32fdf))
+
+
+
 <a name="0.11.0"></a>
 # [0.11.0](https://github.com/fjc0k/mounted/compare/v0.10.0...v0.11.0) (2019-04-02)
 
