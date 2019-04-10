@@ -16,7 +16,7 @@
     "build:tt": "taro build --type tt",
     "build:h5": "taro build --type h5",
     "build:rn": "taro build --type rn",
-    "release": "standard-version -a && git push --follow-tags origin master && npm publish && wedevtools upload"
+    "release": "standard-version -a && git push --follow-tags origin master && npm publish && npm run build:weapp && wedevtools upload"
   },
   "author": {
     "name": "Jay Fong",
