@@ -5,11 +5,11 @@ import { MDatePicker } from '../components'
 import { pageUrls } from '.'
 import { XBackHome, XItem, XList, XTitle } from './components'
 
-const codeImg = 'https://ws1.sinaimg.cn/large/d9ddb3f8gy1g1y0d6xf7cj20hi16qdgw.jpg'
+const codeImg = 'https://ws1.sinaimg.cn/large/d9ddb3f8gy1g1y2gs4hmlj20hi16qwfk.jpg'
 
 export default class DatePicker extends component({
   state: {
-    selectedDate: [2019, 5, 20],
+    selectedDate: [2013, 5, 20],
   },
 }) {
   config: Config = {
@@ -32,8 +32,8 @@ export default class DatePicker extends component({
           <MDatePicker
             title='选个日期'
             selectedDate={selectedDate}
-            startYear={2010}
-            endYear={2020}
+            startDate='2010-2-2'
+            endDate='2020-10-1'
             formatYear='yyyy年'
             formatMonth='mm月'
             formatDay='dd日'
