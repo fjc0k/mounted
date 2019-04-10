@@ -2,10 +2,22 @@ import MPicker from '../Picker'
 import Taro from '@tarojs/taro'
 import { CascadedData, NormalItem } from '../PickerView'
 import { component, RequiredProp } from '../component'
-import { getDaysInMonth, noop } from 'vtils'
+import { formatTemplate, getDaysInMonth, memoize, noop } from 'vtils'
 
 export type Item = NormalItem
 export type Data = Item[]
+
+const formatYMD = memoize(
+  formatTemplate,
+  {
+    createCache: () => new Map(),
+    serializer: (template, ymd) => `${
+      (ymd.y && `${ymd.y}y`)
+      || (ymd.m && `${ymd.m}m`)
+      || (ymd.d && `${ymd.d}d`)
+    }${template}`,
+  },
+)
 
 const currentYear = new Date().getFullYear()
 
@@ -26,6 +38,44 @@ class MDatePicker extends component({
      * @default new Date().getFullYear() + 10
      */
     endYear: (currentYear + 10) as number,
+    /**
+     * 格式化年份。
+     *
+     * @example
+     *
+     * 'y' --> '2019'
+     * 'yy' --> '19'
+     * 'yyy' --> '019'
+     * 'yyyy' --> '2019'
+     * 'y年' --> '2019年'
+     *
+     * @default 'y'
+     */
+    formatYear: 'y' as string,
+    /**
+     * 格式化月份。
+     *
+     * @example
+     *
+     * 'm' --> '5'
+     * 'mm' --> '05'
+     * 'm月' --> '5月'
+     *
+     * @default 'm'
+     */
+    formatMonth: 'm' as string,
+    /**
+     * 格式化天数。
+     *
+     * @example
+     *
+     * 'd' --> '9'
+     * 'dd' --> '09'
+     * 'd日' --> '9日'
+     *
+     * @default 'd'
+     */
+    formatDay: 'd' as string,
     /**
      * 年份过滤器，调用 `reject()` 函数可跳过传入的年份。
      *
@@ -160,6 +210,10 @@ class MDatePicker extends component({
       pass = false
     }
 
+    const useRawYearValue = props.formatYear === '' || props.formatYear === 'y' || props.formatYear === 'yyyy'
+    const useRawMonthValue = props.formatMonth === '' || props.formatMonth === 'm'
+    const useRawDayValue = props.formatDay === '' || props.formatDay === 'd'
+
     const yearList: CascadedData = []
     const selectedIndexes: number[] = []
     for (let year = props.startYear; year <= props.endYear; year++) {
@@ -173,7 +227,7 @@ class MDatePicker extends component({
         }
         const monthList: CascadedData = []
         yearList.push({
-          label: String(year),
+          label: useRawYearValue ? year.toString() : formatYMD(props.formatYear, { y: year }),
           value: year,
           children: monthList,
         })
@@ -189,7 +243,7 @@ class MDatePicker extends component({
             }
             const dayList: CascadedData = []
             monthList.push({
-              label: String(month),
+              label: useRawMonthValue ? month.toString() : formatYMD(props.formatMonth, { m: month }),
               value: month,
               children: dayList,
             })
@@ -206,7 +260,7 @@ class MDatePicker extends component({
                   selectedIndexes[2] = dayList.length
                 }
                 dayList.push({
-                  label: String(day),
+                  label: useRawDayValue ? day.toString() : formatYMD(props.formatDay, { d: day }),
                   value: day,
                 })
               } else {
@@ -282,7 +336,7 @@ class MDatePicker extends component({
         onConfirm={this.handleConfirm}>
         {this.props.children}
       </MPicker>
-    ) : null
+    ) : this.props.children
   }
 }
 
