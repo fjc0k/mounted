@@ -99,7 +99,7 @@ $designWidth: 750;
 - [SinglePicker - 单项选择器](https://github.com/fjc0k/mounted/blob/master/src/components/SinglePicker/index.tsx#L10)
 - [Sticky - 内容吸顶](https://github.com/fjc0k/mounted/blob/master/src/components/Sticky/index.tsx#L9)
 - [Transition - 动画过渡](https://github.com/fjc0k/mounted/blob/master/src/components/Transition/index.tsx#L14)
-- [DatePicker - 日期选择器](https://github.com/fjc0k/mounted/blob/master/src/components/DatePicker/index.tsx#L24)
+- [DatePicker - 日期选择器](https://github.com/fjc0k/mounted/blob/master/src/components/DatePicker/index.tsx#L21)
 
 ### 代码即文档说明
 
