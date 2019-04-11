@@ -8,6 +8,14 @@ const stickyComponents: MSticky[] = []
 
 /**
  * 吸顶组件。
+ *
+ * @example
+ *
+ * ```jsx
+ * <MSticky>
+ *   <View>标题</View>
+ * </MSticky>
+ * ```
  */
 export default class MSticky extends component({
   state: {

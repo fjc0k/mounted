@@ -42,21 +42,54 @@ export type Data = NormalData | CascadedData
  */
 export default class MPickerView extends component({
   props: {
-    /** 选项数据 */
+    /**
+     * 选项数据。
+     */
     data: [] as any as RequiredProp<Data>,
-    /** 选中条目的索引列表 */
+
+    /**
+     * 选中条目的索引列表。
+     */
     selectedIndexes: [] as any as RequiredProp<number[]>,
-    /** 单个条目高度 */
+
+    /**
+     * 单个条目高度。
+     *
+     * @default '2.5em'
+     */
     itemHeight: '2.5em' as string,
-    /** 显示条目数量 */
+
+    /**
+     * 显示条目数量。
+     *
+     * @default 5
+     */
     visibleItemCount: 5 as number,
-    /** 是否禁止选中 */
+
+    /**
+     * 是否禁止选中。
+     *
+     * @default false
+     */
     disabled: false as boolean,
-    /** 选中值改变事件 */
+
+    /**
+     * 选中值改变事件。
+     */
     onChange: noop as any as RequiredProp<(selectedIndexes: number[]) => void>,
-    /** 选择开始事件 */
+
+    /**
+     * 选择开始事件。
+     *
+     * @default () => {}
+     */
     onPickStart: noop as () => void,
-    /** 选择结束事件 */
+
+    /**
+     * 选择结束事件。
+     *
+     * @default () => {}
+     */
     onPickEnd: noop as () => void,
   },
   state: {

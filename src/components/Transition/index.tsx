@@ -13,39 +13,65 @@ enum TransitionType {
 
 /**
  * 动画过渡组件。
+ *
+ * @example
+ *
+ * ```jsx
+ * <MTransition name='zoom' visible={visible}>
+ *   <View>动画内容</View>
+ * </MTransition>
+ * ```
  */
 export default class MTransition extends component({
   props: {
-    /** 组件是否可见 */
+    /**
+     * 组件是否可见。
+     */
     visible: true as any as RequiredProp<boolean>,
-    /** 动画名称 */
+
+    /**
+     * 动画名称。可以是：
+     *
+     * - `fade`: 淡入
+     * - `fadeUp`: 上滑淡入
+     * - `fadeDown`: 下滑淡入
+     * - `fadeLeft`: 左滑淡入
+     * - `fadeRight`: 右滑淡入
+     * - `slideUp`: 上滑进入
+     * - `slideDown`: 下滑进入
+     * - `slideLeft`: 左滑进入
+     * - `slideRight`: 右滑进入
+     * - `zoom`: 缩放
+     * - `drop`: 掉落
+     *
+     * @default 'fade'
+     */
     name: 'fade' as (
-      /** 淡入 */
       'fade' |
-      /** 上滑淡入 */
       'fadeUp' |
-      /** 下滑淡入 */
       'fadeDown' |
-      /** 左滑淡入 */
       'fadeLeft' |
-      /** 右滑淡入 */
       'fadeRight' |
-      /** 上滑进入 */
       'slideUp' |
-      /** 下滑进入 */
       'slideDown' |
-      /** 左滑进入 */
       'slideLeft' |
-      /** 右滑进入 */
       'slideRight' |
-      /** 缩放 */
       'zoom' |
-      /** 掉落 */
       'drop'
     ),
-    /** 动画时长，单位: ms */
+
+    /**
+     * 动画时长，单位：毫秒。
+     *
+     * @default 300
+     */
     duration: 300 as number,
-    /** 动画结束事件 */
+
+    /**
+     * 动画结束事件。
+     *
+     * @default () => {}
+     */
     onTransitionEnd: noop as () => void,
   },
   state: {

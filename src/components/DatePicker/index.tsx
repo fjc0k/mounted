@@ -20,6 +20,17 @@ const currentYear = new Date().getFullYear()
 
 /**
  * 日期选择器组件。
+ *
+ * @example
+ *
+ * ```jsx
+ * <MDatePicker
+ *   title='选择日期'
+ *   selectedDate={selectedDate}
+ *   onConfirm={selectedDate => this.setState({ selectedDate })}>
+ *   <Text>选择日期</Text>
+ * </MDatePicker>
+ * ```
  */
 class MDatePicker extends component({
   props: {
@@ -32,6 +43,7 @@ class MDatePicker extends component({
      * @default `${currentYear - 10}-1-1`
      */
     startDate: `${currentYear - 10}-1-1` as string | number,
+
     /**
      * 结束日期。可以是：
      *
@@ -41,6 +53,7 @@ class MDatePicker extends component({
      * @default `${currentYear + 10}-12-31`
      */
     endDate: `${currentYear + 10}-12-31` as string | number,
+
     /**
      * 格式化年份。
      *
@@ -55,6 +68,7 @@ class MDatePicker extends component({
      * @default 'y'
      */
     formatYear: 'y' as string,
+
     /**
      * 格式化月份。
      *
@@ -67,6 +81,7 @@ class MDatePicker extends component({
      * @default 'm'
      */
     formatMonth: 'm' as string,
+
     /**
      * 格式化天数。
      *
@@ -79,6 +94,7 @@ class MDatePicker extends component({
      * @default 'd'
      */
     formatDay: 'd' as string,
+
     /**
      * 年份过滤器，调用 `reject()` 函数可跳过传入的年份。
      *
@@ -90,6 +106,7 @@ class MDatePicker extends component({
       /** 跳过当前年份 */
       reject: () => void,
     }) => void,
+
     /**
      * 月份过滤器，调用 `reject()` 函数可跳过传入的月份。
      *
@@ -103,6 +120,7 @@ class MDatePicker extends component({
       /** 跳过当前月份 */
       reject: () => void,
     }) => void,
+
     /**
      * 日期过滤器，调用 `reject()` 函数可跳过传入的日期。
      *
@@ -118,64 +136,75 @@ class MDatePicker extends component({
       /** 跳过当前日期 */
       reject: () => void,
     }) => void,
+
     /**
      * 选中的日期。
      */
     selectedDate: [] as any as RequiredProp<number[]>,
+
     /**
      * 单个条目高度。
      *
      * @default '2.5em'
      */
     itemHeight: '2.5em' as string,
+
     /**
      * 显示条目数量。
      *
      * @default 5
      */
     visibleItemCount: 5 as number,
+
     /**
      * 是否禁止选中
      *
      * @default false
      */
     disabled: false as boolean,
+
     /**
      * 是否可点击遮罩关闭。
      *
      * @default true
      */
     maskClosable: true as boolean,
+
     /**
      * 标题。
      *
      * @default ''
      */
     title: '' as string,
+
     /**
      * 是否无取消按钮。
      *
      * @default false
      */
     noCancel: false as boolean,
+
     /**
      * 取消文字。
      *
      * @default '取消'
      */
     cancelText: '取消' as string,
+
     /**
      * 确定文字。
      *
      * @default '确定'
      */
     confirmText: '确定' as string,
+
     /**
      * 点击取消事件。
      *
      * @default () => {}
      */
     onCancel: noop as () => void,
+
     /**
      * 点击确定事件。
      *

@@ -10,29 +10,84 @@ import { View } from '@tarojs/components'
  */
 class MPicker extends component({
   props: {
-    /** 选项数据 */
+    /**
+     * 选项数据。
+     */
     data: [] as any as RequiredProp<Data>,
-    /** 选中条目的索引列表 */
+
+    /**
+     * 选中条目的索引列表。
+     */
     selectedIndexes: [] as any as RequiredProp<number[]>,
-    /** 单个条目高度 */
+
+    /**
+     * 单个条目高度。
+     *
+     * @default '2.5em'
+     */
     itemHeight: '2.5em' as string,
-    /** 显示条目数量 */
+
+    /**
+     * 显示条目数量。
+     *
+     * @default 5
+     */
     visibleItemCount: 5 as number,
-    /** 是否禁止选中 */
+
+    /**
+     * 是否禁止选中。
+     *
+     * @default false
+     */
     disabled: false as boolean,
-    /** 是否可点击遮罩关闭 */
+
+    /**
+     * 是否可点击遮罩关闭。
+     *
+     * @default true
+     */
     maskClosable: true as boolean,
-    /** 标题 */
+
+    /**
+     * 标题。
+     *
+     * @default ''
+     */
     title: '' as string,
-    /** 是否无取消按钮 */
+
+    /**
+     * 是否无取消按钮。
+     *
+     * @default false
+     */
     noCancel: false as boolean,
-    /** 取消文字 */
+
+    /**
+     * 取消文字。
+     *
+     * @default '取消'
+     */
     cancelText: '取消' as string,
-    /** 确定文字 */
+
+    /**
+     * 确定文字。
+     *
+     * @default '确定'
+     */
     confirmText: '确定' as string,
-    /** 点击取消事件 */
+
+    /**
+     * 点击取消事件。
+     *
+     * @default () => {}
+     */
     onCancel: noop as () => void,
-    /** 点击确定事件 */
+
+    /**
+     * 点击确定事件。
+     *
+     * @default () => {}
+     */
     onConfirm: noop as any as RequiredProp<(selectedIndexes: number[]) => void>,
   },
   state: {
