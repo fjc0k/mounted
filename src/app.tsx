@@ -13,6 +13,7 @@ class App extends Taro.Component {
       'pages/Popup',
       'pages/SinglePicker',
       'pages/Sticky',
+      'pages/TimePicker',
       'pages/Transition',
       // @endindex
     ],

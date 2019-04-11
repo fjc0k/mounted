@@ -7,6 +7,7 @@ export const pageUrls = {
   Popup: '/pages/Popup' as '/pages/Popup',
   SinglePicker: '/pages/SinglePicker' as '/pages/SinglePicker',
   Sticky: '/pages/Sticky' as '/pages/Sticky',
+  TimePicker: '/pages/TimePicker' as '/pages/TimePicker',
   Transition: '/pages/Transition' as '/pages/Transition',
   // @endindex
 }

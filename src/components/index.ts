@@ -5,6 +5,7 @@ export { default as MPickerView } from './PickerView'
 export { default as MPopup } from './Popup'
 export { default as MSinglePicker } from './SinglePicker'
 export { default as MSticky } from './Sticky'
+export { default as MTimePicker } from './TimePicker'
 export { default as MTransition } from './Transition'
 // @endindex
 
@@ -16,6 +17,7 @@ export type ComponentName = (
   'Popup' |
   'SinglePicker' |
   'Sticky' |
+  'TimePicker' |
   'Transition'
   // @endindex
 )

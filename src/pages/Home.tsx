@@ -49,6 +49,11 @@ const componentList: ComponentInfo[] = [
     chineseName: '日期选择器',
     url: pageUrls.DatePicker,
   },
+  {
+    name: 'TimePicker',
+    chineseName: '时间选择器',
+    url: pageUrls.TimePicker,
+  },
 ]
 
 export default class Home extends component({
