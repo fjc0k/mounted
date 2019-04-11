@@ -100,6 +100,8 @@ $designWidth: 750;
 - [Sticky - 内容吸顶](https://github.com/fjc0k/mounted/blob/master/src/components/Sticky/index.tsx#L9)
 - [Transition - 动画过渡](https://github.com/fjc0k/mounted/blob/master/src/components/Transition/index.tsx#L14)
 - [DatePicker - 日期选择器](https://github.com/fjc0k/mounted/blob/master/src/components/DatePicker/index.tsx#L21)
+- [TimePicker - 时间选择器](https://github.com/fjc0k/mounted/blob/master/src/components/TimePicker/index.tsx#L18)
+- [FormIdCollector - FormId 收集器](https://github.com/fjc0k/mounted/blob/master/src/components/FormIdCollector/index.tsx#L7)
 
 ### 代码即文档说明
 

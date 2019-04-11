@@ -5,9 +5,10 @@ import Taro from '@tarojs/taro'
 class App extends Taro.Component {
   config: Taro.Config = {
     pages: [
-      // @index('./pages/*.tsx', (pp, cc) => `'${pp.path.replace(/^\.\//, '')}',`)
-      'pages/DatePicker',
       'pages/Home',
+      // @index('./pages/*[!Home].tsx', (pp, cc) => `'${pp.path.replace(/^\.\//, '')}',`)
+      'pages/DatePicker',
+      'pages/FormIdCollector',
       'pages/Picker',
       'pages/PickerView',
       'pages/Popup',

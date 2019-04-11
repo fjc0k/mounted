@@ -54,6 +54,11 @@ const componentList: ComponentInfo[] = [
     chineseName: '时间选择器',
     url: pageUrls.TimePicker,
   },
+  {
+    name: 'FormIdCollector',
+    chineseName: 'FormId 收集器',
+    url: pageUrls.FormIdCollector,
+  },
 ]
 
 export default class Home extends component({
@@ -91,10 +96,10 @@ export default class Home extends component({
           {componentList.map((componentInfo, index) => (
             <XItem
               key={componentInfo.name}
-              title={componentInfo.name}
-              extra={componentInfo.chineseName}
               arrow={true}
+              extra={componentInfo.chineseName}
               feedback={true}
+              title={componentInfo.name}
               onClick={this.handleItemClick.bind(this, index)}
             />
           ))}
