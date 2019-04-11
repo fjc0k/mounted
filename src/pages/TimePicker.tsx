@@ -5,7 +5,7 @@ import { MTimePicker } from '../components'
 import { pageUrls } from '.'
 import { XBackHome, XItem, XList, XTitle } from './components'
 
-const codeImg = 'https://ws1.sinaimg.cn/large/d9ddb3f8gy1g1y2gs4hmlj20hi16qwfk.jpg'
+const codeImg = 'https://ws1.sinaimg.cn/large/d9ddb3f8gy1g1yugqetecj20hi0tqwf6.jpg'
 
 export default class TimePicker extends component({
   state: {
