@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.15.0"></a>
+# [0.15.0](https://github.com/fjc0k/mounted/compare/v0.14.0...v0.15.0) (2019-04-11)
+
+
+### Features
+
+* **组件:** 新增 FormIdCollector 组件 ([54bb6a6](https://github.com/fjc0k/mounted/commit/54bb6a6))
+* **组件:** 新增 TimePicker 组件 ([2239986](https://github.com/fjc0k/mounted/commit/2239986))
+* 完善注释 ([2b3fa34](https://github.com/fjc0k/mounted/commit/2b3fa34))
+
+
+
 <a name="0.14.0"></a>
 # [0.14.0](https://github.com/fjc0k/mounted/compare/v0.12.0...v0.14.0) (2019-04-10)
 
