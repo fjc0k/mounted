@@ -1,11 +1,8 @@
 import MPicker from '../Picker'
 import Taro from '@tarojs/taro'
-import { CascadedData, NormalItem } from '../PickerView'
+import { CascadedData } from '../PickerView'
 import { component, RequiredProp } from '../component'
 import { formatTemplate, getDaysInMonth, memoize, noop, toDate } from 'vtils'
-
-export type Item = NormalItem
-export type Data = Item[]
 
 const formatYMD = memoize(
   formatTemplate,

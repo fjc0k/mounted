@@ -27,7 +27,7 @@ export default class DatePicker extends component({
     const { selectedDate } = this.state
     return (
       <View>
-        <XTitle>单项选择</XTitle>
+        <XTitle>日期选择</XTitle>
         <XList>
           <MDatePicker
             title='选个日期'
