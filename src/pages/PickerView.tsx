@@ -41,12 +41,14 @@ export default class PickerView extends component({
       selectedIndexes: [0, 0],
       visibleItemCount: 5,
       disabled: false,
+      separator: '和',
     },
     cascaded: {
       data: heroData,
       selectedIndexes: [0, 0],
       visibleItemCount: 5,
       disabled: false,
+      separator: ':',
     },
   },
 }) {
@@ -101,6 +103,24 @@ export default class PickerView extends component({
             )}
           />
           <XItem
+            title='分隔符'
+            renderExtra={(
+              <Input
+                value={normal.separator}
+                placeholder='输入分隔符'
+                style={{ textAlign: 'right' }}
+                onInput={e => {
+                  this.setState(_ => ({
+                    normal: {
+                      ..._.normal,
+                      separator: e.detail.value,
+                    },
+                  }))
+                }}
+              />
+            )}
+          />
+          <XItem
             title='是否禁用'
             renderExtra={(
               <Switch
@@ -122,6 +142,7 @@ export default class PickerView extends component({
               selectedIndexes={normal.selectedIndexes}
               visibleItemCount={normal.visibleItemCount}
               disabled={normal.disabled}
+              separator={normal.separator}
               onChange={selectedIndexes => {
                 this.setState(_ => ({
                   normal: {
@@ -168,6 +189,24 @@ export default class PickerView extends component({
             )}
           />
           <XItem
+            title='分隔符'
+            renderExtra={(
+              <Input
+                value={cascaded.separator}
+                placeholder='输入分隔符'
+                style={{ textAlign: 'right' }}
+                onInput={e => {
+                  this.setState(_ => ({
+                    cascaded: {
+                      ..._.cascaded,
+                      separator: e.detail.value,
+                    },
+                  }))
+                }}
+              />
+            )}
+          />
+          <XItem
             title='是否禁用'
             renderExtra={(
               <Switch
@@ -189,6 +228,7 @@ export default class PickerView extends component({
               selectedIndexes={cascaded.selectedIndexes}
               visibleItemCount={cascaded.visibleItemCount}
               disabled={cascaded.disabled}
+              separator={cascaded.separator}
               onChange={selectedIndexes => {
                 this.setState(_ => ({
                   cascaded: {

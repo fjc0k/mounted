@@ -157,11 +157,24 @@ class MDatePicker extends component({
     visibleItemCount: 5 as number,
 
     /**
-     * 是否禁止选中
+     * 是否禁用。
      *
      * @default false
      */
     disabled: false as boolean,
+
+    /**
+     * 分隔符，用以分割列。
+     *
+     * @example
+     *
+     * '-' // 分隔符为 - 号
+     * '/' // 分隔符为 / 号
+     * ['-', ':'] // 分隔符依次为 - 号、: 号
+     *
+     * @default ''
+     */
+    separator: '' as string | number | Array<string | number>,
 
     /**
      * 是否可点击遮罩关闭。
@@ -357,6 +370,8 @@ class MDatePicker extends component({
       cancelText,
       confirmText,
       title,
+      disabled,
+      separator,
       className,
     } = this.props
     const {
@@ -374,6 +389,8 @@ class MDatePicker extends component({
         cancelText={cancelText}
         confirmText={confirmText}
         title={title}
+        disabled={disabled}
+        separator={separator}
         className={className}
         onCancel={this.handleCancel}
         onConfirm={this.handleConfirm}>

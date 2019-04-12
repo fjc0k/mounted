@@ -35,11 +35,25 @@ class MPicker extends component({
     visibleItemCount: 5 as number,
 
     /**
-     * 是否禁止选中。
+     * 是否禁用。
      *
      * @default false
      */
     disabled: false as boolean,
+
+    /**
+     * 分隔符，用以分割列。
+     *
+     * @example
+     *
+     * '-' // 分隔符为 - 号
+     * '至' // 分隔符为 至 字
+     * 0 // 分隔符为数字 0
+     * ['-', ':'] // 分隔符依次为 - 号、: 号
+     *
+     * @default ''
+     */
+    separator: '' as string | number | Array<string | number>,
 
     /**
      * 是否可点击遮罩关闭。
@@ -158,9 +172,9 @@ class MPicker extends component({
   }
 
   render() {
-    const { maskClosable, data, itemHeight, visibleItemCount, noCancel, cancelText, confirmText, title, className } = this.props
+    const { maskClosable, data, itemHeight, visibleItemCount, noCancel, cancelText, confirmText, title, disabled, separator, className } = this.props
     const { localVisible, localSelectedIndexes } = this.state
-    return (
+    return disabled ? this.props.children : (
       <View className={className}>
         <View onClick={this.handleTriggerClick}>
           {this.props.children}
@@ -191,6 +205,7 @@ class MPicker extends component({
               selectedIndexes={localSelectedIndexes}
               itemHeight={itemHeight}
               visibleItemCount={visibleItemCount}
+              separator={separator}
               onPickStart={this.handlePickStart}
               onPickEnd={this.handlePickEnd}
               onChange={this.handlePickChange}

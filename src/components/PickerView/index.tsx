@@ -1,7 +1,8 @@
+/* eslint-disable react/no-array-index-key */
 import Taro from '@tarojs/taro'
+import { Block, PickerView, PickerViewColumn, View } from '@tarojs/components'
 import { clamp, isArray, isEqualArray, isNumber, noop, parseCSSValue } from 'vtils'
 import { component, RequiredProp } from '../component'
-import { PickerView, PickerViewColumn, View } from '@tarojs/components'
 
 /** 普通条目 */
 export interface NormalItem {
@@ -72,6 +73,20 @@ export default class MPickerView extends component({
      * @default false
      */
     disabled: false as boolean,
+
+    /**
+     * 分隔符，用以分割列。
+     *
+     * @example
+     *
+     * '-' // 分隔符为 - 号
+     * '至' // 分隔符为 至 字
+     * 0 // 分隔符为数字 0
+     * ['-', ':'] // 分隔符依次为 - 号、: 号
+     *
+     * @default ''
+     */
+    separator: '' as string | number | Array<string | number>,
 
     /**
      * 选中值改变事件。
@@ -200,11 +215,38 @@ export default class MPickerView extends component({
     }
   }
 
-  handleChange = (e: { detail: { value: number[] } }) => {
+  normalizeSeparator(): Array<string | number> {
+    const { separator } = this.props
+    const separatorIsArray = isArray(separator)
+    const normalizedSeparator: Array<string | number> = []
+    for (let i = 0; i < this.state.normalizedData.length - 1; i++) {
+      normalizedSeparator.push(
+        separatorIsArray
+          ? separator[i]
+          : separator,
+      )
+    }
+    return normalizedSeparator.map(
+      separator => separator == null || separator === '' ? null : separator,
+    )
+  }
+
+  handleChange = (
+    separator: any[],
+    { detail: { value: selectedIndexes } }: { detail: { value: number[] } },
+  ) => {
     const { normalizedData } = this.state
 
+    // 去除 separator 的值
+    for (let i = 0, j = 0; i < normalizedData.length; i++) {
+      if (separator[j] != null) {
+        selectedIndexes.splice(i + j + 1, 1)
+        j++
+      }
+    }
+
     // fix: 尽管数据列数有变化，selectedIndexes 却仍是之前的长度
-    const selectedIndexes = e.detail.value.slice(0, normalizedData.length)
+    selectedIndexes = selectedIndexes.slice(0, normalizedData.length)
 
     this.setState({ localSelectedIndexes: selectedIndexes }, () => {
       if (this.isCascaded) {
@@ -234,27 +276,47 @@ export default class MPickerView extends component({
     const { disabled, className } = this.props
     const { normalizedData, localSelectedIndexes } = this.state
     const styles = this.computeStyles()
+    const normalizedSeparator = this.normalizeSeparator()
+
+    // 加上 separator 的值
+    const fullSelectedIndexes = localSelectedIndexes.slice()
+    for (let i = 0, j = 0; i < normalizedData.length; i++) {
+      if (normalizedSeparator[j] != null) {
+        fullSelectedIndexes.splice(i + j + 1, 0, 0)
+        j++
+      }
+    }
+
     return (
       <PickerView
-        value={localSelectedIndexes}
+        value={fullSelectedIndexes}
         className={`m-picker-view ${disabled && 'm-picker-view_disabled'} ${className}`}
         style={styles.view}
         indicatorStyle={`height:${styles.indicator.height}`}
         onPickStart={this.props.onPickStart}
         onPickEnd={this.props.onPickEnd}
-        onChange={this.handleChange}>
+        onChange={this.handleChange.bind(this, normalizedSeparator)}>
         {normalizedData.map((colData, colIndex) => (
-          // eslint-disable-next-line react/no-array-index-key
-          <PickerViewColumn key={colIndex}>
-            {colData.map((item, itemIndex) => (
-              // eslint-disable-next-line react/no-array-index-key
-              <View key={itemIndex} className='m-picker-view__item'>
-                <View className='m-picker-view__item__label'>
-                  {item.label}
+          <Block key={colIndex}>
+            <PickerViewColumn key='column'>
+              {colData.map((item, itemIndex) => (
+                <View key={itemIndex} className='m-picker-view__item'>
+                  <View className='m-picker-view__item__label'>
+                    {item.label}
+                  </View>
                 </View>
-              </View>
-            ))}
-          </PickerViewColumn>
+              ))}
+            </PickerViewColumn>
+            {normalizedSeparator[colIndex] == null ? null : (
+              <PickerViewColumn key='separator' className='m-picker-view__separator'>
+                <View className='m-picker-view__item'>
+                  <View className='m-picker-view__item__label'>
+                    {normalizedSeparator[colIndex]}
+                  </View>
+                </View>
+              </PickerViewColumn>
+            )}
+          </Block>
         ))}
       </PickerView>
     )

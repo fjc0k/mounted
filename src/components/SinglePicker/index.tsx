@@ -37,7 +37,7 @@ class MSinglePicker extends component({
     visibleItemCount: 5 as number,
 
     /**
-     * 是否禁止选中
+     * 是否禁用。
      *
      * @default false
      */
@@ -129,6 +129,7 @@ class MSinglePicker extends component({
       cancelText,
       confirmText,
       title,
+      disabled,
       className,
     } = this.props
     const {
@@ -146,6 +147,7 @@ class MSinglePicker extends component({
         cancelText={cancelText}
         confirmText={confirmText}
         title={title}
+        disabled={disabled}
         className={className}
         onCancel={this.handleCancel}
         onConfirm={this.handleConfirm}>

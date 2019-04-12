@@ -15,4 +15,11 @@
       @include ellipsis;
     }
   }
+
+  &__separator {
+    pointer-events: none;
+    flex-grow: 0;
+    flex-basis: 2em;
+    flex-shrink: 0;
+  }
 }
