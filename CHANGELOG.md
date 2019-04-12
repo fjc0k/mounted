@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.16.0"></a>
+# [0.16.0](https://github.com/fjc0k/mounted/compare/v0.15.0...v0.16.0) (2019-04-12)
+
+
+### Features
+
+* 将组件的 styleIsolation 设为 shared，以支持在高阶组件中设置基础组件的样式 ([a8fda4c](https://github.com/fjc0k/mounted/commit/a8fda4c))
+* **样式:** 新增 pureButton mixin，可用于去除小程序按钮的默认样式 ([e00684f](https://github.com/fjc0k/mounted/commit/e00684f))
+
+
+
 <a name="0.15.0"></a>
 # [0.15.0](https://github.com/fjc0k/mounted/compare/v0.14.0...v0.15.0) (2019-04-11)
 
