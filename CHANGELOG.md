@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.17.0"></a>
+# [0.17.0](https://github.com/fjc0k/mounted/compare/v0.16.0...v0.17.0) (2019-04-12)
+
+
+### Features
+
+* Picker 系列组件新增 separator 属性 ([cd68159](https://github.com/fjc0k/mounted/commit/cd68159))
+
+
+
 <a name="0.16.0"></a>
 # [0.16.0](https://github.com/fjc0k/mounted/compare/v0.15.0...v0.16.0) (2019-04-12)
 
