@@ -1,8 +1,7 @@
-import Collector from './CollectorA'
 import Taro from '@tarojs/taro'
-import { Block, Button, Label } from '@tarojs/components'
+import { Block, Button, Form, Label } from '@tarojs/components'
 import { component } from '../component'
-import { noop } from 'vtils'
+import { noop, range } from 'vtils'
 
 /**
  * 微信小程序 FormId 收集器。
@@ -20,11 +19,11 @@ import { noop } from 'vtils'
 export default class MFormIdCollector extends component({
   props: {
     /**
-     * 收集个数。
+     * 收集个数。最多一次收集 7 个。
      *
-     * @default 7
+     * @default 1
      */
-    count: 7 as number,
+    count: 1 as 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7,
 
     /**
      * 是否禁用。
@@ -43,7 +42,7 @@ export default class MFormIdCollector extends component({
 }) {
   formIds: string[] = []
 
-  handleCollect: Collector['props']['onCollect'] = e => {
+  handleCollect = e => {
     this.formIds.push(e.detail.formId)
     if (this.formIds.length === this.props.count) {
       this.props.onCollect(this.formIds.slice())
@@ -53,16 +52,36 @@ export default class MFormIdCollector extends component({
 
   render() {
     const { count, disabled } = this.props
-    return disabled ? this.props.children : (
+    const finalCount = Math.min(count, 7)
+    return (disabled || finalCount === 0) ? this.props.children : (
       <Block>
-        <Label for='button'>
-          {this.props.children}
+        <Label for='button_6'>
+          <Label for='button_5'>
+            <Label for='button_4'>
+              <Label for='button_3'>
+                <Label for='button_2'>
+                  <Label for='button_1'>
+                    <Label for='button_0'>
+                      {this.props.children}
+                    </Label>
+                  </Label>
+                </Label>
+              </Label>
+            </Label>
+          </Label>
         </Label>
-        <Collector
-          count={count}
-          onCollect={this.handleCollect}>
-          <Button id='button' />
-        </Collector>
+        {range(0, finalCount).map(i => (
+          <Form
+            key={i}
+            className='m-form-id-collector_form'
+            reportSubmit={true}
+            onSubmit={this.handleCollect}>
+            <Button
+              id={`button_${i}`}
+              formType='submit'
+            />
+          </Form>
+        ))}
       </Block>
     )
   }

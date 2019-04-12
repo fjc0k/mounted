@@ -1,5 +1,5 @@
 // @index('../components/**/*.scss', f => `@import '${f.path}${f.ext}';`)
-@import '../components/FormIdCollector/Collector.scss';
+@import '../components/FormIdCollector/index.scss';
 @import '../components/Picker/index.scss';
 @import '../components/PickerView/index.scss';
 @import '../components/Popup/index.scss';
