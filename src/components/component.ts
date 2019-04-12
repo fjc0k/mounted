@@ -42,15 +42,16 @@ const component = <
     Overwrite<PP, ExtraProps>,
     Overwrite<SS, ExtraState>
   > {
-    static options: wx.ComponentOptions = {
-      addGlobalClass: !disableGlobalClass,
+    static options: wx.ComponentOptions = disableGlobalClass ? {} : {
+      addGlobalClass: true,
+      styleIsolation: 'shared',
     }
 
     static defaultProps: P = props
 
     constructor() {
       super(...arguments)
-      if (Taro.getEnv() !== Taro.ENV_TYPE.WEB) {
+      if (process.env.TARO_ENV !== 'h5') {
         this.props = props as any
       }
       this.state = state as any
