@@ -33,6 +33,8 @@ const heroData: CascadedData = [
   },
 ]
 
+// FIXME: 删除分隔符 错误
+
 export default class PickerView extends component({
   disableGlobalClass: true,
   state: {

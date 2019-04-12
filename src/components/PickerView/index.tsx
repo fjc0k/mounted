@@ -231,22 +231,14 @@ export default class MPickerView extends component({
     )
   }
 
-  handleChange = (
-    separator: any[],
-    { detail: { value: selectedIndexes } }: { detail: { value: number[] } },
-  ) => {
+  handleChange = (e: { detail: { value: number[] } }) => {
     const { normalizedData } = this.state
 
-    // 去除 separator 的值
-    for (let i = 0, j = 0; i < normalizedData.length; i++) {
-      if (separator[j] != null) {
-        selectedIndexes.splice(i + j + 1, 1)
-        j++
-      }
-    }
-
-    // fix: 尽管数据列数有变化，selectedIndexes 却仍是之前的长度
-    selectedIndexes = selectedIndexes.slice(0, normalizedData.length)
+    const selectedIndexes = e.detail.value
+      // 去除 separator 的值
+      .filter((_, i) => i % 2 === 0)
+      // 尽管数据列数有变化，selectedIndexes 却仍是之前的长度
+      .slice(0, normalizedData.length)
 
     this.setState({ localSelectedIndexes: selectedIndexes }, () => {
       if (this.isCascaded) {
@@ -280,11 +272,8 @@ export default class MPickerView extends component({
 
     // 加上 separator 的值
     const fullSelectedIndexes = localSelectedIndexes.slice()
-    for (let i = 0, j = 0; i < normalizedData.length; i++) {
-      if (normalizedSeparator[j] != null) {
-        fullSelectedIndexes.splice(i + j + 1, 0, 0)
-        j++
-      }
+    for (let i = 0, len = fullSelectedIndexes.length; i < len; i++) {
+      fullSelectedIndexes.splice(i * 2 + 1, 0, 0)
     }
 
     return (
@@ -295,10 +284,10 @@ export default class MPickerView extends component({
         indicatorStyle={`height:${styles.indicator.height}`}
         onPickStart={this.props.onPickStart}
         onPickEnd={this.props.onPickEnd}
-        onChange={this.handleChange.bind(this, normalizedSeparator)}>
+        onChange={this.handleChange}>
         {normalizedData.map((colData, colIndex) => (
           <Block key={colIndex}>
-            <PickerViewColumn key='column'>
+            <PickerViewColumn key={`column-${colIndex}`}>
               {colData.map((item, itemIndex) => (
                 <View key={itemIndex} className='m-picker-view__item'>
                   <View className='m-picker-view__item__label'>
@@ -307,15 +296,17 @@ export default class MPickerView extends component({
                 </View>
               ))}
             </PickerViewColumn>
-            {normalizedSeparator[colIndex] == null ? null : (
-              <PickerViewColumn key='separator' className='m-picker-view__separator'>
+            <PickerViewColumn
+              key={`separator-${colIndex}`}
+              className={`m-picker-view__separator ${normalizedSeparator[colIndex] == null && 'm-picker-view__separator_empty'}`}>
+              {normalizedSeparator[colIndex] == null ? null : (
                 <View className='m-picker-view__item'>
                   <View className='m-picker-view__item__label'>
                     {normalizedSeparator[colIndex]}
                   </View>
                 </View>
-              </PickerViewColumn>
-            )}
+              )}
+            </PickerViewColumn>
           </Block>
         ))}
       </PickerView>
