@@ -1,4 +1,5 @@
 import MTransition from '../Transition'
+import store from '../store'
 import Taro from '@tarojs/taro'
 import { CommonEventFunction } from '@tarojs/components/types/common'
 import { component, RequiredProp } from '../component'
@@ -78,15 +79,12 @@ export default class MPopup extends component({
     display: false as boolean,
   },
 }) {
-  /** 起始 zIndex 值 */
-  static startZIndex = 5000
-
   /** 计数器 */
   transitionEndCounter = 0
 
   componentWillMount() {
     this.setState({
-      zIndex: MPopup.startZIndex++,
+      zIndex: store.zIndex++,
       display: this.props.visible,
     })
   }
