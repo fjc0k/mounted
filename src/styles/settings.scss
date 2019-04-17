@@ -10,6 +10,9 @@ $grayColor: #999 !default;
 // 边线颜色
 $hairlineColor: #E5E5E5 !default;
 
+// 弹出层遮罩颜色
+$popupMaskColor: rgba(black, 0.6) !default;
+
 // 文字溢出显示省略号
 @mixin ellipsis($line: 1) {
   @if ($line == 1) {
