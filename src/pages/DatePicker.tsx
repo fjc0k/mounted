@@ -5,7 +5,7 @@ import { MDatePicker } from '../components'
 import { pageUrls } from '.'
 import { XBackHome, XItem, XList, XTitle } from './components'
 
-const codeImg = 'https://ws1.sinaimg.cn/large/d9ddb3f8gy1g1y2gs4hmlj20hi16qwfk.jpg'
+const codeImg = 'https://ws1.sinaimg.cn/large/d9ddb3f8gy1g2qhfx9cj8j20pc0wqgmo.jpg'
 
 export default class DatePicker extends component({
   state: {
@@ -37,27 +37,13 @@ export default class DatePicker extends component({
             formatYear='yyyy年'
             formatMonth='mm月'
             formatDay='dd日'
-            onFilterYear={payload => {
-              if (
-                payload.year === 2011
-                  || payload.year === 2019
-              ) {
-                payload.reject()
-              }
+            filterYear={({ year }) => {
+              // 过滤掉 2011 年和 2019 年
+              return year === 2011 || year === 2019
             }}
-            onFilterMonth={payload => {
-              if (payload.month % 3 === 0) {
-                payload.reject()
-              }
-            }}
-            onFilterDay={payload => {
-              if (
-                payload.year === 2020
-                  && payload.month === 5
-                  && payload.day === 19
-              ) {
-                payload.reject()
-              }
+            filterMonth={({ month }) => {
+              // 过滤掉 3, 6, 9, 12 月份
+              return month % 3 === 0
             }}
             onConfirm={selectedDate => {
               this.setState({ selectedDate })

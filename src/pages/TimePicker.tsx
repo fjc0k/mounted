@@ -5,7 +5,7 @@ import { MTimePicker } from '../components'
 import { pageUrls } from '.'
 import { XBackHome, XItem, XList, XTitle } from './components'
 
-const codeImg = 'https://ws1.sinaimg.cn/large/d9ddb3f8gy1g1yugqetecj20hi0tqwf6.jpg'
+const codeImg = 'https://ws1.sinaimg.cn/large/d9ddb3f8gy1g2qjnmm78ij20ke0rq3z6.jpg'
 
 export default class TimePicker extends component({
   state: {
@@ -36,15 +36,13 @@ export default class TimePicker extends component({
             endTime='22:00'
             formatHour='hh时'
             formatMinute='ii分'
-            onFilterHour={payload => {
-              if (payload.hour % 2 === 0) {
-                payload.reject()
-              }
+            filterHour={({ hour }) => {
+              // 过滤掉 0, 2, 4, 6, 8, 10, ..., 22 时
+              return hour % 2 === 0
             }}
-            onFilterMinute={payload => {
-              if (payload.minute === 10) {
-                payload.reject()
-              }
+            filterMinute={({ minute }) => {
+              // 过滤掉 10 分
+              return minute === 10
             }}
             onConfirm={selectedTime => {
               this.setState({ selectedTime })

@@ -1,5 +1,5 @@
 {
-	"miniprogramRoot": "dist/",
+	"miniprogramRoot": "dist/weapp/",
 	"projectname": "Mounted",
 	"description": "基于 Taro 的微信小程序组件库。",
 	"appid": "wx94954e09b616564f",
