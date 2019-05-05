@@ -1,10 +1,13 @@
-import { Data } from '.'
+import { MPickerProps } from '../Picker/props'
 import { noop, omit } from 'vtils'
-import { PickerProps } from '../Picker/props'
+import { NormalItem } from '../PickerView'
 import { RequiredProp } from '../component'
 
-export const SinglePickerProps = {
-  ...omit(PickerProps, ['data', 'selectedIndexes', 'onConfirm']),
+export type Item = NormalItem
+export type Data = Item[]
+
+export const MSinglePickerProps = {
+  ...omit(MPickerProps, ['data', 'selectedIndexes', 'onConfirm']),
 
   /**
    * 选项数据。

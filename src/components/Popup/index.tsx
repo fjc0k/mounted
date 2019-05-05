@@ -2,14 +2,11 @@ import MTransition from '../Transition'
 import store from '../store'
 import Taro from '@tarojs/taro'
 import { CommonEventFunction } from '@tarojs/components/types/common'
-import { component, RequiredProp } from '../component'
-import { noop } from 'vtils'
+import { component } from '../component'
+import { MPopupProps, Position, TransitionName } from './props'
 import { View } from '@tarojs/components'
 
-type TransitionName = MTransition['props']['name']
-type Position = 'center' | 'top' | 'bottom' | 'right' | 'left'
-
-const positionToTransitionName: { [k in Position]: TransitionName } = {
+const positionToTransitionName: Record<Position, TransitionName> = {
   center: 'fade',
   top: 'slideDown',
   bottom: 'slideUp',
@@ -21,57 +18,7 @@ const positionToTransitionName: { [k in Position]: TransitionName } = {
  * 弹出层组件。
  */
 export default class MPopup extends component({
-  props: {
-    /**
-     * 弹出层是否可见。
-     */
-    visible: false as any as RequiredProp<boolean>,
-
-    /**
-     * 是否无遮罩。
-     *
-     * @default false
-     */
-    noMask: false as boolean,
-
-    /**
-     * 点击遮罩是否可关闭。
-     *
-     * @default true
-     */
-    maskClosable: true as boolean,
-
-    /**
-     * 动画时长，单位：毫秒。
-     *
-     * @default 300
-     */
-    duration: 300 as number,
-
-    /**
-     * 弹出内容位置。可以是：
-     *
-     * - `center`: 中间
-     * - `top`: 顶部
-     * - `bottom`: 底部
-     * - `right`: 右侧
-     * - `left`: 左侧
-     *
-     * @default 'center'
-     */
-    position: 'center' as Position,
-
-    /**
-     * 动画过渡默认是根据 `position` 决定的，
-     * 你可以使用 `customTransition` 覆盖默认值。
-     */
-    customTransition: '' as TransitionName,
-
-    /**
-     * 可见性变化事件。
-     */
-    onVisibleChange: noop as any as RequiredProp<(visible: boolean) => void>,
-  },
+  props: MPopupProps,
   state: {
     /** zIndex 值 */
     zIndex: 0 as number,
@@ -125,8 +72,20 @@ export default class MPopup extends component({
   }
 
   render() {
-    const { visible, noMask, duration, position, customTransition, className } = this.props
-    const { zIndex, display } = this.state
+    const {
+      visible,
+      noMask,
+      duration,
+      position,
+      customTransition,
+      className,
+    } = this.props
+
+    const {
+      zIndex,
+      display,
+    } = this.state
+
     return (
       <View
         className={`m-popup m-popup_${position} ${className}`}

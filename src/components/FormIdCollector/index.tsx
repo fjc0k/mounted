@@ -1,7 +1,8 @@
 import Taro from '@tarojs/taro'
 import { Block, Button, Form, Label } from '@tarojs/components'
 import { component } from '../component'
-import { noop, range } from 'vtils'
+import { MFormIdCollectorProps } from './props'
+import { range } from 'vtils'
 
 /**
  * 微信小程序 FormId 收集器。
@@ -17,42 +18,27 @@ import { noop, range } from 'vtils'
  * ```
  */
 export default class MFormIdCollector extends component({
-  props: {
-    /**
-     * 收集个数。最多一次收集 7 个。
-     *
-     * @default 1
-     */
-    count: 1 as 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7,
-
-    /**
-     * 是否禁用。
-     *
-     * @default false
-     */
-    disabled: false as boolean,
-
-    /**
-     * 收集完成事件。
-     *
-     * @default () => {}
-     */
-    onCollect: noop as (formIds: string[]) => void,
-  },
+  props: MFormIdCollectorProps,
 }) {
   formIds: string[] = []
 
-  handleCollect = e => {
+  handleCollect: (typeof Form)['defaultProps']['onSubmit'] = e => {
     this.formIds.push(e.detail.formId)
     if (this.formIds.length === this.props.count) {
-      this.props.onCollect(this.formIds.slice())
+      this.props.onCollect(
+        this.formIds
+          .filter(formId => formId && !formId.startsWith('requestFormId:fail'))
+          .slice(),
+      )
       this.formIds = []
     }
   }
 
   render() {
     const { count, disabled } = this.props
+
     const finalCount = Math.min(count, 7)
+
     return (disabled || finalCount === 0) ? this.props.children : (
       <Block>
         <Label for='button_6'>

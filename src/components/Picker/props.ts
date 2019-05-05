@@ -1,9 +1,9 @@
+import { MPickerViewProps } from '../PickerView/props'
 import { noop, omit } from 'vtils'
-import { PickerViewProps } from '../PickerView/props'
 import { RequiredProp } from '../component'
 
-export const PickerProps = {
-  ...omit(PickerViewProps, ['onChange', 'onPickEnd', 'onPickStart']),
+export const MPickerProps = {
+  ...omit(MPickerViewProps, ['onChange', 'onPickEnd', 'onPickStart']),
 
   /**
    * 是否可点击遮罩关闭。

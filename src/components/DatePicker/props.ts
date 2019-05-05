@@ -1,11 +1,11 @@
+import { MPickerProps } from '../Picker/props'
 import { noop, omit } from 'vtils'
-import { PickerProps } from '../Picker/props'
 import { RequiredProp } from '../component'
 
 const currentYear = new Date().getFullYear()
 
-export const DatePickerProps = {
-  ...omit(PickerProps, ['data', 'selectedIndexes', 'onConfirm']),
+export const MDatePickerProps = {
+  ...omit(MPickerProps, ['data', 'selectedIndexes', 'onConfirm']),
 
   /**
    * 开始日期。可以是：

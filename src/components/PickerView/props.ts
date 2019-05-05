@@ -2,7 +2,7 @@ import { Data } from '.'
 import { noop } from 'vtils'
 import { RequiredProp } from '../component'
 
-export const PickerViewProps = {
+export const MPickerViewProps = {
   /**
    * 选项数据。
    */

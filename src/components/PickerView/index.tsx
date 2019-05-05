@@ -3,7 +3,9 @@ import Taro from '@tarojs/taro'
 import { Block, PickerView, PickerViewColumn, View } from '@tarojs/components'
 import { clamp, isArray, isEqualArray, isNumber, noop, parseCSSValue } from 'vtils'
 import { component } from '../component'
-import { PickerViewProps } from './props'
+import { MPickerViewProps } from './props'
+
+// TODO: 未知 bug
 
 /** 普通条目 */
 export interface NormalItem {
@@ -43,7 +45,7 @@ export type Data = NormalData | CascadedData
  * 选择器视图组件。
  */
 export default class MPickerView extends component({
-  props: PickerViewProps,
+  props: MPickerViewProps,
   state: {
     /** 选中条目的索引列表 */
     localSelectedIndexes: [] as number[],
@@ -204,6 +206,7 @@ export default class MPickerView extends component({
   render() {
     const { disabled, className } = this.props
     const { normalizedData, localSelectedIndexes } = this.state
+
     const styles = this.computeStyles()
     const normalizedSeparator = this.normalizeSeparator()
 

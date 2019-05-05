@@ -1,9 +1,9 @@
+import { MPickerProps } from '../Picker/props'
 import { noop, omit } from 'vtils'
-import { PickerProps } from '../Picker/props'
 import { RequiredProp } from '../component'
 
-export const TimePickerProps = {
-  ...omit(PickerProps, ['data', 'selectedIndexes', 'onConfirm']),
+export const MTimePickerProps = {
+  ...omit(MPickerProps, ['data', 'selectedIndexes', 'onConfirm']),
 
   /**
    * 开始时间。

@@ -3,7 +3,7 @@ import Taro from '@tarojs/taro'
 import { CascadedData } from '../PickerView'
 import { component } from '../component'
 import { formatTemplate, memoize } from 'vtils'
-import { TimePickerProps } from './props'
+import { MTimePickerProps } from './props'
 
 const formatHI = memoize(
   formatTemplate,
@@ -31,7 +31,7 @@ const formatHI = memoize(
  * ```
  */
 class MTimePicker extends component({
-  props: TimePickerProps,
+  props: MTimePickerProps,
   state: {
     localData: [] as CascadedData,
     localSelectedIndexes: [] as number[],

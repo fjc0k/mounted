@@ -1,17 +1,16 @@
 import MPicker from '../Picker'
 import Taro from '@tarojs/taro'
 import { component } from '../component'
-import { NormalData, NormalItem } from '../PickerView'
-import { SinglePickerProps } from './props'
+import { Data, Item, NormalData } from '../PickerView'
+import { MSinglePickerProps } from './props'
 
-export type Item = NormalItem
-export type Data = Item[]
+export { Item, Data }
 
 /**
  * 单项选择器组件。
  */
 class MSinglePicker extends component({
-  props: SinglePickerProps,
+  props: MSinglePickerProps,
   state: {
     localData: [] as NormalData,
     localSelectedIndexes: [] as number[],

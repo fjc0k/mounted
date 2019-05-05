@@ -1,6 +1,7 @@
 import Taro from '@tarojs/taro'
 import { component } from '../component'
 import { Disposer, wait } from 'vtils'
+import { MStickyProps } from './props'
 import { View } from '@tarojs/components'
 
 /** 页面上存在的吸顶组件 */
@@ -18,6 +19,7 @@ const stickyComponents: MSticky[] = []
  * ```
  */
 export default class MSticky extends component({
+  props: MStickyProps,
   state: {
     /** 是否置顶 */
     fixed: false as boolean,
@@ -93,6 +95,7 @@ export default class MSticky extends component({
   render() {
     const { className } = this.props
     const { fixed, contentHeight } = this.state
+
     return (
       <View
         className={`m-sticky ${fixed && 'm-sticky_fixed'} ${className}`}

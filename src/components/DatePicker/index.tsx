@@ -2,8 +2,8 @@ import MPicker from '../Picker'
 import Taro from '@tarojs/taro'
 import { CascadedData } from '../PickerView'
 import { component } from '../component'
-import { DatePickerProps } from './props'
 import { formatTemplate, getDaysInMonth, memoize, toDate } from 'vtils'
+import { MDatePickerProps } from './props'
 
 const formatYMD = memoize(
   formatTemplate,
@@ -32,7 +32,7 @@ const formatYMD = memoize(
  * ```
  */
 class MDatePicker extends component({
-  props: DatePickerProps,
+  props: MDatePickerProps,
   state: {
     localData: [] as CascadedData,
     localSelectedIndexes: [] as number[],

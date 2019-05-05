@@ -2,14 +2,14 @@ import MPickerView from '../PickerView'
 import MPopup from '../Popup'
 import Taro from '@tarojs/taro'
 import { component } from '../component'
-import { PickerProps } from './props'
+import { MPickerProps } from './props'
 import { View } from '@tarojs/components'
 
 /**
  * 选择器组件。
  */
 class MPicker extends component({
-  props: PickerProps,
+  props: MPickerProps,
   state: {
     localVisible: false as boolean,
     localSelectedIndexes: [],
@@ -86,7 +86,7 @@ class MPicker extends component({
       title,
       disabled,
       className,
-      ...props
+      // ...props // TODO: 是否可用
     } = this.props
 
     const {
@@ -121,7 +121,7 @@ class MPicker extends component({
               </View>
             </View>
             <MPickerView
-              {...props}
+              {...this.props}
               selectedIndexes={localSelectedIndexes}
               onPickStart={this.handlePickStart}
               onPickEnd={this.handlePickEnd}
