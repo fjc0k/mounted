@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.18.0"></a>
+# [0.18.0](https://github.com/fjc0k/mounted/compare/v0.17.1...v0.18.0) (2019-05-05)
+
+
+### Features
+
+* **settings.scss:** 新增变量 $popupMaskColor 设置弹出层遮罩颜色 ([c29bd09](https://github.com/fjc0k/mounted/commit/c29bd09))
+* 将 zIndex 移入组件库内部 store ([1c4bab4](https://github.com/fjc0k/mounted/commit/1c4bab4))
+
+
+
 <a name="0.17.1"></a>
 ## [0.17.1](https://github.com/fjc0k/mounted/compare/v0.17.0...v0.17.1) (2019-04-12)
 
