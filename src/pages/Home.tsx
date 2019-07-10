@@ -59,6 +59,11 @@ const componentList: ComponentInfo[] = [
     chineseName: 'FormId 收集器',
     url: pageUrls.FormIdCollector,
   },
+  {
+    name: 'ECharts',
+    chineseName: 'ECharts',
+    url: pageUrls.ECharts,
+  },
 ]
 
 export default class Home extends component({

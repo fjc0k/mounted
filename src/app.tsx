@@ -8,6 +8,7 @@ class App extends Taro.Component {
       'pages/Home',
       // @index('./pages/*[!Home].tsx', (pp, cc) => `'${pp.path.replace(/^\.\//, '')}',`)
       'pages/DatePicker',
+      'pages/ECharts',
       'pages/FormIdCollector',
       'pages/Picker',
       'pages/PickerView',

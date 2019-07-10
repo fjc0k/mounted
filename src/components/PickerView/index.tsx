@@ -1,11 +1,8 @@
-/* eslint-disable react/no-array-index-key */
 import Taro from '@tarojs/taro'
 import { Block, PickerView, PickerViewColumn, View } from '@tarojs/components'
 import { clamp, isArray, isEqualArray, isNumber, noop, parseCSSValue } from 'vtils'
 import { component } from '../component'
 import { MPickerViewProps } from './props'
-
-// TODO: 未知 bug
 
 /** 普通条目 */
 export interface NormalItem {
@@ -226,10 +223,10 @@ export default class MPickerView extends component({
         onPickEnd={this.props.onPickEnd}
         onChange={this.handleChange}>
         {normalizedData.map((colData, colIndex) => (
-          <Block key={colIndex}>
-            <PickerViewColumn key={`column-${colIndex}`}>
+          <Block key={colIndex.toString()}>
+            <PickerViewColumn key={`column-${colIndex.toString()}`}>
               {colData.map((item, itemIndex) => (
-                <View key={itemIndex} className='m-picker-view__item'>
+                <View key={itemIndex.toString()} className='m-picker-view__item'>
                   <View className='m-picker-view__item__label'>
                     {item.label}
                   </View>
@@ -237,7 +234,7 @@ export default class MPickerView extends component({
               ))}
             </PickerViewColumn>
             <PickerViewColumn
-              key={`separator-${colIndex}`}
+              key={`separator-${colIndex.toString()}`}
               className={`m-picker-view__separator ${normalizedSeparator[colIndex] == null && 'm-picker-view__separator_empty'}`}>
               {normalizedSeparator[colIndex] == null ? null : (
                 <View className='m-picker-view__item'>

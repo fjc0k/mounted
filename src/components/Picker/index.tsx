@@ -86,7 +86,7 @@ class MPicker extends component({
       title,
       disabled,
       className,
-      // ...props // TODO: 是否可用
+      // ...props // TODO: 尚不可用
     } = this.props
 
     const {
