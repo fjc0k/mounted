@@ -223,10 +223,10 @@ export default class MPickerView extends component({
         onPickEnd={this.props.onPickEnd}
         onChange={this.handleChange}>
         {normalizedData.map((colData, colIndex) => (
-          <Block key={colIndex.toString()}>
-            <PickerViewColumn key={`column-${colIndex.toString()}`}>
+          <Block key={String(colIndex)}>
+            <PickerViewColumn key={`column-${String(colIndex)}`}>
               {colData.map((item, itemIndex) => (
-                <View key={itemIndex.toString()} className='m-picker-view__item'>
+                <View key={String(itemIndex)} className='m-picker-view__item'>
                   <View className='m-picker-view__item__label'>
                     {item.label}
                   </View>
@@ -234,7 +234,7 @@ export default class MPickerView extends component({
               ))}
             </PickerViewColumn>
             <PickerViewColumn
-              key={`separator-${colIndex.toString()}`}
+              key={`separator-${String(colIndex)}`}
               className={`m-picker-view__separator ${normalizedSeparator[colIndex] == null && 'm-picker-view__separator_empty'}`}>
               {normalizedSeparator[colIndex] == null ? null : (
                 <View className='m-picker-view__item'>

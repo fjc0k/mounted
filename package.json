@@ -64,6 +64,7 @@
   ],
   "dependencies": {
     "@types/echarts": "^4.1.9",
+    "dayjs": "^1.8.15",
     "vtils": "^2.10.0"
   },
   "devDependencies": {

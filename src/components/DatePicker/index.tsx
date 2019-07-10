@@ -1,19 +1,18 @@
+import dayjs from 'dayjs'
 import MPicker from '../Picker'
 import Taro from '@tarojs/taro'
 import { CascadedData } from '../PickerView'
 import { component } from '../component'
-import { formatTemplate, getDaysInMonth, memoize, toDate } from 'vtils'
 import { MDatePickerProps } from './props'
+import { memoize } from 'vtils'
 
-const formatYMD = memoize(
-  formatTemplate,
+const getDaysInMonth = memoize(
+  (month: number, year: number) => {
+    return dayjs(new Date(year, month - 1, 1)).daysInMonth()
+  },
   {
     createCache: () => new Map(),
-    serializer: (template, ymd) => `${
-      (ymd.y && `${ymd.y}y`)
-      || (ymd.m && `${ymd.m}m`)
-      || (ymd.d && `${ymd.d}d`)
-    }${template}`,
+    serializer: (month, year) => `${year}-${month}`,
   },
 )
 
@@ -60,19 +59,19 @@ class MDatePicker extends component({
   updateLocalState(props: MDatePicker['props']) {
     let reject: boolean | void = false
 
-    const startDate = toDate(props.startDate)
-    const startYear = startDate.getFullYear()
-    const startMonth = startDate.getMonth() + 1
-    const startDay = startDate.getDate()
+    const startDate = dayjs(props.startDate)
+    const startYear = startDate.year()
+    const startMonth = startDate.month() + 1
+    const startDay = startDate.date()
 
-    const endDate = toDate(props.endDate)
-    const endYear = endDate.getFullYear()
-    const endMonth = endDate.getMonth() + 1
-    const endDay = endDate.getDate()
+    const endDate = dayjs(props.endDate)
+    const endYear = endDate.year()
+    const endMonth = endDate.month() + 1
+    const endDay = endDate.date()
 
-    const useRawYearValue = props.formatYear === '' || props.formatYear === 'y' || props.formatYear === 'yyyy'
-    const useRawMonthValue = props.formatMonth === '' || props.formatMonth === 'm'
-    const useRawDayValue = props.formatDay === '' || props.formatDay === 'd'
+    const useRawYearValue = props.formatYear == null
+    const useRawMonthValue = props.formatMonth == null
+    const useRawDayValue = props.formatDay == null
 
     const yearList: CascadedData = []
     const selectedIndexes: number[] = []
@@ -84,7 +83,7 @@ class MDatePicker extends component({
         }
         const monthList: CascadedData = []
         yearList.push({
-          label: useRawYearValue ? year.toString() : formatYMD(props.formatYear, { y: year }),
+          label: String(useRawYearValue ? year : props.formatYear({ year })),
           value: year,
           children: monthList,
         })
@@ -100,7 +99,7 @@ class MDatePicker extends component({
             }
             const dayList: CascadedData = []
             monthList.push({
-              label: useRawMonthValue ? month.toString() : formatYMD(props.formatMonth, { m: month }),
+              label: String(useRawMonthValue ? month : props.formatMonth({ year, month })),
               value: month,
               children: dayList,
             })
@@ -116,7 +115,7 @@ class MDatePicker extends component({
                   selectedIndexes[2] = dayList.length
                 }
                 dayList.push({
-                  label: useRawDayValue ? day.toString() : formatYMD(props.formatDay, { d: day }),
+                  label: String(useRawDayValue ? day : props.formatDay({ year, month, day })),
                   value: day,
                 })
               } else {

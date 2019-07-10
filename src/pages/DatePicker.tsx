@@ -34,9 +34,8 @@ export default class DatePicker extends component({
             selectedDate={selectedDate}
             startDate='2010-2-2'
             endDate='2020-10-1'
-            formatYear='yyyy年'
-            formatMonth='mm月'
-            formatDay='dd日'
+            formatYear={_ => `${_.year}年`}
+            formatDay={_ => `${_.day}日`}
             filterYear={({ year }) => {
               // 过滤掉 2011 年和 2019 年
               return year === 2011 || year === 2019

@@ -22,30 +22,24 @@ export const MTimePickerProps = {
   /**
    * 格式化小时。
    *
-   * @example
-   *
-   * 'h' // ==> '2'
-   * 'hh' // ==> '02'
-   * 'h时' // ==> '2时'
-   * 'hh点' // ==> '02点'
-   *
-   * @default 'h'
+   * @default params => params.hour
    */
-  formatHour: 'h' as string,
+  formatHour: undefined as (params: {
+    /** 时 */
+    hour: number,
+  }) => string | number,
 
   /**
    * 格式化分钟。
    *
-   * @example
-   *
-   * 'i' // ==> '5'
-   * 'ii' // ==> '05'
-   * 'i分' // ==> '5分'
-   * 'ii分' // ==> '05分'
-   *
-   * @default 'i'
+   * @default params => params.minute
    */
-  formatMinute: 'i' as string,
+  formatMinute: undefined as (params: {
+    /** 时 */
+    hour: number,
+    /** 分 */
+    minute: number,
+  }) => string | number,
 
   /**
    * 小时过滤器，返回 `true` 可过滤掉传入的小时。
@@ -70,8 +64,8 @@ export const MTimePickerProps = {
    *
    * @example
    *
-   * [20, 5] // ==> 20 时 5 分
-   * [0, 20] // ==> 0 时 20 分
+   * [20, 5] // => 20 时 5 分
+   * [0, 20] // => 0 时 20 分
    */
   selectedTime: [] as any as RequiredProp<number[]>,
 

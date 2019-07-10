@@ -2,19 +2,7 @@ import MPicker from '../Picker'
 import Taro from '@tarojs/taro'
 import { CascadedData } from '../PickerView'
 import { component } from '../component'
-import { formatTemplate, memoize } from 'vtils'
 import { MTimePickerProps } from './props'
-
-const formatHI = memoize(
-  formatTemplate,
-  {
-    createCache: () => new Map(),
-    serializer: (template, hi) => `${
-      (hi.h && `${hi.h}h`)
-        || (hi.i && `${hi.i}i`)
-    }${template}`,
-  },
-)
 
 /**
  * 时间选择器组件。
@@ -67,8 +55,8 @@ class MTimePicker extends component({
     const endHour = parseInt(endTime[0]) || 23
     const endMinute = parseInt(endTime[1]) || 59
 
-    const useRawHourValue = props.formatHour === '' || props.formatHour === 'h'
-    const useRawMinuteValue = props.formatMinute === '' || props.formatMinute === 'i'
+    const useRawHourValue = props.formatHour == null
+    const useRawMinuteValue = props.formatMinute == null
 
     const hourList: CascadedData = []
     const selectedIndexes: number[] = []
@@ -82,7 +70,7 @@ class MTimePicker extends component({
         }
         const minuteList: CascadedData = []
         hourList.push({
-          label: useRawHourValue ? hour.toString() : formatHI(props.formatHour, { h: hour }),
+          label: String(useRawHourValue ? hour.toString() : props.formatHour({ hour })),
           value: hour,
           children: minuteList,
         })
@@ -97,7 +85,7 @@ class MTimePicker extends component({
               selectedIndexes[1] = minuteList.length
             }
             minuteList.push({
-              label: useRawMinuteValue ? minute.toString() : formatHI(props.formatMinute, { i: minute }),
+              label: String(useRawMinuteValue ? minute.toString() : props.formatMinute({ hour, minute })),
               value: minute,
             })
           } else {
