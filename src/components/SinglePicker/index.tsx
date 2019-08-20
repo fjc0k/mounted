@@ -1,8 +1,8 @@
 import MPicker from '../Picker'
 import Taro from '@tarojs/taro'
 import { component } from '../component'
-import { Data, Item, NormalData } from '../PickerView'
-import { MSinglePickerProps } from './props'
+import { Data, Item, MSinglePickerProps } from './props'
+import { NormalData } from '../PickerView'
 
 export { Item, Data }
 

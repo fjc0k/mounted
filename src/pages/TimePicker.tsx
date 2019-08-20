@@ -34,8 +34,8 @@ export default class TimePicker extends component({
             selectedTime={selectedTime}
             startTime='00:30'
             endTime='22:00'
-            formatHour='hh时'
-            formatMinute='ii分'
+            formatHour={({ hour }) => `${hour}时`}
+            formatMinute={({ minute }) => `${minute}分`}
             filterHour={({ hour }) => {
               // 过滤掉 0, 2, 4, 6, 8, 10, ..., 22 时
               return hour % 2 === 0

@@ -151,6 +151,14 @@ export default class MPickerView extends component({
     }
   }
 
+  computeFullSelectedIndexes() {
+    const fullSelectedIndexes = this.state.localSelectedIndexes.slice()
+    for (let i = 0, len = fullSelectedIndexes.length; i < len; i++) {
+      fullSelectedIndexes.splice(i * 2 + 1, 0, 0)
+    }
+    return fullSelectedIndexes
+  }
+
   normalizeSeparator(): Array<string | number> {
     const { separator } = this.props
     const separatorIsArray = isArray(separator)
@@ -181,7 +189,7 @@ export default class MPickerView extends component({
         // 级联数据应先更新再触发 change 事件
         this.update(
           {
-            data: { ...this.props.data }, // 触发索引记忆
+            data: this.props.data.slice() as any, // 触发索引记忆
             selectedIndexes: selectedIndexes,
           },
           {
@@ -200,18 +208,23 @@ export default class MPickerView extends component({
     })
   }
 
-  render() {
-    const { disabled, className } = this.props
-    const { normalizedData, localSelectedIndexes } = this.state
-
+  get computedValue() {
     const styles = this.computeStyles()
     const normalizedSeparator = this.normalizeSeparator()
-
-    // 加上 separator 的值
-    const fullSelectedIndexes = localSelectedIndexes.slice()
-    for (let i = 0, len = fullSelectedIndexes.length; i < len; i++) {
-      fullSelectedIndexes.splice(i * 2 + 1, 0, 0)
+    const fullSelectedIndexes = this.computeFullSelectedIndexes()
+    return {
+      styles,
+      normalizedSeparator,
+      fullSelectedIndexes,
     }
+  }
+
+  render() {
+    const { disabled, className } = this.props
+    const { normalizedData } = this.state
+
+    // 教训：使用 Taro 时不要在 render 函数里进行任何逻辑运算，可以把它们提出去
+    const { styles, normalizedSeparator, fullSelectedIndexes } = this.computedValue
 
     return (
       <PickerView

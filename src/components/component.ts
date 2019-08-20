@@ -13,14 +13,14 @@ const component = <
   S extends Record<string, any>,
   PP = (
     Overwrite<
-      PartialBy<
-        { [K in keyof P]: P[K] extends RequiredProp<infer T> ? T : P[K] },
-        { [K in keyof P]: P[K] extends RequiredProp ? never : K }[keyof P]
-      >,
-      {
-        /** 应用级别、页面级别的类 */
-        className?: string,
-      }
+    PartialBy<
+    { [K in keyof P]: P[K] extends RequiredProp<infer T> ? T : P[K] },
+    { [K in keyof P]: P[K] extends RequiredProp ? never : K }[keyof P]
+    >,
+    {
+      /** 应用级别、页面级别的类 */
+      className?: string,
+    }
     >
   ),
   SS = S
@@ -41,7 +41,7 @@ const component = <
   > extends Taro.PureComponent<
     Overwrite<PP, ExtraProps>,
     Overwrite<SS, ExtraState>
-  > {
+    > {
     static options: wx.ComponentOptions = disableGlobalClass ? {} : {
       addGlobalClass: true,
       styleIsolation: 'shared',

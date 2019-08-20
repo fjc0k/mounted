@@ -25,7 +25,7 @@ const countryData: Data = [
   },
 ]
 
-export default class SinglePicker extends component({
+export default class SinglePicker2 extends component({
   disableGlobalClass: true,
   state: {
     selectedCountryIndex: 0,
