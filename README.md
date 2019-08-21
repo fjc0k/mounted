@@ -1,3 +1,5 @@
+> v1 版本文档有待完善。
+
 <p align="center">
   <img src="https://raw.githubusercontent.com/fjc0k/mounted/master/assets/logo.png" width="150" />
 </p>
@@ -88,41 +90,6 @@ $designWidth: 750;
 
 @import '../node_modules/mounted/src/styles/components.scss';
 ```
-
-## 组件列表
-
-下面列出 `mounted` 包含的组件，点击相应组件名称进入可查看其文档（**请先阅读：[代码即文档说明](#代码即文档说明)**）：
-
-- [Picker - 选择器](https://github.com/fjc0k/mounted/blob/master/src/components/Picker/index.tsx#L8)
-- [PickerView - 选择器视图](https://github.com/fjc0k/mounted/blob/master/src/components/PickerView/index.tsx#L40)
-- [Popup - 弹出层](https://github.com/fjc0k/mounted/blob/master/src/components/Popup/index.tsx#L19)
-- [SinglePicker - 单项选择器](https://github.com/fjc0k/mounted/blob/master/src/components/SinglePicker/index.tsx#L10)
-- [Sticky - 内容吸顶](https://github.com/fjc0k/mounted/blob/master/src/components/Sticky/index.tsx#L9)
-- [Transition - 动画过渡](https://github.com/fjc0k/mounted/blob/master/src/components/Transition/index.tsx#L14)
-- [DatePicker - 日期选择器](https://github.com/fjc0k/mounted/blob/master/src/components/DatePicker/index.tsx#L21)
-- [TimePicker - 时间选择器](https://github.com/fjc0k/mounted/blob/master/src/components/TimePicker/index.tsx#L18)
-- [FormIdCollector - FormId 收集器](https://github.com/fjc0k/mounted/blob/master/src/components/FormIdCollector/index.tsx#L7)
-
-### 代码即文档说明
-
-每个组件的代码都类似：
-
-```ts
-export default class MDemo extends component({
-  props: {
-    a: 'A' as string,
-    b: false as any as RequiredProp<boolean>,
-  }
-}) {
-  // ...
-}
-```
-
-以上面的 `MDemo` 组件为例：
-
-- `a: 'A' as string`：表示该组件拥有一个非必需属性 `a`，其默认值为 `A`，类型为 `string`。
-
-- `b: false as any as RequiredProp<boolean>`：表示该组件拥有一个必需属性 `b`，其默认值为 `false`，类型为 `boolean`。
 
 ## 许可
 
