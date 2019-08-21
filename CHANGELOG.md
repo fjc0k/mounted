@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.0.0"></a>
+# [1.0.0](https://github.com/fjc0k/mounted/compare/v0.18.0...v1.0.0) (2019-08-21)
+
+
+### Bug Fixes
+
+* 解决一些问题 ([a4209d6](https://github.com/fjc0k/mounted/commit/a4209d6))
+
+
+### Features
+
+* Picker 系列组件重构及部分 API 调整 ([93d99fe](https://github.com/fjc0k/mounted/commit/93d99fe))
+* props 重构 ([d8ea3c4](https://github.com/fjc0k/mounted/commit/d8ea3c4))
+* 新增 ECharts 组件 ([46f8063](https://github.com/fjc0k/mounted/commit/46f8063))
+
+
+
 <a name="0.18.0"></a>
 # [0.18.0](https://github.com/fjc0k/mounted/compare/v0.17.1...v0.18.0) (2019-05-05)
 
