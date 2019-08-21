@@ -51,7 +51,7 @@ export default class SinglePicker2 extends component({
           <MSinglePicker
             title='选个国家'
             selectedIndex={selectedCountryIndex}
-            data={countryData as any}
+            data={countryData}
             onConfirm={selectedCountryIndex => this.setState({ selectedCountryIndex })}>
             <XItem
               title='选个国家'
