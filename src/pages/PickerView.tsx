@@ -95,7 +95,7 @@ export default class PickerView extends component({
                   this.setState(_ => ({
                     normal: {
                       ..._.normal,
-                      visibleItemCount: e.detail.value,
+                      visibleItemCount: Number(e.detail.value),
                     },
                   }))
                 }}
@@ -181,7 +181,7 @@ export default class PickerView extends component({
                   this.setState(_ => ({
                     cascaded: {
                       ..._.cascaded,
-                      visibleItemCount: e.detail.value,
+                      visibleItemCount: Number(e.detail.value),
                     },
                   }))
                 }}

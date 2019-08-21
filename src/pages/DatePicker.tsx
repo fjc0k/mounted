@@ -5,7 +5,7 @@ import { MDatePicker } from '../components'
 import { pageUrls } from '.'
 import { XBackHome, XItem, XList, XTitle } from './components'
 
-const codeImg = 'https://ws1.sinaimg.cn/large/d9ddb3f8gy1g2qhfx9cj8j20pc0wqgmo.jpg'
+const codeImg = 'https://ae01.alicdn.com/kf/Ua09c76aa494640e89c84432e7ad02a381.png'
 
 export default class DatePicker extends component({
   state: {
@@ -34,8 +34,8 @@ export default class DatePicker extends component({
             selectedDate={selectedDate}
             startDate='2010-2-2'
             endDate='2020-10-1'
-            formatYear={_ => `${_.year}年`}
-            formatDay={_ => `${_.day}日`}
+            formatYear={({ year }) => `${year}年`}
+            formatDay={({ day }) => `${day}日`}
             filterYear={({ year }) => {
               // 过滤掉 2011 年和 2019 年
               return year === 2011 || year === 2019
