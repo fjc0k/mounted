@@ -123,37 +123,39 @@ const radarOptions: MECharts['props']['options'] = {
 const pieOptions: MECharts['props']['options'] = {
   backgroundColor: '#ffffff',
   color: ['#5BA2BE', '#45B3C0', '#3DC3BB', '#4DD2AF', '#6EDF9E', '#95EA8C'],
-  series: [{
-    label: {
-      normal: {
-        fontSize: 14,
+  series: [
+    {
+      label: {
+        normal: {
+          fontSize: 14,
+        },
+      },
+      type: 'pie',
+      center: ['50%', '50%'],
+      radius: [0, '60%'],
+      data: [{
+        value: 55,
+        name: '北京',
+      }, {
+        value: 20,
+        name: '武汉',
+      }, {
+        value: 10,
+        name: '杭州',
+      }, {
+        value: 20,
+        name: '广州',
+      }, {
+        value: 38,
+        name: '上海',
+      } ],
+      itemStyle: {
+        emphasis: {
+          shadowBlur: 10,
+          shadowOffsetX: 0,
+          shadowColor: 'rgba(0, 2, 2, 0.3)',
+        },
       },
     },
-    type: 'pie',
-    center: ['50%', '50%'],
-    radius: [0, '60%'],
-    data: [{
-      value: 55,
-      name: '北京',
-    }, {
-      value: 20,
-      name: '武汉',
-    }, {
-      value: 10,
-      name: '杭州',
-    }, {
-      value: 20,
-      name: '广州',
-    }, {
-      value: 38,
-      name: '上海',
-    } ],
-    itemStyle: {
-      emphasis: {
-        shadowBlur: 10,
-        shadowOffsetX: 0,
-        shadowColor: 'rgba(0, 2, 2, 0.3)',
-      },
-    },
-  }],
+  ],
 }

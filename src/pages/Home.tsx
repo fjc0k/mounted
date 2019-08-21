@@ -56,7 +56,7 @@ const componentList: ComponentInfo[] = [
   },
   {
     name: 'ECharts',
-    chineseName: 'ECharts',
+    chineseName: 'ECharts 图表',
     url: pageUrls.ECharts,
   },
 ]
