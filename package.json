@@ -63,7 +63,7 @@
     "src/styles"
   ],
   "dependencies": {
-    "@types/echarts": "^4.1.9",
+    "@types/echarts": "^4.1.10",
     "dayjs": "^1.8.15",
     "vtils": "^2.22.0"
   },

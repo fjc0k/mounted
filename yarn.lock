@@ -488,9 +488,9 @@
     "@types/events" "*"
     "@types/node" "*"
 
-"@types/echarts@^4.1.9":
-  version "4.1.9"
-  resolved "https://registry.yarnpkg.com/@types/echarts/-/echarts-4.1.9.tgz#86fdf7ca829879535cf3b1b1490e2f46a0ea0933"
+"@types/echarts@^4.1.10":
+  version "4.1.10"
+  resolved "https://registry.yarnpkg.com/@types/echarts/-/echarts-4.1.10.tgz#ee71911eb8b1717c7c12c0bd81fc83db872f4d3b"
   dependencies:
     "@types/zrender" "*"
 
