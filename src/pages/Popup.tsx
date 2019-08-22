@@ -1,10 +1,10 @@
 import './Popup.scss'
-import Taro, { Config, ShareAppMessageReturn } from '@tarojs/taro'
+import Taro, { ShareAppMessageReturn } from '@tarojs/taro'
 import { component } from '../components/component'
 import { MPopup } from '../components'
 import { pageUrls } from '.'
 import { View } from '@tarojs/components'
-import { XBackHome } from './components'
+import { XBackHome, XNavigationBar } from './components'
 
 type PopupPosition = MPopup['props']['position']
 
@@ -23,10 +23,6 @@ export default class Popup extends component({
     visible: false as boolean,
   },
 }) {
-  config: Config = {
-    navigationBarTitleText: 'Popup',
-  }
-
   onShareAppMessage(): ShareAppMessageReturn {
     return {
       title: 'Popup',
@@ -45,6 +41,7 @@ export default class Popup extends component({
     const { visible, position } = this.state
     return (
       <View>
+        <XNavigationBar>Popup</XNavigationBar>
         <View className='container'>
           {positionList.map(pos => (
             <View

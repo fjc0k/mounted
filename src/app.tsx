@@ -20,9 +20,9 @@ class App extends Taro.Component {
     ],
     window: {
       navigationBarTitleText: 'Mounted',
-      navigationBarBackgroundColor: '#1AAD19',
       navigationBarTextStyle: 'white',
       backgroundColor: '#E8E8E8',
+      navigationStyle: 'custom',
     },
   }
 

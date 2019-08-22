@@ -1,10 +1,11 @@
 import './Transition.scss'
-import Taro, { Config, ShareAppMessageReturn } from '@tarojs/taro'
+import Taro, { ShareAppMessageReturn } from '@tarojs/taro'
 import { component } from '../components/component'
+import { internalStore } from '../components/internal'
 import { MTransition } from '../components'
 import { pageUrls } from '.'
 import { View } from '@tarojs/components'
-import { XBackHome } from './components'
+import { XBackHome, XNavigationBar } from './components'
 
 type TransitionName = MTransition['props']['name']
 
@@ -40,10 +41,6 @@ export default class Transition extends component({
     visible: true as boolean,
   },
 }) {
-  config: Config = {
-    navigationBarTitleText: 'Transition',
-  }
-
   onShareAppMessage(): ShareAppMessageReturn {
     return {
       title: 'Transition',
@@ -62,7 +59,8 @@ export default class Transition extends component({
     const { transitionName, visible } = this.state
     return (
       <View className='page'>
-        <View className='sideBar'>
+        <XNavigationBar>Transition{internalStore.customNavigationBarFullHeight}</XNavigationBar>
+        <View className='sideBar' style={{ top: `${internalStore.customNavigationBarFullHeight}px` }}>
           {transitionNameList.map(name => (
             <View
               key={name}

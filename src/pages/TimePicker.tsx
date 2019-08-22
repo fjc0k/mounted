@@ -1,9 +1,9 @@
-import Taro, { Config, ShareAppMessageReturn } from '@tarojs/taro'
+import Taro, { ShareAppMessageReturn } from '@tarojs/taro'
 import { component } from '../components/component'
 import { Image, View } from '@tarojs/components'
 import { MTimePicker } from '../components'
 import { pageUrls } from '.'
-import { XBackHome, XItem, XList, XTitle } from './components'
+import { XBackHome, XItem, XList, XNavigationBar, XTitle } from './components'
 
 const codeImg = 'https://ae01.alicdn.com/kf/U53b3c5ab845b44dcaaa730be547043a8Z.png'
 
@@ -12,10 +12,6 @@ export default class TimePicker extends component({
     selectedTime: [5, 20],
   },
 }) {
-  config: Config = {
-    navigationBarTitleText: 'TimePicker',
-  }
-
   onShareAppMessage(): ShareAppMessageReturn {
     return {
       title: 'TimePicker',
@@ -27,6 +23,7 @@ export default class TimePicker extends component({
     const { selectedTime } = this.state
     return (
       <View>
+        <XNavigationBar>TimePicker</XNavigationBar>
         <XTitle>时间选择</XTitle>
         <XList>
           <MTimePicker

@@ -5,7 +5,7 @@ import { ComponentName } from '../components'
 import { Image, Text, View } from '@tarojs/components'
 import { imgLogo } from './assets'
 import { pageUrls } from '.'
-import { XItem, XList } from './components'
+import { XItem, XList, XNavigationBar } from './components'
 
 interface ComponentInfo {
   name: ComponentName,
@@ -80,6 +80,8 @@ export default class Home extends component({
   render() {
     return (
       <View className='page'>
+        <XNavigationBar>Mounted</XNavigationBar>
+
         {/* Logo */}
         <View className='logo'>
           <Image

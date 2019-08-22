@@ -1,10 +1,10 @@
 import './ECharts.scss'
-import Taro, { Config, ShareAppMessageReturn } from '@tarojs/taro'
+import Taro, { ShareAppMessageReturn } from '@tarojs/taro'
 import { component } from '../components/component'
 import { MECharts } from '../components'
 import { pageUrls } from '.'
 import { View } from '@tarojs/components'
-import { XBackHome, XItem, XList, XTitle } from './components'
+import { XBackHome, XItem, XList, XNavigationBar, XTitle } from './components'
 
 const getECharts = () => require('echarts/dist/echarts.min.js')
 
@@ -14,10 +14,6 @@ export default class ECharts extends component({
     selectedCountryIndex: 0,
   },
 }) {
-  config: Config = {
-    navigationBarTitleText: 'ECharts',
-  }
-
   onShareAppMessage(): ShareAppMessageReturn {
     return {
       title: 'ECharts',
@@ -28,6 +24,7 @@ export default class ECharts extends component({
   render() {
     return (
       <View>
+        <XNavigationBar>ECharts</XNavigationBar>
         <XTitle>雷达图</XTitle>
         <XList>
           <XItem>

@@ -1,10 +1,10 @@
-import Taro, { Config, ShareAppMessageReturn } from '@tarojs/taro'
+import Taro, { ShareAppMessageReturn } from '@tarojs/taro'
 import { component } from '../components/component'
 import { Data } from '../components/SinglePicker'
 import { MSinglePicker } from '../components'
 import { pageUrls } from '.'
 import { View } from '@tarojs/components'
-import { XBackHome, XItem, XList, XTitle } from './components'
+import { XBackHome, XItem, XList, XNavigationBar, XTitle } from './components'
 
 const countryData: Data = [
   {
@@ -31,10 +31,6 @@ export default class SinglePicker2 extends component({
     selectedCountryIndex: 0,
   },
 }) {
-  config: Config = {
-    navigationBarTitleText: 'SinglePicker',
-  }
-
   onShareAppMessage(): ShareAppMessageReturn {
     return {
       title: 'SinglePicker',
@@ -46,6 +42,7 @@ export default class SinglePicker2 extends component({
     const { selectedCountryIndex } = this.state
     return (
       <View>
+        <XNavigationBar>SinglePicker</XNavigationBar>
         <XTitle>单项选择</XTitle>
         <XList>
           <MSinglePicker

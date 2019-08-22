@@ -1,6 +1,7 @@
 import Taro from '@tarojs/taro'
 import { component } from '../component'
 import { Disposer, wait } from 'vtils'
+import { internalStore } from '../internal'
 import { MStickyProps } from './props'
 import { View } from '@tarojs/components'
 
@@ -57,7 +58,7 @@ export default class MSticky extends component({
           })
 
           // 监听吸顶内容的位置
-          const top = -(this.index === 0 ? 0 : height)
+          const top = -(this.index === 0 ? internalStore.customNavigationBarFullHeight : height)
           const intersectionObserver = wx.createIntersectionObserver(this.$scope)
           const relativeToViewport = intersectionObserver.relativeToViewport({ top }) as any
           relativeToViewport.observe(
@@ -100,7 +101,9 @@ export default class MSticky extends component({
       <View
         className={`m-sticky ${fixed && 'm-sticky_fixed'} ${className}`}
         style={contentHeight ? { height: `${contentHeight}px` } : {}}>
-        <View className='m-sticky__content'>
+        <View
+          className='m-sticky__content'
+          style={{ top: `${internalStore.customNavigationBarFullHeight}px` }}>
           {this.props.children}
         </View>
       </View>

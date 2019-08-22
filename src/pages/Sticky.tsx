@@ -1,9 +1,9 @@
-import Taro, { Config, ShareAppMessageReturn } from '@tarojs/taro'
+import Taro, { ShareAppMessageReturn } from '@tarojs/taro'
 import { component } from '../components/component'
 import { MSticky } from '../components'
 import { pageUrls } from '.'
 import { View } from '@tarojs/components'
-import { XBackHome, XItem, XList, XTitle } from './components'
+import { XBackHome, XItem, XList, XNavigationBar, XTitle } from './components'
 
 enum HeroType { 射手, 法师, 战士, 刺客 }
 
@@ -24,10 +24,6 @@ const heroTypeList: HeroType[] = [
 export default class Sticky extends component({
   disableGlobalClass: true,
 }) {
-  config: Config = {
-    navigationBarTitleText: 'Sticky',
-  }
-
   onShareAppMessage(): ShareAppMessageReturn {
     return {
       title: 'Sticky',
@@ -38,6 +34,7 @@ export default class Sticky extends component({
   render() {
     return (
       <View>
+        <XNavigationBar>Sticky</XNavigationBar>
         {heroTypeList.map(heroType => (
           <View key={heroType}>
             <MSticky>

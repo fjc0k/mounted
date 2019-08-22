@@ -1,8 +1,8 @@
 import MTransition from '../Transition'
-import store from '../store'
 import Taro from '@tarojs/taro'
 import { CommonEventFunction } from '@tarojs/components/types/common'
 import { component } from '../component'
+import { internalStore } from '../internal'
 import { MPopupProps, Position, TransitionName } from './props'
 import { View } from '@tarojs/components'
 
@@ -31,7 +31,7 @@ export default class MPopup extends component({
 
   componentWillMount() {
     this.setState({
-      zIndex: store.zIndex++,
+      zIndex: internalStore.zIndex++,
       display: this.props.visible,
     })
   }
@@ -90,7 +90,8 @@ export default class MPopup extends component({
       <View
         className={`m-popup m-popup_${position} ${className}`}
         style={{
-          zIndex,
+          zIndex: zIndex,
+          top: `${internalStore.customNavigationBarFullHeight}px`,
           ...(display ? {} : { display: 'none' }),
         }}
         onTouchMove={this.handleTouchMove}>

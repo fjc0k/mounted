@@ -1,10 +1,10 @@
-import Taro, { Config, ShareAppMessageReturn } from '@tarojs/taro'
+import Taro, { ShareAppMessageReturn } from '@tarojs/taro'
 import { CascadedData, NormalData, NormalItem } from '../components/PickerView'
 import { component } from '../components/component'
 import { Input, Switch, View } from '@tarojs/components'
 import { MPickerView } from '../components'
 import { pageUrls } from '.'
-import { XBackHome, XItem, XList, XTitle } from './components'
+import { XBackHome, XItem, XList, XNavigationBar, XTitle } from './components'
 
 const shooterList: string[] = ['鲁班七号', '孙尚香', '虞姬', '马可波罗', '狄仁杰']
 const mageList: string[] = ['墨子', '武则天', '安琪拉', '妲己', '张良', '上官婉儿']
@@ -52,10 +52,6 @@ export default class PickerView extends component({
     },
   },
 }) {
-  config: Config = {
-    navigationBarTitleText: 'PickerView',
-  }
-
   onShareAppMessage(): ShareAppMessageReturn {
     return {
       title: 'PickerView',
@@ -67,6 +63,7 @@ export default class PickerView extends component({
     const { normal, cascaded } = this.state
     return (
       <View>
+        <XNavigationBar>PickerView</XNavigationBar>
         <XTitle>普通选择</XTitle>
         <XList>
           <XItem
