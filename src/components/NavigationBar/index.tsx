@@ -2,7 +2,7 @@ import './index.scss'
 import Taro, { useState } from '@tarojs/taro'
 import { functionalComponent } from '../component'
 import { last } from 'vtils'
-import { NavigationBarProps } from './props'
+import { NavigationBarDefaultProps, NavigationBarProps } from './props'
 import { useCustomNavigationBarFullHeight, useDidEnter, useDidLeave } from '../../hooks'
 import { View } from '@tarojs/components'
 
@@ -10,7 +10,7 @@ function onlyPath(url: string) {
   return url ? url.split('?')[0].replace(/^\/+/, '') : ''
 }
 
-function NavigationBar(props: typeof NavigationBarProps) {
+function NavigationBar(props: NavigationBarProps) {
   const { setCustomNavigationBarFullHeight, resetCustomNavigationBarFullHeight } = useCustomNavigationBarFullHeight()
   const [state, setState] = useState({
     verticalPadding: 0 as number,
@@ -115,4 +115,6 @@ function NavigationBar(props: typeof NavigationBarProps) {
   )
 }
 
-export default functionalComponent(NavigationBarProps)(NavigationBar)
+export { NavigationBarProps }
+
+export default functionalComponent(NavigationBarDefaultProps)(NavigationBar)

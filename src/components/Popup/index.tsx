@@ -1,7 +1,7 @@
 import MTransition from '../Transition'
 import Taro, { useEffect, useState } from '@tarojs/taro'
 import { functionalComponent } from '../component'
-import { MPopupProps, Position, TransitionName } from './props'
+import { MPopupDefaultProps, MPopupProps, Position, TransitionName } from './props'
 import { useCustomNavigationBarFullHeight, useZIndex } from '../../hooks'
 import { View } from '@tarojs/components'
 
@@ -13,7 +13,7 @@ const positionToTransitionName: Record<Position, TransitionName> = {
   right: 'slideRight',
 }
 
-function MPopup(props: typeof MPopupProps) {
+function MPopup(props: MPopupProps) {
   const [transitionEndCount, setTransitionEndCount] = useState(0)
   const [display, setDisplay] = useState(false)
   const { zIndex } = useZIndex()
@@ -82,4 +82,6 @@ function MPopup(props: typeof MPopupProps) {
   )
 }
 
-export default functionalComponent(MPopupProps)(MPopup)
+export { MPopupProps }
+
+export default functionalComponent(MPopupDefaultProps)(MPopup)

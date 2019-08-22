@@ -1,7 +1,7 @@
+import { createProps, RequiredProp } from '../component'
 import { noop } from 'vtils'
-import { RequiredProp } from '../component'
 
-export const MTransitionProps = {
+export const MTransitionDefaultProps = createProps({
   /**
    * 组件是否可见。
    */
@@ -51,4 +51,6 @@ export const MTransitionProps = {
    * @default () => {}
    */
   onTransitionEnd: noop as () => void,
-}
+})
+
+export type MTransitionProps = typeof MTransitionDefaultProps

@@ -1,6 +1,6 @@
 import { createProps, RequiredProp } from '../component'
 
-export const NavigationBarProps = createProps({
+export const NavigationBarDefaultProps = createProps({
   /**
    * 小程序主页的绝对路径，可带参数。
    *
@@ -24,3 +24,5 @@ export const NavigationBarProps = createProps({
    */
   backgroundColor: 'auto' as string,
 })
+
+export type NavigationBarProps = typeof NavigationBarDefaultProps

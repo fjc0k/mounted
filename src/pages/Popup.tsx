@@ -6,7 +6,7 @@ import { pageUrls } from '.'
 import { View } from '@tarojs/components'
 import { XBackHome, XNavigationBar } from './components'
 
-type PopupPosition = MPopup['props']['position']
+type PopupPosition = typeof MPopup
 
 const positionList: PopupPosition[] = [
   'bottom',

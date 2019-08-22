@@ -1,3 +1,5 @@
 import { createProps } from '../component'
 
-export const MStickyProps = createProps({})
+export const MStickyDefaultProps = createProps({})
+
+export type MStickyProps = typeof MStickyDefaultProps
