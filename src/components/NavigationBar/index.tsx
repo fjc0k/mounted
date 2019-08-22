@@ -1,18 +1,18 @@
 import './index.scss'
-import Taro from '@tarojs/taro'
-import { component } from '../component'
-import { internalStore } from '../internal'
+import Taro, { useState } from '@tarojs/taro'
+import { functionalComponent } from '../component'
 import { last } from 'vtils'
 import { NavigationBarProps } from './props'
+import { useCustomNavigationBarFullHeight, useDidEnter, useDidLeave } from '../../hooks'
 import { View } from '@tarojs/components'
 
 function onlyPath(url: string) {
   return url ? url.split('?')[0].replace(/^\/+/, '') : ''
 }
 
-export default class NavigationBar extends component({
-  props: NavigationBarProps,
-  state: {
+function NavigationBar(props: typeof NavigationBarProps) {
+  const { setCustomNavigationBarFullHeight, resetCustomNavigationBarFullHeight } = useCustomNavigationBarFullHeight()
+  const [state, setState] = useState({
     verticalPadding: 0 as number,
     horizontalPadding: 0 as number,
     navigationBarHeight: 0 as number,
@@ -21,9 +21,14 @@ export default class NavigationBar extends component({
     menuButtonWidth: 0 as number,
     backButtonVisible: false as boolean,
     homeButtonVisible: false as boolean,
-  },
-}) {
-  componentDidShow() {
+  })
+  const actualBackgroundColor = props.backgroundColor !== 'auto'
+    ? props.backgroundColor
+    : props.textStyle === 'white'
+      ? '#000000'
+      : '#FFFFFF'
+
+  useDidEnter(() => {
     const menuRect = Taro.getMenuButtonBoundingClientRect()
     const sysInfo = Taro.getSystemInfoSync()
     const verticalPadding = menuRect.top - sysInfo.statusBarHeight
@@ -31,13 +36,13 @@ export default class NavigationBar extends component({
     const height = menuRect.height + verticalPadding * 2
     const fullHeight = sysInfo.statusBarHeight + height
 
+    setCustomNavigationBarFullHeight(fullHeight)
+
     const pages = Taro.getCurrentPages()
     const backButtonVisible = pages.length > 1
-    const homeButtonVisible = onlyPath(last(pages).route) !== onlyPath(this.props.homePath)
+    const homeButtonVisible = onlyPath(last(pages).route) !== onlyPath(props.homePath)
 
-    internalStore.customNavigationBarFullHeight = fullHeight
-
-    this.setState({
+    setState({
       verticalPadding: verticalPadding,
       horizontalPadding: horizontalPadding,
       navigationBarHeight: height,
@@ -47,82 +52,67 @@ export default class NavigationBar extends component({
       backButtonVisible: backButtonVisible,
       homeButtonVisible: homeButtonVisible,
     })
-  }
+  })
 
-  componentDidHide() {
-    internalStore.customNavigationBarFullHeight = 0
-  }
+  useDidLeave(resetCustomNavigationBarFullHeight)
 
-  componentWillUnmount() {
-    internalStore.customNavigationBarFullHeight = 0
-  }
-
-  handleBackClick = () => {
+  function handleBackClick() {
     Taro.navigateBack()
   }
 
-  handleHomeClick = () => {
+  function handleHomeClick() {
     Taro.navigateTo({
-      url: this.props.homePath,
+      url: props.homePath,
     })
   }
 
-  render() {
-    const { backgroundColor, textStyle, className } = this.props
-    const { verticalPadding, horizontalPadding, navigationBarHeight, navigationBarFullHeight, menuButtonHeight, menuButtonWidth, backButtonVisible, homeButtonVisible } = this.state
-
-    const actualBackgroundColor = backgroundColor !== 'auto'
-      ? backgroundColor
-      : textStyle === 'white'
-        ? '#000000'
-        : '#FFFFFF'
-
-    return (
-      <View className={`m-navigation-bar m-navigation-bar_${textStyle} ${className}`}>
-        <View
-          className='m-navigation-bar__placeholder'
-          style={{ height: `${navigationBarFullHeight}px` }}
-        />
-        <View
-          className='m-navigation-bar__container'
-          style={{
-            backgroundColor: actualBackgroundColor,
-            color: textStyle,
-            height: `${navigationBarFullHeight}px`,
-            padding: `${navigationBarFullHeight - navigationBarHeight + verticalPadding}px ${horizontalPadding}px ${verticalPadding}px ${horizontalPadding}px`,
-          }}>
-          {!backButtonVisible && !homeButtonVisible ? null : (
-            <View className='m-navigation-bar__left' style={{ left: `${verticalPadding}px` }}>
-              <View
-                className='m-navigation-bar__menu'
-                style={{
-                  width: `${backButtonVisible && homeButtonVisible ? menuButtonWidth : menuButtonWidth / 2}px`,
-                  height: `${menuButtonHeight}px`,
-                  borderRadius: `${menuButtonHeight / 2}px`,
-                }}>
-                {!backButtonVisible ? null : (
-                  <View
-                    className='m-navigation-bar__menu-left m-navigation-bar-iconfont m-navigation-bar-icon-back'
-                    onClick={this.handleBackClick}
-                  />
-                )}
-                {!(backButtonVisible && homeButtonVisible) ? null : (
-                  <View className='m-navigation-bar__menu-divider' />
-                )}
-                {!homeButtonVisible ? null : (
-                  <View
-                    className='m-navigation-bar__menu-right m-navigation-bar-iconfont m-navigation-bar-icon-home'
-                    onClick={this.handleHomeClick}
-                  />
-                )}
-              </View>
+  return (
+    <View className={`m-navigation-bar m-navigation-bar_${props.textStyle} ${props.className}`}>
+      <View
+        className='m-navigation-bar__placeholder'
+        style={{ height: `${state.navigationBarFullHeight}px` }}
+      />
+      <View
+        className='m-navigation-bar__container'
+        style={{
+          backgroundColor: actualBackgroundColor,
+          color: props.textStyle,
+          height: `${state.navigationBarFullHeight}px`,
+          padding: `${state.navigationBarFullHeight - state.navigationBarHeight + state.verticalPadding}px ${state.horizontalPadding}px ${state.verticalPadding}px ${state.horizontalPadding}px`,
+        }}>
+        {!state.backButtonVisible && !state.homeButtonVisible ? null : (
+          <View className='m-navigation-bar__left' style={{ left: `${state.verticalPadding}px` }}>
+            <View
+              className='m-navigation-bar__menu'
+              style={{
+                width: `${state.backButtonVisible && state.homeButtonVisible ? state.menuButtonWidth : state.menuButtonWidth / 2}px`,
+                height: `${state.menuButtonHeight}px`,
+                borderRadius: `${state.menuButtonHeight / 2}px`,
+              }}>
+              {!state.backButtonVisible ? null : (
+                <View
+                  className='m-navigation-bar__menu-left m-navigation-bar-iconfont m-navigation-bar-icon-back'
+                  onClick={handleBackClick}
+                />
+              )}
+              {!(state.backButtonVisible && state.homeButtonVisible) ? null : (
+                <View className='m-navigation-bar__menu-divider' />
+              )}
+              {!state.homeButtonVisible ? null : (
+                <View
+                  className='m-navigation-bar__menu-right m-navigation-bar-iconfont m-navigation-bar-icon-home'
+                  onClick={handleHomeClick}
+                />
+              )}
             </View>
-          )}
-          <View className='m-navigation-bar__title'>
-            {this.props.children}
           </View>
+        )}
+        <View className='m-navigation-bar__title'>
+          {props.children}
         </View>
       </View>
-    )
-  }
+    </View>
+  )
 }
+
+export default functionalComponent(NavigationBarProps)(NavigationBar)

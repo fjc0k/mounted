@@ -59,7 +59,45 @@ const component = <
   }
 )
 
+const functionalComponent = <P extends Record<string, any>>(props: P) => (
+  <T extends Taro.FunctionComponent<P>>(component: T): T => {
+    (component as any).defaultProps = props
+    ;(component as any).options = {
+      addGlobalClass: true,
+      styleIsolation: 'shared',
+    }
+    return component
+  }
+)
+
+const createProps = <
+  P extends Record<string, any>,
+  PP = (
+    Overwrite<
+    PartialBy<
+    { [K in keyof P]: P[K] extends RequiredProp<infer T> ? T : P[K] },
+    { [K in keyof P]: P[K] extends RequiredProp ? never : K }[keyof P]
+    >,
+    {
+      /** 应用级别、页面级别的类 */
+      className?: string,
+      /** 子节点 */
+      children?: any,
+    }
+    >
+  ),
+>(props: P): PP => {
+  return props as any
+}
+
+export const componentOptions = {
+  addGlobalClass: true,
+  styleIsolation: 'shared',
+}
+
 export {
   RequiredProp,
   component,
+  createProps,
+  functionalComponent,
 }

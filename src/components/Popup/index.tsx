@@ -1,9 +1,8 @@
 import MTransition from '../Transition'
-import Taro from '@tarojs/taro'
-import { CommonEventFunction } from '@tarojs/components/types/common'
-import { component } from '../component'
-import { internalStore } from '../internal'
+import Taro, { useEffect, useState } from '@tarojs/taro'
+import { functionalComponent } from '../component'
 import { MPopupProps, Position, TransitionName } from './props'
+import { useCustomNavigationBarFullHeight, useZIndex } from '../../hooks'
 import { View } from '@tarojs/components'
 
 const positionToTransitionName: Record<Position, TransitionName> = {
@@ -14,109 +13,73 @@ const positionToTransitionName: Record<Position, TransitionName> = {
   right: 'slideRight',
 }
 
-/**
- * 弹出层组件。
- */
-export default class MPopup extends component({
-  props: MPopupProps,
-  state: {
-    /** zIndex 值 */
-    zIndex: 0 as number,
-    /** 弹出层是否显示 */
-    display: false as boolean,
-  },
-}) {
-  /** 计数器 */
-  transitionEndCounter = 0
+function MPopup(props: typeof MPopupProps) {
+  const [transitionEndCount, setTransitionEndCount] = useState(0)
+  const [display, setDisplay] = useState(false)
+  const { zIndex } = useZIndex()
+  const { customNavigationBarFullHeight } = useCustomNavigationBarFullHeight()
 
-  componentWillMount() {
-    this.setState({
-      zIndex: internalStore.zIndex++,
-      display: this.props.visible,
-    })
-  }
+  useEffect(
+    () => {
+      setDisplay(true)
+    },
+    [props.visible],
+  )
 
-  componentWillReceiveProps(nextProps: MPopup['props']) {
-    if (nextProps.visible !== this.props.visible) {
-      this.setState({
-        display: true,
-      })
+  function handleMaskClick() {
+    if (props.maskClosable) {
+      props.onVisibleChange(false)
     }
   }
 
-  handleTouchMove: CommonEventFunction = e => {
-    e.stopPropagation()
-  }
-
-  handleMaskClick = () => {
-    if (this.props.maskClosable) {
-      this.props.onVisibleChange(false)
-    }
-  }
-
-  handleTransitionEnd = () => {
+  function handleTransitionEnd() {
     const action = () => {
-      this.transitionEndCounter = 0
-      this.setState({
-        display: this.props.visible,
-      })
+      setTransitionEndCount(0)
+      setDisplay(props.visible)
     }
-    if (this.props.noMask) {
+    if (props.noMask) {
       action()
     } else {
-      this.transitionEndCounter++
-      if (this.transitionEndCounter >= 2) {
+      if (transitionEndCount >= 1) {
         action()
+      } else {
+        setTransitionEndCount(transitionEndCount + 1)
       }
     }
   }
 
-  render() {
-    const {
-      visible,
-      noMask,
-      duration,
-      position,
-      customTransition,
-      className,
-    } = this.props
-
-    const {
-      zIndex,
-      display,
-    } = this.state
-
-    return (
-      <View
-        className={`m-popup m-popup_${position} ${className}`}
-        style={{
-          zIndex: zIndex,
-          top: `${internalStore.customNavigationBarFullHeight}px`,
-          ...(display ? {} : { display: 'none' }),
-        }}
-        onTouchMove={this.handleTouchMove}>
-        {noMask ? null : (
-          <MTransition
-            name='fade'
-            visible={visible}
-            duration={duration}
-            onTransitionEnd={this.handleTransitionEnd}>
-            <View
-              className='m-popup__mask'
-              onClick={this.handleMaskClick}
-            />
-          </MTransition>
-        )}
-        <View className='m-popup__content'>
-          <MTransition
-            name={customTransition || positionToTransitionName[position]}
-            visible={visible}
-            duration={duration}
-            onTransitionEnd={this.handleTransitionEnd}>
-            {this.props.children}
-          </MTransition>
-        </View>
+  return (
+    <View
+      className={`m-popup m-popup_${props.position} ${props.className}`}
+      style={{
+        zIndex: zIndex,
+        top: `${customNavigationBarFullHeight}px`,
+        ...(display ? {} : { display: 'none' }),
+      }}
+      onTouchMove={e => e.stopPropagation()}>
+      {props.noMask ? null : (
+        <MTransition
+          name='fade'
+          visible={props.visible}
+          duration={props.duration}
+          onTransitionEnd={handleTransitionEnd}>
+          <View
+            className='m-popup__mask'
+            onClick={handleMaskClick}
+          />
+        </MTransition>
+      )}
+      <View className='m-popup__content'>
+        <MTransition
+          name={props.customTransition || positionToTransitionName[props.position]}
+          visible={props.visible}
+          duration={props.duration}
+          onTransitionEnd={handleTransitionEnd}>
+          {this.props.children}
+        </MTransition>
       </View>
-    )
-  }
+    </View>
+  )
 }
+
+export default functionalComponent(MPopupProps)(MPopup)

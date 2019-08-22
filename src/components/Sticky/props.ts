@@ -1,1 +1,3 @@
-export const MStickyProps = {}
+import { createProps } from '../component'
+
+export const MStickyProps = createProps({})

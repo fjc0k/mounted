@@ -7,15 +7,15 @@ class App extends Taro.Component {
     pages: [
       'pages/Home',
       // @index('./pages/*[!Home].tsx', (pp, cc) => `'${pp.path.replace(/^\.\//, '')}',`)
-      'pages/DatePicker',
-      'pages/ECharts',
-      'pages/Picker',
-      'pages/PickerView',
+      // 'pages/DatePicker',
+      // 'pages/ECharts',
+      // 'pages/Picker',
+      // 'pages/PickerView',
       'pages/Popup',
-      'pages/SinglePicker',
+      // 'pages/SinglePicker',
       'pages/Sticky',
-      'pages/TimePicker',
-      'pages/Transition',
+      // 'pages/TimePicker',
+      // 'pages/Transition',
       // @endindex
     ],
     window: {

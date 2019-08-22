@@ -1,11 +1,11 @@
 import MTransition from '../Transition'
+import { createProps, RequiredProp } from '../component'
 import { noop } from 'vtils'
-import { RequiredProp } from '../component'
 
 export type TransitionName = MTransition['props']['name']
 export type Position = 'center' | 'top' | 'bottom' | 'right' | 'left'
 
-export const MPopupProps = {
+export const MPopupProps = createProps({
   /**
    * 弹出层是否可见。
    */
@@ -55,4 +55,4 @@ export const MPopupProps = {
    * 可见性变化事件。
    */
   onVisibleChange: noop as any as RequiredProp<(visible: boolean) => void>,
-}
+})
