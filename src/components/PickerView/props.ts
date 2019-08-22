@@ -1,12 +1,12 @@
-import { Data } from '.'
+import { createProps, RequiredProp } from '../component'
+import { MPickerViewData } from './types'
 import { noop } from 'vtils'
-import { RequiredProp } from '../component'
 
-export const MPickerViewProps = {
+export const MPickerViewDefaultProps = createProps({
   /**
    * 选项数据。
    */
-  data: [] as any as RequiredProp<Data>,
+  data: [] as any as RequiredProp<MPickerViewData>,
 
   /**
    * 选中条目的索引列表。
@@ -66,4 +66,6 @@ export const MPickerViewProps = {
    * @default () => {}
    */
   onPickEnd: noop as () => void,
-}
+})
+
+export type MPickerViewProps = typeof MPickerViewDefaultProps
