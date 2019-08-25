@@ -1,56 +1,45 @@
 import MPicker from '../Picker'
-import Taro from '@tarojs/taro'
-import { component } from '../component'
-import { Data, Item, MSinglePickerProps } from './props'
-import { NormalData } from '../PickerView'
+import Taro, { useEffect, useState } from '@tarojs/taro'
+import { functionalComponent } from '../component'
+import { MPickerData } from '../Picker/types'
+import { MPickerProps } from '../Picker/props'
+import { MSinglePickerDefaultProps, MSinglePickerProps } from './props'
 
-export { Item, Data }
+function MSinglePicker(props: MSinglePickerProps) {
+  const [data, setData] = useState<MPickerData>([])
+  const [selectedIndexes, setSelectedIndexes] = useState<number[]>([])
 
-/**
- * 单项选择器组件。
- */
-class MSinglePicker extends component({
-  props: MSinglePickerProps,
-  state: {
-    localData: [] as NormalData,
-    localSelectedIndexes: [] as number[],
-  },
-}) {
-  componentWillMount() {
-    const { data, selectedIndex } = this.props
-    this.setState({
-      localData: [data],
-      localSelectedIndexes: [selectedIndex],
-    })
+  useEffect(
+    () => {
+      setData([props.data])
+    },
+    [props.data],
+  )
+
+  useEffect(
+    () => {
+      setSelectedIndexes([props.selectedIndex])
+    },
+    [props.selectedIndex],
+  )
+
+  const handleConfirm: MPickerProps['onConfirm'] = selectedIndexes => {
+    props.onConfirm(selectedIndexes[0])
   }
 
-  componentWillReceiveProps({ data, selectedIndex }: MSinglePicker['props']) {
-    this.setState({
-      localData: [data],
-      localSelectedIndexes: [selectedIndex],
-    })
-  }
-
-  handleConfirm: MPicker['props']['onConfirm'] = selectedIndexes => {
-    this.props.onConfirm(selectedIndexes[0])
-  }
-
-  render() {
-    const {
-      localData,
-      localSelectedIndexes,
-    } = this.state
-
-    return (
-      <MPicker
-        {...this.props}
-        data={localData}
-        selectedIndexes={localSelectedIndexes}
-        onConfirm={this.handleConfirm}>
-        {this.props.children}
-      </MPicker>
-    )
-  }
+  return (
+    <MPicker
+      {...props}
+      data={data}
+      selectedIndexes={selectedIndexes}
+      onConfirm={handleConfirm}>
+      {props.children}
+    </MPicker>
+  )
 }
 
-export default MSinglePicker
+export * from './types'
+
+export { MSinglePickerProps }
+
+export default functionalComponent(MSinglePickerDefaultProps)(MSinglePicker)

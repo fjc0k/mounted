@@ -1,28 +1,32 @@
-import { MPickerProps } from '../Picker/props'
+import { createProps, RequiredProp } from '../component'
+import { MPickerDefaultProps } from '../Picker/props'
+import { MSinglePickerData } from './types'
 import { noop, omit } from 'vtils'
-import { NormalItem } from '../PickerView'
-import { RequiredProp } from '../component'
 
-export type Item = NormalItem
-export type Data = Item[]
+export const MSinglePickerDefaultProps = {
+  ...omit(
+    MPickerDefaultProps,
+    ['data', 'selectedIndexes', 'onConfirm'],
+  ),
 
-export const MSinglePickerProps = {
-  ...omit(MPickerProps, ['data', 'selectedIndexes', 'onConfirm']),
+  ...createProps({
+    /**
+     * 选项数据。
+     */
+    data: [] as any as RequiredProp<MSinglePickerData>,
 
-  /**
-   * 选项数据。
-   */
-  data: [] as any as RequiredProp<Data>,
+    /**
+     * 选中条目的索引。
+     */
+    selectedIndex: 0 as any as RequiredProp<number>,
 
-  /**
-   * 选中条目的索引。
-   */
-  selectedIndex: 0 as any as RequiredProp<number>,
-
-  /**
-   * 点击确定事件。
-   *
-   * @default () => {}
-   */
-  onConfirm: noop as any as RequiredProp<(selectedIndex: number) => void>,
+    /**
+     * 点击确定事件。
+     *
+     * @default () => {}
+     */
+    onConfirm: noop as any as RequiredProp<(selectedIndex: number) => void>,
+  }),
 }
+
+export type MSinglePickerProps = typeof MSinglePickerDefaultProps

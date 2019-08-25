@@ -1,137 +1,101 @@
 import MPickerView from '../PickerView'
 import MPopup from '../Popup'
-import Taro from '@tarojs/taro'
-import { component } from '../component'
-import { MPickerProps } from './props'
+import Taro, { useEffect, useRef, useState } from '@tarojs/taro'
+import { functionalComponent } from '../component'
+import { MPickerDefaultProps, MPickerProps } from './props'
 import { View } from '@tarojs/components'
 
-/**
- * 选择器组件。
- */
-class MPicker extends component({
-  props: MPickerProps,
-  state: {
-    localVisible: false as boolean,
-    localSelectedIndexes: [],
-  },
-}) {
-  canClose: boolean = true
+function MPicker(props: MPickerProps) {
+  const [visible, setVisible] = useState<boolean>(false)
+  const [selectedIndexes, setSelectedIndexes] = useState<number[]>([])
+  const canClose = useRef<boolean>(false)
 
-  componentWillMount() {
-    const { selectedIndexes } = this.props
-    this.setState({
-      localSelectedIndexes: selectedIndexes,
-    })
+  useEffect(
+    () => {
+      setSelectedIndexes(props.selectedIndexes)
+    },
+    [props.selectedIndexes],
+  )
+
+  function handleTriggerClick() {
+    setVisible(!visible)
   }
 
-  componentWillReceiveProps({ selectedIndexes }: MPicker['props']) {
-    this.setState({
-      localSelectedIndexes: selectedIndexes,
-    })
+  function handleVisibleChange(visible: boolean) {
+    setVisible(visible)
+    if (!visible) {
+      setSelectedIndexes(props.selectedIndexes)
+    }
   }
 
-  handleTriggerClick = () => {
-    this.setState(_ => ({
-      localVisible: !_.localVisible,
-    }))
+  function handlePickStart() {
+    canClose.current = false
   }
 
-  handleVisibleChange: MPopup['props']['onVisibleChange'] = visible => {
-    const { selectedIndexes } = this.props
-    this.setState({
-      localVisible: visible,
-      ...(visible ? {} as any : { localSelectedIndexes: selectedIndexes }),
-    })
+  function handlePickEnd() {
+    canClose.current = true
   }
 
-  handlePickStart = () => {
-    this.canClose = false
+  function handlePickChange(selectedIndexes: number[]) {
+    setSelectedIndexes(selectedIndexes)
   }
 
-  handlePickEnd = () => {
-    this.canClose = true
+  function handleCancelClick() {
+    if (canClose.current) {
+      setSelectedIndexes(props.selectedIndexes)
+      setVisible(false)
+      props.onCancel()
+    }
   }
 
-  handlePickChange: MPickerView['props']['onChange'] = selectedIndexes => {
-    this.setState({
-      localSelectedIndexes: selectedIndexes,
-    })
+  function handleConfirmClick() {
+    if (canClose.current) {
+      setVisible(false)
+      props.onConfirm(selectedIndexes.slice())
+    }
   }
 
-  handleCancelClick = () => {
-    if (!this.canClose) return
-    this.setState({
-      localSelectedIndexes: this.props.selectedIndexes,
-      localVisible: false,
-    }, () => {
-      this.props.onCancel()
-    })
-  }
-
-  handleConfirmClick = () => {
-    if (!this.canClose) return
-    this.setState({
-      localVisible: false,
-    }, () => {
-      this.props.onConfirm(this.state.localSelectedIndexes.slice())
-    })
-  }
-
-  render() {
-    const {
-      maskClosable,
-      noCancel,
-      cancelText,
-      confirmText,
-      title,
-      disabled,
-      className,
-      // ...props // TODO: 尚不可用
-    } = this.props
-
-    const {
-      localVisible,
-      localSelectedIndexes,
-    } = this.state
-
-    return disabled ? this.props.children : (
-      <View className={className}>
-        <View onClick={this.handleTriggerClick}>
-          {this.props.children}
-        </View>
-        <MPopup
-          position='bottom'
-          visible={localVisible}
-          maskClosable={maskClosable}
-          onVisibleChange={this.handleVisibleChange}>
-          <View className='m-picker'>
-            <View className='m-picker__header'>
-              <View
-                className={`m-picker__cancel ${noCancel && 'm-picker__cancel_hidden'}`}
-                onClick={this.handleCancelClick}>
-                {cancelText}
-              </View>
-              <View className='m-picker__title'>
-                {title}
-              </View>
-              <View
-                className='m-picker__confirm'
-                onClick={this.handleConfirmClick}>
-                {confirmText}
-              </View>
-            </View>
-            <MPickerView
-              {...this.props}
-              selectedIndexes={localSelectedIndexes}
-              onPickStart={this.handlePickStart}
-              onPickEnd={this.handlePickEnd}
-              onChange={this.handlePickChange}
-            />
-          </View>
-        </MPopup>
+  return props.disabled ? props.children : (
+    <View className={props.className}>
+      <View onClick={handleTriggerClick}>
+        {props.children}
       </View>
-    )
-  }
+      <MPopup
+        position='bottom'
+        visible={visible}
+        maskClosable={props.maskClosable}
+        onVisibleChange={handleVisibleChange}>
+        <View className='m-picker'>
+          <View className='m-picker__header'>
+            <View
+              className={`m-picker__cancel ${props.noCancel && 'm-picker__cancel_hidden'}`}
+              onClick={handleCancelClick}>
+              {props.cancelText}
+            </View>
+            <View className='m-picker__title'>
+              {props.title}
+            </View>
+            <View
+              className='m-picker__confirm'
+              onClick={handleConfirmClick}>
+              {props.confirmText}
+            </View>
+          </View>
+          <MPickerView
+            {...props}
+            selectedIndexes={selectedIndexes}
+            onPickStart={handlePickStart}
+            onPickEnd={handlePickEnd}
+            onChange={handlePickChange}
+          />
+        </View>
+      </MPopup>
+    </View>
+  )
 }
 
-export default MPicker
+export * from './types'
+
+export { MPickerProps }
+
+export default functionalComponent(MPickerDefaultProps)(MPicker)

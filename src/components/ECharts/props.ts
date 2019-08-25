@@ -1,8 +1,8 @@
 import * as ECharts from 'echarts'
+import { createProps, RequiredProp } from '../component'
 import { noop } from 'vtils'
-import { RequiredProp } from '../component'
 
-export const MEChartsProps = {
+export const MEChartsDefaultProps = createProps({
   /**
    * 获取 `ECharts` 对象的函数。
    *
@@ -27,4 +27,6 @@ export const MEChartsProps = {
    * @default false
    */
   disableTouch: false as boolean,
-}
+})
+
+export type MEChartsProps = typeof MEChartsDefaultProps
