@@ -23,11 +23,8 @@ function XItem(props: XItemProps) {
       hoverClass={props.feedback ? 'active' : 'none'}
       onClick={props.onClick}>
       <View className='title'>
-        {
-          props.title === ''
-            ? props.children
-            : <Text>{props.title}</Text>
-        }
+        {props.title}
+        {props.children}
       </View>
       <View className='extra'>
         {props.extra && <Text>{props.extra}</Text>}
