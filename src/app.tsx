@@ -1,5 +1,5 @@
 import './app.scss'
-import Home from './pages/Home'
+import Home from './demo/Home'
 import Taro from '@tarojs/taro'
 
 class App extends Taro.Component {
