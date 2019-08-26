@@ -1,21 +1,21 @@
 import './app.scss'
-import Home from './demo/Home'
+import Home from './demo/pages/Home'
 import Taro from '@tarojs/taro'
 
 class App extends Taro.Component {
   config: Taro.Config = {
     pages: [
-      'pages/Home',
-      // @index('./pages/*[!Home].tsx', (pp, cc) => `'${pp.path.replace(/^\.\//, '')}',`)
-      'pages/DatePicker',
-      'pages/ECharts',
-      'pages/Picker',
-      'pages/PickerView',
-      'pages/Popup',
-      'pages/SinglePicker',
-      'pages/Sticky',
-      'pages/TimePicker',
-      // 'pages/Transition',
+      'demo/pages/Home/index',
+      // @index(['./demo/pages/[A-Z]*/*.tsx', '!./demo/pages/Home'], (pp, cc) => `'${pp.path.replace(/^\.\//, '')}',`)
+      'demo/pages/DatePicker/index',
+      'demo/pages/ECharts/index',
+      'demo/pages/Picker/index',
+      'demo/pages/PickerView/index',
+      'demo/pages/Popup/index',
+      'demo/pages/SinglePicker/index',
+      'demo/pages/Sticky/index',
+      'demo/pages/TimePicker/index',
+      'demo/pages/Transition/index',
       // @endindex
     ],
     window: {

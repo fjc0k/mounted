@@ -1,6 +1,6 @@
 import { createProps, RequiredProp } from '../component'
-import { MPickerViewData } from './types'
-import { noop } from 'vtils'
+import { Merge, noop } from 'vtils'
+import { MPickerViewCascadedData, MPickerViewData, MPickerViewNormalData } from './types'
 
 export const MPickerViewDefaultProps = createProps({
   /**
@@ -69,3 +69,11 @@ export const MPickerViewDefaultProps = createProps({
 })
 
 export type MPickerViewProps = typeof MPickerViewDefaultProps
+
+export type MNormalPickerViewProps = Merge<MPickerViewProps, {
+  data: MPickerViewNormalData,
+}>
+
+export type MCascadedPickerViewProps = Merge<MPickerViewProps, {
+  data: MPickerViewCascadedData,
+}>

@@ -1,4 +1,5 @@
 // @index('../components/**/*.scss', f => `@import '${f.path}${f.ext}';`)
+@import '../components/NavigationBar/index.scss';
 @import '../components/Picker/index.scss';
 @import '../components/PickerView/index.scss';
 @import '../components/Popup/index.scss';

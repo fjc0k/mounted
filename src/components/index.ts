@@ -11,8 +11,24 @@ export { default as MTimePicker } from './TimePicker'
 export { default as MTransition } from './Transition'
 // @endindex
 
+// @index('./**/{props,types}.ts', (pp, cc) => `export * from '${pp.path}'`)
+export * from './DatePicker/props'
+export * from './ECharts/props'
+export * from './NavigationBar/props'
+export * from './Picker/props'
+export * from './Picker/types'
+export * from './PickerView/props'
+export * from './PickerView/types'
+export * from './Popup/props'
+export * from './SinglePicker/props'
+export * from './SinglePicker/types'
+export * from './Sticky/props'
+export * from './TimePicker/props'
+export * from './Transition/props'
+// @endindex
+
 export type ComponentName = (
-  // @index('./[A-Z]*', (pp, cc, { last }) => `'${pp.name}'${last ? '' : ' |'}`)
+  // @index('./[A-Z]*', (pp, cc, { isLast }) => `'${pp.name}'${isLast ? '' : ' |'}`)
   'DatePicker' |
   'ECharts' |
   'NavigationBar' |
