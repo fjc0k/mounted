@@ -59,12 +59,14 @@ const component = <
   }
 )
 
-const functionalComponent = <P extends Record<string, any>>(props: P) => (
+const functionalComponent = <P extends Record<string, any>>(props: P, disableGlobalClass = false) => (
   <T extends Taro.FunctionComponent<P>>(component: T): T => {
     (component as any).defaultProps = props
-    ;(component as any).options = {
-      addGlobalClass: true,
-      styleIsolation: 'shared',
+    if (!disableGlobalClass) {
+      (component as any).options = {
+        addGlobalClass: true,
+        styleIsolation: 'shared',
+      }
     }
     return component
   }
