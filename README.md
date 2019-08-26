@@ -1,4 +1,4 @@
-> v1 版本文档有待完善。
+> v1 版本还不甚稳定，请勿用于生产环境！
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/fjc0k/mounted/master/assets/logo.png" width="150" />
