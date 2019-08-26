@@ -1,7 +1,7 @@
 import './index.scss'
 import Taro from '@tarojs/taro'
-import { createProps, functionalComponent } from '../../../components/component'
-import { View } from '@tarojs/components'
+import {createProps, functionalComponent} from '../../../components/component'
+import {View} from '@tarojs/components'
 
 const XTitleDefaultProps = createProps({})
 

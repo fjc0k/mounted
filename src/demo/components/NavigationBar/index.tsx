@@ -1,7 +1,7 @@
 import Taro from '@tarojs/taro'
-import { createProps, functionalComponent } from '../../../components/component'
-import { MNavigationBar } from '../../../components'
-import { pageUrls } from '../../pages'
+import {createProps, functionalComponent} from '../../../components/component'
+import {MNavigationBar} from '../../../components'
+import {pageUrls} from '../../pages'
 
 const XNavigationBarDefaultProps = createProps({})
 

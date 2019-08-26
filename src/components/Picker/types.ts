@@ -1,4 +1,4 @@
-import { MPickerViewCascadedData, MPickerViewCascadedItem, MPickerViewCascadedList, MPickerViewData, MPickerViewItem, MPickerViewList, MPickerViewNormalData, MPickerViewNormalItem, MPickerViewNormalList } from '../PickerView/types'
+import {MPickerViewCascadedData, MPickerViewCascadedItem, MPickerViewCascadedList, MPickerViewData, MPickerViewItem, MPickerViewList, MPickerViewNormalData, MPickerViewNormalItem, MPickerViewNormalList} from '../PickerView/types'
 
 /** 普通条目 */
 export type MPickerNormalItem = MPickerViewNormalItem

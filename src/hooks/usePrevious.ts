@@ -1,4 +1,4 @@
-import { useEffect, useRef } from '@tarojs/taro'
+import {useEffect, useRef} from '@tarojs/taro'
 
 export function usePrevious<T>(value: T, initialValue?: T): T {
   const ref = useRef<T>(initialValue)

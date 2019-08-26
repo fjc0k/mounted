@@ -1,7 +1,7 @@
-import { createProps, RequiredProp } from '../component'
-import { MPickerDefaultProps } from '../Picker/props'
-import { MSinglePickerData } from './types'
-import { noop, omit } from 'vtils'
+import {createProps, RequiredProp} from '../component'
+import {MPickerDefaultProps} from '../Picker/props'
+import {MSinglePickerData} from './types'
+import {noop, omit} from 'vtils'
 
 export const MSinglePickerDefaultProps = {
   ...omit(

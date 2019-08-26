@@ -1,4 +1,4 @@
-import { EffectCallback, useEffect } from '@tarojs/taro'
+import {EffectCallback, useEffect} from '@tarojs/taro'
 
 /**
  * 等同于 `useEffect(callback, [])`。

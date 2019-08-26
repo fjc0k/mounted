@@ -1,4 +1,4 @@
-import { createProps } from '../component'
+import {createProps} from '../component'
 
 export const MStickyDefaultProps = createProps({})
 

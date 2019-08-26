@@ -1,8 +1,8 @@
-import Taro, { useShareAppMessage, useState } from '@tarojs/taro'
-import { MSinglePicker, MSinglePickerData } from '../../../components'
-import { pageUrls } from '..'
-import { View } from '@tarojs/components'
-import { XItem, XList, XNavigationBar, XTitle } from '../../components'
+import Taro, {useShareAppMessage, useState} from '@tarojs/taro'
+import {MSinglePicker, MSinglePickerData} from '../../../components'
+import {pageUrls} from '..'
+import {View} from '@tarojs/components'
+import {XItem, XList, XNavigationBar, XTitle} from '../../components'
 
 const countryData: MSinglePickerData = [
   {

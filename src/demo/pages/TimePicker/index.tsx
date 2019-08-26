@@ -1,8 +1,8 @@
-import Taro, { useShareAppMessage, useState } from '@tarojs/taro'
-import { Image, View } from '@tarojs/components'
-import { MTimePicker } from '../../../components'
-import { pageUrls } from '..'
-import { XItem, XList, XNavigationBar, XTitle } from '../../components'
+import Taro, {useShareAppMessage, useState} from '@tarojs/taro'
+import {Image, View} from '@tarojs/components'
+import {MTimePicker} from '../../../components'
+import {pageUrls} from '..'
+import {XItem, XList, XNavigationBar, XTitle} from '../../components'
 
 const codeImg = 'https://ae01.alicdn.com/kf/U53b3c5ab845b44dcaaa730be547043a8Z.png'
 
@@ -24,13 +24,13 @@ export default function TimePicker() {
           selectedTime={selectedTime}
           startTime='00:30'
           endTime='22:00'
-          formatHour={({ hour }) => `${hour}时`}
-          formatMinute={({ minute }) => `${minute}分`}
-          filterHour={({ hour }) => {
+          formatHour={({hour}) => `${hour}时`}
+          formatMinute={({minute}) => `${minute}分`}
+          filterHour={({hour}) => {
             // 过滤掉 0, 2, 4, 6, 8, 10, ..., 22 时
             return hour % 2 === 0
           }}
-          filterMinute={({ minute }) => {
+          filterMinute={({minute}) => {
             // 过滤掉 10 分
             return minute === 10
           }}
@@ -47,7 +47,7 @@ export default function TimePicker() {
         <XItem>
           <Image
             src={codeImg}
-            style={{ width: '100%' }}
+            style={{width: '100%'}}
             mode='widthFix'
             onClick={() => {
               Taro.previewImage({

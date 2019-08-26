@@ -1,9 +1,9 @@
 import './index.scss'
-import Taro, { useShareAppMessage, useState } from '@tarojs/taro'
-import { MPopup, MPopupProps } from '../../../components'
-import { pageUrls } from '..'
-import { View } from '@tarojs/components'
-import { XNavigationBar } from '../../components'
+import Taro, {useShareAppMessage, useState} from '@tarojs/taro'
+import {MPopup, MPopupProps} from '../../../components'
+import {pageUrls} from '..'
+import {View} from '@tarojs/components'
+import {XNavigationBar} from '../../components'
 
 const positionList: Array<MPopupProps['position']> = [
   'bottom',

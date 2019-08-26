@@ -1,9 +1,9 @@
 import MPicker from '../Picker'
-import Taro, { useEffect, useState } from '@tarojs/taro'
-import { functionalComponent } from '../component'
-import { MPickerData } from '../Picker/types'
-import { MPickerProps } from '../Picker/props'
-import { MSinglePickerDefaultProps, MSinglePickerProps } from './props'
+import Taro, {useEffect, useState} from '@tarojs/taro'
+import {functionalComponent} from '../component'
+import {MPickerData} from '../Picker/types'
+import {MPickerProps} from '../Picker/props'
+import {MSinglePickerDefaultProps, MSinglePickerProps} from './props'
 
 function MSinglePicker(props: MSinglePickerProps) {
   const [data, setData] = useState<MPickerData>([])
@@ -40,6 +40,6 @@ function MSinglePicker(props: MSinglePickerProps) {
 
 export * from './types'
 
-export { MSinglePickerProps }
+export {MSinglePickerProps}
 
 export default functionalComponent(MSinglePickerDefaultProps)(MSinglePicker)

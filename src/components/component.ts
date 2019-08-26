@@ -1,5 +1,5 @@
 import Taro from '@tarojs/taro'
-import { Merge, Omit } from 'vtils'
+import {Merge, Omit} from 'vtils'
 
 type PartialBy<T, K extends keyof T> = Omit<T, K> & Partial<Pick<T, K>>
 type RequiredProp<T = any> = {

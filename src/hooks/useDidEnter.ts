@@ -1,4 +1,4 @@
-import { useDidShow } from '@tarojs/taro'
+import {useDidShow} from '@tarojs/taro'
 
 /**
  * 进入页面。

@@ -1,7 +1,7 @@
-import MPicker, { MPickerCascadedData, MPickerProps } from '../Picker'
-import Taro, { useEffect, useState } from '@tarojs/taro'
-import { functionalComponent } from '../component'
-import { MTimePickerDefaultProps, MTimePickerProps } from './props'
+import MPicker, {MPickerCascadedData, MPickerProps} from '../Picker'
+import Taro, {useEffect, useState} from '@tarojs/taro'
+import {functionalComponent} from '../component'
+import {MTimePickerDefaultProps, MTimePickerProps} from './props'
 
 function MTimePicker(props: MTimePickerProps) {
   const [data, setData] = useState<MPickerCascadedData>([])
@@ -34,7 +34,7 @@ function MTimePicker(props: MTimePickerProps) {
           }
           const minuteList: MPickerCascadedData = []
           hourList.push({
-            label: String(useRawHourValue ? hour.toString() : props.formatHour({ hour })),
+            label: String(useRawHourValue ? hour.toString() : props.formatHour({hour})),
             value: hour,
             children: minuteList,
           })
@@ -49,7 +49,7 @@ function MTimePicker(props: MTimePickerProps) {
                 selectedIndexes[1] = minuteList.length
               }
               minuteList.push({
-                label: String(useRawMinuteValue ? minute.toString() : props.formatMinute({ hour, minute })),
+                label: String(useRawMinuteValue ? minute.toString() : props.formatMinute({hour, minute})),
                 value: minute,
               })
             } else {
@@ -66,14 +66,7 @@ function MTimePicker(props: MTimePickerProps) {
       setData(hourList)
       setSelectedIndexes(selectedIndexes)
     },
-    [
-      props.startTime,
-      props.endTime,
-      props.filterHour,
-      props.filterMinute,
-      props.formatHour,
-      props.formatMinute,
-    ],
+    [props.startTime, props.endTime, props.filterHour, props.filterMinute, props.formatHour, props.formatMinute, props],
   )
 
   const handleConfirm: MPickerProps['onConfirm'] = selectedIndexes => {
@@ -104,6 +97,6 @@ function MTimePicker(props: MTimePickerProps) {
   )
 }
 
-export { MTimePickerProps }
+export {MTimePickerProps}
 
 export default functionalComponent(MTimePickerDefaultProps)(MTimePicker)

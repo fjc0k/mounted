@@ -1,4 +1,4 @@
-import { createProps, RequiredProp } from '../component'
+import {createProps, RequiredProp} from '../component'
 
 export const MNavigationBarDefaultProps = createProps({
   /**

@@ -1,22 +1,22 @@
-import Taro, { useShareAppMessage, useState } from '@tarojs/taro'
-import { Input, Switch, View } from '@tarojs/components'
-import { MCascadedPickerViewProps, MNormalPickerViewProps, MPickerView, MPickerViewCascadedData, MPickerViewNormalData, MPickerViewNormalItem } from '../../../components'
-import { pageUrls } from '..'
-import { XItem, XList, XNavigationBar, XTitle } from '../../components'
+import Taro, {useShareAppMessage, useState} from '@tarojs/taro'
+import {Input, Switch, View} from '@tarojs/components'
+import {MCascadedPickerViewProps, MNormalPickerViewProps, MPickerView, MPickerViewCascadedData, MPickerViewNormalData, MPickerViewNormalItem} from '../../../components'
+import {pageUrls} from '..'
+import {XItem, XList, XNavigationBar, XTitle} from '../../components'
 
 const shooterList: string[] = ['鲁班七号', '孙尚香', '虞姬', '马可波罗', '狄仁杰']
 const mageList: string[] = ['墨子', '武则天', '安琪拉', '妲己', '张良', '上官婉儿']
 
 const shooterData: MPickerViewNormalData = [
   shooterList.map<MPickerViewNormalItem>(
-    name => ({ label: name }),
+    name => ({label: name}),
   ),
 ]
 
 const shooterAndMageData: MPickerViewNormalData = [
   ...shooterData,
   mageList.map<MPickerViewNormalItem>(
-    name => ({ label: name }),
+    name => ({label: name}),
   ),
 ]
 
@@ -78,7 +78,7 @@ export default function PickerView() {
               value={String(normalPickerProps.visibleItemCount)}
               type='number'
               placeholder='输入数字'
-              style={{ textAlign: 'right' }}
+              style={{textAlign: 'right'}}
               onInput={e => {
                 setNormalPickerProps({
                   ...normalPickerProps,
@@ -94,7 +94,7 @@ export default function PickerView() {
             <Input
               value={normalPickerProps.separator as string}
               placeholder='输入分隔符'
-              style={{ textAlign: 'right' }}
+              style={{textAlign: 'right'}}
               onInput={e => {
                 setNormalPickerProps({
                   ...normalPickerProps,
@@ -156,7 +156,7 @@ export default function PickerView() {
               value={String(cascadedPickerProps.visibleItemCount)}
               type='number'
               placeholder='输入数字'
-              style={{ textAlign: 'right' }}
+              style={{textAlign: 'right'}}
               onInput={e => {
                 setCascadedPickerProps({
                   ...cascadedPickerProps,
@@ -172,7 +172,7 @@ export default function PickerView() {
             <Input
               value={cascadedPickerProps.separator as string}
               placeholder='输入分隔符'
-              style={{ textAlign: 'right' }}
+              style={{textAlign: 'right'}}
               onInput={e => {
                 setCascadedPickerProps({
                   ...cascadedPickerProps,

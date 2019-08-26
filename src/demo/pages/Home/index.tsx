@@ -1,10 +1,10 @@
 import './index.scss'
-import Taro, { useShareAppMessage } from '@tarojs/taro'
-import { ComponentName } from '../../../components'
-import { Image, Text, View } from '@tarojs/components'
-import { imgLogo } from '../../assets'
-import { pageUrls } from '..'
-import { XItem, XList, XNavigationBar } from '../../components'
+import Taro, {useShareAppMessage} from '@tarojs/taro'
+import {ComponentName} from '../../../components'
+import {Image, Text, View} from '@tarojs/components'
+import {imgLogo} from '../../assets'
+import {pageUrls} from '..'
+import {XItem, XList, XNavigationBar} from '../../components'
 
 interface ComponentInfo {
   name: ComponentName,

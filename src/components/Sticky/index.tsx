@@ -1,9 +1,9 @@
-import Taro, { useEffect, useState } from '@tarojs/taro'
-import { EventBus, wait } from 'vtils'
-import { functionalComponent } from '../component'
-import { MStickyDefaultProps, MStickyProps } from './props'
-import { useCustomNavigationBarFullHeight, useDisposer } from '../../hooks'
-import { View } from '@tarojs/components'
+import Taro, {useEffect, useState} from '@tarojs/taro'
+import {EventBus, wait} from 'vtils'
+import {functionalComponent} from '../component'
+import {MStickyDefaultProps, MStickyProps} from './props'
+import {useCustomNavigationBarFullHeight, useDisposer} from '../../hooks'
+import {View} from '@tarojs/components'
 
 const bus = new EventBus<{
   changeFixed: (stickyComponentIndex: number, sourceFixed: boolean) => any,
@@ -12,11 +12,11 @@ const bus = new EventBus<{
 let stickyComponentCount = -1
 
 function MSticky(props: MStickyProps) {
-  const [ fixed, setFixed ] = useState(false)
-  const [ contentHeight, setContentHeight ] = useState(0)
-  const [ stickyComponentIndex ] = useState(stickyComponentCount++)
-  const { customNavigationBarFullHeight } = useCustomNavigationBarFullHeight()
-  const { addDisposer } = useDisposer()
+  const [fixed, setFixed] = useState(false)
+  const [contentHeight, setContentHeight] = useState(0)
+  const [stickyComponentIndex] = useState(stickyComponentCount++)
+  const {customNavigationBarFullHeight} = useCustomNavigationBarFullHeight()
+  const {addDisposer} = useDisposer()
 
   addDisposer([
     () => { stickyComponentCount-- },
@@ -34,13 +34,13 @@ function MSticky(props: MStickyProps) {
       wx.createSelectorQuery()
         .in(this.$scope)
         .select('.m-sticky')
-        .boundingClientRect(({ height }) => {
+        .boundingClientRect(({height}) => {
           setContentHeight(height)
 
           // 监听吸顶内容的位置
           const top = -(this.index === 0 ? customNavigationBarFullHeight : height)
           const intersectionObserver = wx.createIntersectionObserver(this.$scope)
-          const relativeToViewport = intersectionObserver.relativeToViewport({ top }) as any
+          const relativeToViewport = intersectionObserver.relativeToViewport({top}) as any
           relativeToViewport.observe(
             '.m-sticky',
             (res: wx.ObserveCallbackResult) => {
@@ -61,21 +61,21 @@ function MSticky(props: MStickyProps) {
         })
         .exec()
     })
-  }, [customNavigationBarFullHeight])
+  }, [addDisposer, customNavigationBarFullHeight, stickyComponentIndex])
 
   return (
     <View
       className={`m-sticky ${fixed && 'm-sticky_fixed'} ${props.className}`}
-      style={contentHeight ? { height: `${contentHeight}px` } : {}}>
+      style={contentHeight ? {height: `${contentHeight}px`} : {}}>
       <View
         className='m-sticky__content'
-        style={{ top: `${customNavigationBarFullHeight}px` }}>
+        style={{top: `${customNavigationBarFullHeight}px`}}>
         {this.props.children}
       </View>
     </View>
   )
 }
 
-export { MStickyProps }
+export {MStickyProps}
 
 export default functionalComponent(MStickyDefaultProps)(MSticky)

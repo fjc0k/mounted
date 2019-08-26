@@ -1,6 +1,6 @@
 import * as ECharts from 'echarts'
-import { createProps, RequiredProp } from '../component'
-import { noop } from 'vtils'
+import {createProps, RequiredProp} from '../component'
+import {noop} from 'vtils'
 
 export const MEChartsDefaultProps = createProps({
   /**

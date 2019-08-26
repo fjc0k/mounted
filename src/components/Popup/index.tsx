@@ -1,9 +1,9 @@
 import MTransition from '../Transition'
-import Taro, { useEffect, useState } from '@tarojs/taro'
-import { functionalComponent } from '../component'
-import { MPopupDefaultProps, MPopupProps, Position, TransitionName } from './props'
-import { useCustomNavigationBarFullHeight, useZIndex } from '../../hooks'
-import { View } from '@tarojs/components'
+import Taro, {useEffect, useState} from '@tarojs/taro'
+import {functionalComponent} from '../component'
+import {MPopupDefaultProps, MPopupProps, Position, TransitionName} from './props'
+import {useCustomNavigationBarFullHeight, useZIndex} from '../../hooks'
+import {View} from '@tarojs/components'
 
 const positionToTransitionName: Record<Position, TransitionName> = {
   center: 'fade',
@@ -16,8 +16,8 @@ const positionToTransitionName: Record<Position, TransitionName> = {
 function MPopup(props: MPopupProps) {
   const [transitionEndCount, setTransitionEndCount] = useState(0)
   const [display, setDisplay] = useState(false)
-  const { zIndex } = useZIndex()
-  const { customNavigationBarFullHeight } = useCustomNavigationBarFullHeight()
+  const {zIndex} = useZIndex()
+  const {customNavigationBarFullHeight} = useCustomNavigationBarFullHeight()
 
   useEffect(
     () => {
@@ -54,7 +54,7 @@ function MPopup(props: MPopupProps) {
       style={{
         zIndex: zIndex,
         top: `${customNavigationBarFullHeight}px`,
-        ...(display ? {} : { display: 'none' }),
+        ...(display ? {} : {display: 'none'}),
       }}
       onTouchMove={e => e.stopPropagation()}>
       {props.noMask ? null : (
@@ -82,6 +82,6 @@ function MPopup(props: MPopupProps) {
   )
 }
 
-export { MPopupProps }
+export {MPopupProps}
 
 export default functionalComponent(MPopupDefaultProps)(MPopup)

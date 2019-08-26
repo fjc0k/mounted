@@ -1,17 +1,17 @@
 import './index.scss'
-import Taro, { useState } from '@tarojs/taro'
-import { functionalComponent } from '../component'
-import { last } from 'vtils'
-import { MNavigationBarDefaultProps, MNavigationBarProps } from './props'
-import { useCustomNavigationBarFullHeight, useDidEnter, useDidLeave } from '../../hooks'
-import { View } from '@tarojs/components'
+import Taro, {useState} from '@tarojs/taro'
+import {functionalComponent} from '../component'
+import {last} from 'vtils'
+import {MNavigationBarDefaultProps, MNavigationBarProps} from './props'
+import {useCustomNavigationBarFullHeight, useDidEnter, useDidLeave} from '../../hooks'
+import {View} from '@tarojs/components'
 
 function onlyPath(url: string) {
   return url ? url.split('?')[0].replace(/^\/+/, '') : ''
 }
 
 function MNavigationBar(props: MNavigationBarProps) {
-  const { setCustomNavigationBarFullHeight, resetCustomNavigationBarFullHeight } = useCustomNavigationBarFullHeight()
+  const {setCustomNavigationBarFullHeight, resetCustomNavigationBarFullHeight} = useCustomNavigationBarFullHeight()
   const [state, setState] = useState({
     verticalPadding: 0 as number,
     horizontalPadding: 0 as number,
@@ -70,7 +70,7 @@ function MNavigationBar(props: MNavigationBarProps) {
     <View className={`m-navigation-bar m-navigation-bar_${props.textStyle} ${props.className}`}>
       <View
         className='m-navigation-bar__placeholder'
-        style={{ height: `${state.navigationBarFullHeight}px` }}
+        style={{height: `${state.navigationBarFullHeight}px`}}
       />
       <View
         className='m-navigation-bar__container'
@@ -81,7 +81,7 @@ function MNavigationBar(props: MNavigationBarProps) {
           padding: `${state.navigationBarFullHeight - state.navigationBarHeight + state.verticalPadding}px ${state.horizontalPadding}px ${state.verticalPadding}px ${state.horizontalPadding}px`,
         }}>
         {!state.backButtonVisible && !state.homeButtonVisible ? null : (
-          <View className='m-navigation-bar__left' style={{ left: `${state.verticalPadding}px` }}>
+          <View className='m-navigation-bar__left' style={{left: `${state.verticalPadding}px`}}>
             <View
               className='m-navigation-bar__menu'
               style={{
@@ -115,6 +115,6 @@ function MNavigationBar(props: MNavigationBarProps) {
   )
 }
 
-export { MNavigationBarProps }
+export {MNavigationBarProps}
 
 export default functionalComponent(MNavigationBarDefaultProps)(MNavigationBar)

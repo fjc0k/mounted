@@ -1,9 +1,9 @@
 import MPickerView from '../PickerView'
 import MPopup from '../Popup'
-import Taro, { useEffect, useRef, useState } from '@tarojs/taro'
-import { functionalComponent } from '../component'
-import { MPickerDefaultProps, MPickerProps } from './props'
-import { View } from '@tarojs/components'
+import Taro, {useEffect, useRef, useState} from '@tarojs/taro'
+import {functionalComponent} from '../component'
+import {MPickerDefaultProps, MPickerProps} from './props'
+import {View} from '@tarojs/components'
 
 function MPicker(props: MPickerProps) {
   const [visible, setVisible] = useState<boolean>(false)
@@ -96,6 +96,6 @@ function MPicker(props: MPickerProps) {
 
 export * from './types'
 
-export { MPickerProps }
+export {MPickerProps}
 
 export default functionalComponent(MPickerDefaultProps)(MPicker)

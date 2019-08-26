@@ -1,10 +1,10 @@
 import dayjs from 'dayjs'
-import MPicker, { MPickerProps } from '../Picker'
-import Taro, { useEffect, useState } from '@tarojs/taro'
-import { functionalComponent } from '../component'
-import { MDatePickerDefaultProps, MDatePickerProps } from './props'
-import { memoize } from 'vtils'
-import { MPickerCascadedData } from '../Picker/types'
+import MPicker, {MPickerProps} from '../Picker'
+import Taro, {useEffect, useState} from '@tarojs/taro'
+import {functionalComponent} from '../component'
+import {MDatePickerDefaultProps, MDatePickerProps} from './props'
+import {memoize} from 'vtils'
+import {MPickerCascadedData} from '../Picker/types'
 
 const getDaysInMonth = memoize(
   (month: number, year: number) => {
@@ -41,14 +41,14 @@ function MDatePicker(props: MDatePickerProps) {
       const yearList: MPickerCascadedData = []
       const selectedIndexes: number[] = []
       for (let year = startYear; year <= endYear; year++) {
-        reject = props.filterYear && props.filterYear({ year: year })
+        reject = props.filterYear && props.filterYear({year: year})
         if (reject !== true) {
           if (year === props.selectedDate[0]) {
             selectedIndexes[0] = yearList.length
           }
           const monthList: MPickerCascadedData = []
           yearList.push({
-            label: String(useRawYearValue ? year : props.formatYear({ year })),
+            label: String(useRawYearValue ? year : props.formatYear({year})),
             value: year,
             children: monthList,
           })
@@ -64,7 +64,7 @@ function MDatePicker(props: MDatePickerProps) {
               }
               const dayList: MPickerCascadedData = []
               monthList.push({
-                label: String(useRawMonthValue ? month : props.formatMonth({ year, month })),
+                label: String(useRawMonthValue ? month : props.formatMonth({year, month})),
                 value: month,
                 children: dayList,
               })
@@ -80,7 +80,7 @@ function MDatePicker(props: MDatePickerProps) {
                     selectedIndexes[2] = dayList.length
                   }
                   dayList.push({
-                    label: String(useRawDayValue ? day : props.formatDay({ year, month, day })),
+                    label: String(useRawDayValue ? day : props.formatDay({year, month, day})),
                     value: day,
                   })
                 } else {
@@ -102,16 +102,7 @@ function MDatePicker(props: MDatePickerProps) {
       setData(yearList)
       setSelectedIndexes(selectedIndexes)
     },
-    [
-      props.startDate,
-      props.endDate,
-      props.filterYear,
-      props.filterMonth,
-      props.filterDay,
-      props.formatYear,
-      props.formatMonth,
-      props.formatDay,
-    ],
+    [props.startDate, props.endDate, props.filterYear, props.filterMonth, props.filterDay, props.formatYear, props.formatMonth, props.formatDay, props],
   )
 
   const handleConfirm: MPickerProps['onConfirm'] = selectedIndexes => {

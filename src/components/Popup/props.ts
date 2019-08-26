@@ -1,6 +1,6 @@
-import { createProps, RequiredProp } from '../component'
-import { MTransitionProps } from '../Transition'
-import { noop } from 'vtils'
+import {createProps, RequiredProp} from '../component'
+import {MTransitionProps} from '../Transition'
+import {noop} from 'vtils'
 
 export type TransitionName = MTransitionProps['name']
 export type Position = 'center' | 'top' | 'bottom' | 'right' | 'left'

@@ -1,7 +1,7 @@
-import Taro, { useEffect, useState } from '@tarojs/taro'
-import { functionalComponent } from '../component'
-import { MTransitionDefaultProps, MTransitionProps } from './props'
-import { View } from '@tarojs/components'
+import Taro, {useEffect, useState} from '@tarojs/taro'
+import {functionalComponent} from '../component'
+import {MTransitionDefaultProps, MTransitionProps} from './props'
+import {View} from '@tarojs/components'
 
 /** 过渡类型 */
 enum TransitionType {
@@ -20,7 +20,7 @@ function MTransition(props: MTransitionProps) {
       setType(props.visible ? TransitionType.Enter : TransitionType.Leave)
       setDisplay(display || props.visible)
     },
-    [props.visible],
+    [display, props.visible],
   )
 
   function handleAnimationEnd() {
@@ -39,7 +39,7 @@ function MTransition(props: MTransitionProps) {
         WebkitAnimationDuration: animationDuration,
         animationName: animationName,
         animationDuration: animationDuration,
-        ...(display ? {} : { display: 'none' }),
+        ...(display ? {} : {display: 'none'}),
       }}
       onAnimationEnd={handleAnimationEnd}>
       {props.children}
@@ -47,6 +47,6 @@ function MTransition(props: MTransitionProps) {
   )
 }
 
-export { MTransitionProps }
+export {MTransitionProps}
 
 export default functionalComponent(MTransitionDefaultProps)(MTransition)

@@ -1,22 +1,22 @@
-import Taro, { useShareAppMessage, useState } from '@tarojs/taro'
-import { MPicker, MPickerCascadedData, MPickerNormalData, MPickerNormalItem } from '../../../components'
-import { pageUrls } from '..'
-import { View } from '@tarojs/components'
-import { XItem, XList, XNavigationBar, XTitle } from '../../components'
+import Taro, {useShareAppMessage, useState} from '@tarojs/taro'
+import {MPicker, MPickerCascadedData, MPickerNormalData, MPickerNormalItem} from '../../../components'
+import {pageUrls} from '..'
+import {View} from '@tarojs/components'
+import {XItem, XList, XNavigationBar, XTitle} from '../../components'
 
 const shooterList: string[] = ['鲁班七号', '孙尚香', '虞姬', '马可波罗', '狄仁杰']
 const mageList: string[] = ['墨子', '武则天', '安琪拉', '妲己', '张良', '上官婉儿']
 
 const shooterData: MPickerNormalData = [
   shooterList.map<MPickerNormalItem>(
-    name => ({ label: name }),
+    name => ({label: name}),
   ),
 ]
 
 const shooterAndMageData: MPickerNormalData = [
   ...shooterData,
   mageList.map<MPickerNormalItem>(
-    name => ({ label: name }),
+    name => ({label: name}),
   ),
 ]
 

@@ -1,6 +1,6 @@
-import { createProps, RequiredProp } from '../component'
-import { MPickerViewDefaultProps } from '../PickerView/props'
-import { noop, omit } from 'vtils'
+import {createProps, RequiredProp} from '../component'
+import {MPickerViewDefaultProps} from '../PickerView/props'
+import {noop, omit} from 'vtils'
 
 export const MPickerDefaultProps = {
   ...omit(

@@ -1,5 +1,5 @@
-import { useEffectOnce } from './useEffectOnce'
-import { useState } from '@tarojs/taro'
+import {useEffectOnce} from './useEffectOnce'
+import {useState} from '@tarojs/taro'
 
 let zIndex = 5000
 
@@ -9,5 +9,5 @@ let zIndex = 5000
 export function useZIndex() {
   useEffectOnce(() => { zIndex++ })
   const [zIndexValue] = useState(zIndex)
-  return { zIndex: zIndexValue }
+  return {zIndex: zIndexValue}
 }

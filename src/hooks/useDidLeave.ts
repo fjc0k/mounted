@@ -1,5 +1,5 @@
-import { useDidHide } from '@tarojs/taro'
-import { useEffectOnce } from './useEffectOnce'
+import {useDidHide} from '@tarojs/taro'
+import {useEffectOnce} from './useEffectOnce'
 
 /**
  * 离开页面。

@@ -1,8 +1,8 @@
-import Taro, { useShareAppMessage, useState } from '@tarojs/taro'
-import { Image, View } from '@tarojs/components'
-import { MDatePicker } from '../../../components'
-import { pageUrls } from '..'
-import { XItem, XList, XNavigationBar, XTitle } from '../../components'
+import Taro, {useShareAppMessage, useState} from '@tarojs/taro'
+import {Image, View} from '@tarojs/components'
+import {MDatePicker} from '../../../components'
+import {pageUrls} from '..'
+import {XItem, XList, XNavigationBar, XTitle} from '../../components'
 
 const codeImg = 'https://ae01.alicdn.com/kf/Ua09c76aa494640e89c84432e7ad02a381.png'
 
@@ -24,13 +24,13 @@ export default function DatePicker() {
           selectedDate={selectedDate}
           startDate='2010-2-2'
           endDate='2020-10-1'
-          formatYear={({ year }) => `${year}年`}
-          formatDay={({ day }) => `${day}日`}
-          filterYear={({ year }) => {
+          formatYear={({year}) => `${year}年`}
+          formatDay={({day}) => `${day}日`}
+          filterYear={({year}) => {
             // 过滤掉 2011 年和 2019 年
             return year === 2011 || year === 2019
           }}
-          filterMonth={({ month }) => {
+          filterMonth={({month}) => {
             // 过滤掉 3, 6, 9, 12 月份
             return month % 3 === 0
           }}
@@ -45,7 +45,7 @@ export default function DatePicker() {
         <XItem>
           <Image
             src={codeImg}
-            style={{ width: '100%' }}
+            style={{width: '100%'}}
             mode='widthFix'
             onClick={() => {
               Taro.previewImage({

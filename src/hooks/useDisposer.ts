@@ -1,6 +1,6 @@
-import { Disposer, DisposerItem } from 'vtils'
-import { useDispose } from './useDispose'
-import { useState } from '@tarojs/taro'
+import {Disposer, DisposerItem} from 'vtils'
+import {useDispose} from './useDispose'
+import {useState} from '@tarojs/taro'
 
 /**
  * `vtils.Disposer` 的 hook 版本。

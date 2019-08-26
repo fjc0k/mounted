@@ -1,10 +1,10 @@
 import './index.scss'
-import Taro, { useShareAppMessage, useState } from '@tarojs/taro'
-import { MTransition, MTransitionProps } from '../../../components'
-import { pageUrls } from '..'
-import { useCustomNavigationBarFullHeight } from '../../../hooks'
-import { View } from '@tarojs/components'
-import { XNavigationBar } from '../../components'
+import Taro, {useShareAppMessage, useState} from '@tarojs/taro'
+import {MTransition, MTransitionProps} from '../../../components'
+import {pageUrls} from '..'
+import {useCustomNavigationBarFullHeight} from '../../../hooks'
+import {View} from '@tarojs/components'
+import {XNavigationBar} from '../../components'
 
 type TransitionName = MTransitionProps['name']
 
@@ -36,7 +36,7 @@ const transitionNameList: TransitionName[] = [
 export default function Transition() {
   const [transitionName, setTransitionName] = useState<TransitionName>('fade')
   const [visible, setVisible] = useState<boolean>(false)
-  const { customNavigationBarFullHeight } = useCustomNavigationBarFullHeight()
+  const {customNavigationBarFullHeight} = useCustomNavigationBarFullHeight()
 
   useShareAppMessage(() => ({
     title: 'Transition',
@@ -53,7 +53,7 @@ export default function Transition() {
       <XNavigationBar>Transition</XNavigationBar>
       <View
         className='sideBar'
-        style={{ top: `${customNavigationBarFullHeight}px` }}>
+        style={{top: `${customNavigationBarFullHeight}px`}}>
         {transitionNameList.map(name => (
           <View
             key={name}

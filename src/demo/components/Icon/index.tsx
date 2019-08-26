@@ -1,7 +1,7 @@
 import './index.scss'
 import Taro from '@tarojs/taro'
-import { createProps, functionalComponent, RequiredProp } from '../../../components/component'
-import { View } from '@tarojs/components'
+import {createProps, functionalComponent, RequiredProp} from '../../../components/component'
+import {View} from '@tarojs/components'
 
 const XIconDefaultProps = createProps({
   name: '' as any as RequiredProp<'rightArrow' | 'home'>,

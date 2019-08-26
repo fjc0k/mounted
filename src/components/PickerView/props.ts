@@ -1,6 +1,6 @@
-import { createProps, RequiredProp } from '../component'
-import { Merge, noop } from 'vtils'
-import { MPickerViewCascadedData, MPickerViewData, MPickerViewNormalData } from './types'
+import {createProps, RequiredProp} from '../component'
+import {Merge, noop} from 'vtils'
+import {MPickerViewCascadedData, MPickerViewData, MPickerViewNormalData} from './types'
 
 export const MPickerViewDefaultProps = createProps({
   /**

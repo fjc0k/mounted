@@ -1,9 +1,9 @@
 import './index.scss'
-import Taro, { useShareAppMessage } from '@tarojs/taro'
-import { MECharts, MEChartsProps } from '../../../components'
-import { pageUrls } from '..'
-import { View } from '@tarojs/components'
-import { XItem, XList, XNavigationBar, XTitle } from '../../components'
+import Taro, {useShareAppMessage} from '@tarojs/taro'
+import {MECharts, MEChartsProps} from '../../../components'
+import {pageUrls} from '..'
+import {View} from '@tarojs/components'
+import {XItem, XList, XNavigationBar, XTitle} from '../../components'
 
 const getECharts = () => require('echarts/dist/echarts.min.js')
 
@@ -80,7 +80,7 @@ const radarOptions: MEChartsProps['options'] = {
     {
       name: '跳',
       max: 500,
-    } ],
+    }],
   },
   series: [{
     name: '能力',

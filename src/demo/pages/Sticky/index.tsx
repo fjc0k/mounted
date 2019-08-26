@@ -1,8 +1,8 @@
-import Taro, { useShareAppMessage } from '@tarojs/taro'
-import { MSticky } from '../../../components'
-import { pageUrls } from '..'
-import { View } from '@tarojs/components'
-import { XItem, XList, XNavigationBar, XTitle } from '../../components'
+import Taro, {useShareAppMessage} from '@tarojs/taro'
+import {MSticky} from '../../../components'
+import {pageUrls} from '..'
+import {View} from '@tarojs/components'
+import {XItem, XList, XNavigationBar, XTitle} from '../../components'
 
 enum HeroType { 射手, 法师, 战士, 刺客 }
 

@@ -1,10 +1,10 @@
-import Taro, { useEffect, useMemo, useRef, useState } from '@tarojs/taro'
-import { Block, PickerView, PickerViewColumn, View } from '@tarojs/components'
-import { clamp, isArray, isNumber, parseCSSValue } from 'vtils'
-import { functionalComponent } from '../component'
-import { MPickerViewCascadedItem, MPickerViewCascadedList, MPickerViewList, MPickerViewNormalData, MPickerViewNormalList } from './types'
-import { MPickerViewDefaultProps, MPickerViewProps } from './props'
-import { usePrevious } from '../../hooks'
+import Taro, {useEffect, useMemo, useRef, useState} from '@tarojs/taro'
+import {Block, PickerView, PickerViewColumn, View} from '@tarojs/components'
+import {clamp, isArray, isNumber, parseCSSValue} from 'vtils'
+import {functionalComponent} from '../component'
+import {MPickerViewCascadedItem, MPickerViewCascadedList, MPickerViewList, MPickerViewNormalData, MPickerViewNormalList} from './types'
+import {MPickerViewDefaultProps, MPickerViewProps} from './props'
+import {usePrevious} from '../../hooks'
 
 function MPickerView(props: MPickerViewProps) {
   // 选中条目的索引列表
@@ -18,8 +18,8 @@ function MPickerView(props: MPickerViewProps) {
   // 样式
   const styles = useMemo<Record<'view' | 'indicator', React.CSSProperties>>(
     () => {
-      const { visibleItemCount, itemHeight } = props
-      const { value: pureItemHeight, unit } = parseCSSValue(itemHeight)
+      const {visibleItemCount, itemHeight} = props
+      const {value: pureItemHeight, unit} = parseCSSValue(itemHeight)
       const viewHeight = `${pureItemHeight * visibleItemCount}${unit}`
       return {
         view: {
@@ -30,12 +30,12 @@ function MPickerView(props: MPickerViewProps) {
         },
       }
     },
-    [props.visibleItemCount, props.itemHeight],
+    [props],
   )
   // 分隔符
   const separators = useMemo<any[]>(
     () => {
-      const { separator } = props
+      const {separator} = props
       const separatorIsArray = isArray(separator)
       const normalizedSeparator = []
       for (let i = 0; i < normalizedData.length - 1; i++) {
@@ -51,7 +51,7 @@ function MPickerView(props: MPickerViewProps) {
           : separator,
       )
     },
-    [props.separator, normalizedData.length],
+    [props, normalizedData.length],
   )
   const fullSelectedIndexes = useMemo<number[]>(
     () => {
@@ -61,12 +61,13 @@ function MPickerView(props: MPickerViewProps) {
       }
       return selectedIndexes
     },
-    [...localSelectedIndexes],
+    [localSelectedIndexes],
   )
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   function update(nextProps: Pick<MPickerViewProps, 'data' | 'selectedIndexes'>, prevProps: Pick<MPickerViewProps, 'data' | 'selectedIndexes'>, emit = false) {
-    const { data, selectedIndexes } = nextProps
-    const { data: prevData, selectedIndexes: prevSelectedIndexes } = prevProps
+    const {data, selectedIndexes} = nextProps
+    const {data: prevData, selectedIndexes: prevSelectedIndexes} = prevProps
     isCascaded.current = !isArray(data[0])
     const shouldRestoreSelectedIndex = data !== prevData
     const normalizedData: MPickerViewNormalData = []
@@ -123,7 +124,7 @@ function MPickerView(props: MPickerViewProps) {
         },
       )
     },
-    [props.data, ...props.selectedIndexes],
+    [prevData, prevSelectedIndexes, props.data, props.selectedIndexes, update],
   )
 
   function handleChange(e: any) {
@@ -191,6 +192,6 @@ function MPickerView(props: MPickerViewProps) {
 
 export * from './types'
 
-export { MPickerViewProps }
+export {MPickerViewProps}
 
 export default functionalComponent(MPickerViewDefaultProps)(MPickerView)

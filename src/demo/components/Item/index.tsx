@@ -1,9 +1,9 @@
 import './index.scss'
 import Taro from '@tarojs/taro'
 import XIcon from '../Icon'
-import { createProps, functionalComponent } from '../../../components/component'
-import { noop } from 'vtils'
-import { Text, View } from '@tarojs/components'
+import {createProps, functionalComponent} from '../../../components/component'
+import {noop} from 'vtils'
+import {Text, View} from '@tarojs/components'
 
 const XItemDefaultProps = createProps({
   title: '' as string,
@@ -23,8 +23,11 @@ function XItem(props: XItemProps) {
       hoverClass={props.feedback ? 'active' : 'none'}
       onClick={props.onClick}>
       <View className='title'>
-        {props.title}
-        {props.children}
+        {
+          props.title === ''
+            ? props.children
+            : props.title
+        }
       </View>
       <View className='extra'>
         {props.extra && <Text>{props.extra}</Text>}

@@ -1,6 +1,6 @@
-import { EventBus } from 'vtils'
-import { useDispose } from './useDispose'
-import { useState } from '@tarojs/taro'
+import {EventBus} from 'vtils'
+import {useDispose} from './useDispose'
+import {useState} from '@tarojs/taro'
 
 let customNavigationBarFullHeight = 0
 

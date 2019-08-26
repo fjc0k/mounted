@@ -1,4 +1,4 @@
-import { useEffectOnce } from './useEffectOnce'
+import {useEffectOnce} from './useEffectOnce'
 
 /**
  * 在组件销毁时触发回调。

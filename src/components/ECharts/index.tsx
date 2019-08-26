@@ -1,8 +1,8 @@
-import Taro, { useEffect, useRef } from '@tarojs/taro'
-import { Canvas } from '@tarojs/components'
-import { CanvasAdapter, wrapTouch } from './utils'
-import { functionalComponent } from '../component'
-import { MEChartsDefaultProps, MEChartsProps } from './props'
+import Taro, {useEffect, useRef} from '@tarojs/taro'
+import {Canvas} from '@tarojs/components'
+import {CanvasAdapter, wrapTouch} from './utils'
+import {functionalComponent} from '../component'
+import {MEChartsDefaultProps, MEChartsProps} from './props'
 
 const canvasId = 'canvas'
 
@@ -11,7 +11,7 @@ function MECharts(props: MEChartsProps) {
 
   useEffect(
     () => {
-      const { getECharts, options } = props
+      const {getECharts, options} = props
       const echarts = getECharts()
       const ctx = Taro.createCanvasContext(canvasId, this.$scope)
       const canvas = new CanvasAdapter(ctx)
@@ -26,7 +26,7 @@ function MECharts(props: MEChartsProps) {
         })
         .exec()
     },
-    [],
+    [props],
   )
 
   function handleTouchStart(e: any) {
@@ -88,6 +88,6 @@ function MECharts(props: MEChartsProps) {
   )
 }
 
-export { MEChartsProps }
+export {MEChartsProps}
 
 export default functionalComponent(MEChartsDefaultProps)(MECharts)

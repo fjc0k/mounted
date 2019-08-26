@@ -1,4 +1,4 @@
-import { MPickerNormalItem } from '../Picker/types'
+import {MPickerNormalItem} from '../Picker/types'
 
 /** 条目 */
 export type MSinglePickerItem = MPickerNormalItem
