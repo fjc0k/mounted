@@ -1,10 +1,10 @@
-import { useEffect } from '@tarojs/taro'
+import { EffectCallback, useEffect } from '@tarojs/taro'
 
 /**
- * 等同于 `useEffect(effect, [])`。
+ * 等同于 `useEffect(callback, [])`。
  *
- * @param effect 副作用
+ * @param callback 回调
  */
-export function useEffectOnce(effect: () => any) {
-  useEffect(effect, [])
+export function useEffectOnce(callback: EffectCallback) {
+  useEffect(callback, [])
 }

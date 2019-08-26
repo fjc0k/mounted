@@ -1,4 +1,5 @@
-import { useEffect, useState } from '@tarojs/taro'
+import { useEffectOnce } from './useEffectOnce'
+import { useState } from '@tarojs/taro'
 
 let zIndex = 5000
 
@@ -6,7 +7,7 @@ let zIndex = 5000
  * 获取一个全局唯一的 `zIndex` 值。
  */
 export function useZIndex() {
-  const [zIndexValue] = useState(zIndex + 1)
-  useEffect(() => { zIndex++ }, [])
+  useEffectOnce(() => { zIndex++ })
+  const [zIndexValue] = useState(zIndex)
   return { zIndex: zIndexValue }
 }
