@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.1.0"></a>
+# [1.1.0](https://github.com/fjc0k/mounted/compare/v1.0.3...v1.1.0) (2019-08-26)
+
+
+### Features
+
+* PickerView 组件 hook 化 ([d18d5c7](https://github.com/fjc0k/mounted/commit/d18d5c7))
+* 优化 hooks ([4ddff81](https://github.com/fjc0k/mounted/commit/4ddff81))
+* 完成 demo 页面的 hook 化 ([d4346a2](https://github.com/fjc0k/mounted/commit/d4346a2))
+* 完成组件的 hook 化 ([5148b25](https://github.com/fjc0k/mounted/commit/5148b25))
+* 导出组件的 props 类型定义 ([fd7e816](https://github.com/fjc0k/mounted/commit/fd7e816))
+* 新增 NavigationBar 组件 ([33341bd](https://github.com/fjc0k/mounted/commit/33341bd))
+* 部分组件 hooks 化 ([7cbfd8e](https://github.com/fjc0k/mounted/commit/7cbfd8e))
+
+
+
 <a name="1.0.3"></a>
 ## [1.0.3](https://github.com/fjc0k/mounted/compare/v1.0.2...v1.0.3) (2019-08-21)
 
