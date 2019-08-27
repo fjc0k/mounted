@@ -1,4 +1,5 @@
 // @index('./*', (pp, cc) => `export * from '${pp.path}'`)
+export * from './createGlobalStateHook'
 export * from './useCustomNavBarFullHeight'
 export * from './useDidEnter'
 export * from './useDidLeave'

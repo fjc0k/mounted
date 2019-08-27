@@ -1,32 +1,16 @@
-import {EventBus} from 'vtils'
-import {useDispose} from './useDispose'
-import {useState} from '@tarojs/taro'
+import {createGlobalStateHook} from './createGlobalStateHook'
 
-let customNavigationBarFullHeight = 0
-
-const bus = new EventBus<{
-  setCustomNavigationBarFullHeight: (height: number) => void,
-}>()
-
-bus.on('setCustomNavigationBarFullHeight', height => {
-  customNavigationBarFullHeight = height
-})
+const useGlobalHeight = createGlobalStateHook<number>()
 
 export function useCustomNavigationBarFullHeight() {
-  const [height, setHeight] = useState(customNavigationBarFullHeight)
-  useDispose(
-    bus.on(
-      'setCustomNavigationBarFullHeight',
-      height => setHeight(height),
-    ),
-  )
+  const [height, setHeight] = useGlobalHeight(0)
   return {
     customNavigationBarFullHeight: height,
     setCustomNavigationBarFullHeight(height: number) {
-      bus.emit('setCustomNavigationBarFullHeight', height)
+      setHeight(height)
     },
     resetCustomNavigationBarFullHeight() {
-      bus.emit('setCustomNavigationBarFullHeight', 0)
+      setHeight(0)
     },
   }
 }
