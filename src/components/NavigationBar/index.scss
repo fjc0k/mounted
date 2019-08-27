@@ -23,8 +23,8 @@
     align-items: center;
     justify-content: space-around;
     font-weight: bold;
-    font-size: 18px;
-    border: 1px solid;
+    font-size: transformPx(18);
+    border: transformPx(0.5) solid;
 
     &-left, &-right {
       flex-grow: 1;
@@ -33,14 +33,14 @@
 
     &-divider {
       flex-shrink: 0;
-      width: 1px;
+      width: transformPx(0.5);
       height: 1em;
     }
   }
 
   &__title {
     font-weight: bold;
-    font-size: 18px;
+    font-size: transformPx(18);
   }
 
   &_white &__menu {
