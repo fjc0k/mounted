@@ -1,4 +1,3 @@
-import './index.scss'
 import Taro, {useState} from '@tarojs/taro'
 import {functionalComponent} from '../component'
 import {last} from 'vtils'
