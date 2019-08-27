@@ -3710,9 +3710,9 @@ escape-string-regexp@^1.0.2, escape-string-regexp@^1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/escape-string-regexp/-/escape-string-regexp-1.0.5.tgz#1b61c0562190a8dff6ae3bb2cf0200ca130b86d4"
 
-eslint-config-io@^0.7.0:
-  version "0.7.0"
-  resolved "https://registry.yarnpkg.com/eslint-config-io/-/eslint-config-io-0.7.0.tgz#23a18e2f8bf47efcfe171a0310a32cb1592790f1"
+eslint-config-io@^0.8.0:
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/eslint-config-io/-/eslint-config-io-0.8.0.tgz#ccb494081fb5d5802501bb28ecf44785be47a693"
   dependencies:
     "@typescript-eslint/eslint-plugin" "^1.12.0"
     "@typescript-eslint/parser" "^1.12.0"

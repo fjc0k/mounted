@@ -35,7 +35,7 @@ const transitionNameList: TransitionName[] = [
 
 export default function Transition() {
   const [transitionName, setTransitionName] = useState<TransitionName>('fade')
-  const [visible, setVisible] = useState<boolean>(false)
+  const [visible, setVisible] = useState<boolean>(true)
   const {customNavigationBarFullHeight} = useCustomNavigationBarFullHeight()
 
   useShareAppMessage(() => ({
@@ -67,6 +67,7 @@ export default function Transition() {
       </View>
       <MTransition
         name={transitionName}
+        duration={1000}
         visible={visible}>
         <View className='poem'>
           {poem.map(sentence => (
