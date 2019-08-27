@@ -20,7 +20,7 @@
 
   &__menu {
     display: flex;
-    align-items: center;
+    align-items: stretch;
     justify-content: space-around;
     font-weight: bold;
     font-size: transformPx(18);
@@ -28,13 +28,25 @@
 
     &-left, &-right {
       flex-grow: 1;
-      text-align: center;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     &-divider {
       flex-shrink: 0;
-      width: transformPx(0.5);
-      height: 1em;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &::after {
+        content: '';
+        display: block;
+        width: transformPx(0.5);
+        height: 1em;
+      }
     }
   }
 
@@ -48,7 +60,7 @@
     border-color: rgba(white, 0.25);
   }
 
-  &_white &__menu-divider {
+  &_white &__menu-divider::after {
     background: rgba(white, 0.25);
   }
 
@@ -57,7 +69,7 @@
     border-color: rgba(black, 0.25);
   }
 
-  &_black &__menu-divider {
+  &_black &__menu-divider::after {
     background: rgba(black, 0.15);
   }
 }
