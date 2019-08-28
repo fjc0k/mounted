@@ -29,6 +29,7 @@
     text-align: center;
     margin: 0 transformPx(15);
     font-size: transformPx(19);
+    color: #000;
     @include ellipsis;
   }
 
