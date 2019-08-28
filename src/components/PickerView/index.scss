@@ -1,6 +1,8 @@
 @import '../../styles/settings.scss';
 
 .m-picker-view {
+  color: #000;
+
   &_disabled {
     pointer-events: none;
   }
