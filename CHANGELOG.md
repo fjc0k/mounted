@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.2.1"></a>
+## [1.2.1](https://github.com/fjc0k/mounted/compare/v1.2.0...v1.2.1) (2019-08-28)
+
+
+### Bug Fixes
+
+* **PickerView:** 固定颜色 ([c4ef309](https://github.com/fjc0k/mounted/commit/c4ef309))
+
+
+
 <a name="1.2.0"></a>
 # [1.2.0](https://github.com/fjc0k/mounted/compare/v1.1.3...v1.2.0) (2019-08-27)
 
