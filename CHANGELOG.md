@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.2.2"></a>
+## [1.2.2](https://github.com/fjc0k/mounted/compare/v1.2.1...v1.2.2) (2019-08-28)
+
+
+### Bug Fixes
+
+* **Picker:** 设置标题的颜色 ([8b7d929](https://github.com/fjc0k/mounted/commit/8b7d929))
+
+
+
 <a name="1.2.1"></a>
 ## [1.2.1](https://github.com/fjc0k/mounted/compare/v1.2.0...v1.2.1) (2019-08-28)
 
