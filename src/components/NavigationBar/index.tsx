@@ -30,6 +30,13 @@ function MNavigationBar(props: MNavigationBarProps) {
   useDidEnter(() => {
     const menuRect = Taro.getMenuButtonBoundingClientRect()
     const sysInfo = Taro.getSystemInfoSync()
+
+    // 部分情况下 statusBarHeight 可能不存在或为 0，需手动计算，如：
+    // 苹果手机下开启热点、录屏
+    if (!sysInfo.statusBarHeight) {
+      sysInfo.statusBarHeight = sysInfo.screenHeight - sysInfo.windowHeight
+    }
+
     const verticalPadding = menuRect.top - sysInfo.statusBarHeight
     const horizontalPadding = sysInfo.windowWidth - menuRect.right
     const height = menuRect.height + verticalPadding * 2
@@ -80,7 +87,7 @@ function MNavigationBar(props: MNavigationBarProps) {
           padding: `${state.navigationBarFullHeight - state.navigationBarHeight + state.verticalPadding}px ${state.horizontalPadding}px ${state.verticalPadding}px ${state.horizontalPadding}px`,
         }}>
         {!state.backButtonVisible && !state.homeButtonVisible ? null : (
-          <View className='m-navigation-bar__left' style={{left: `${state.verticalPadding}px`}}>
+          <View className='m-navigation-bar__left' style={{left: `${state.horizontalPadding}px`}}>
             <View
               className='m-navigation-bar__menu'
               style={{
