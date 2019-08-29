@@ -1,28 +1,28 @@
 import {MPickerViewCascadedData, MPickerViewCascadedItem, MPickerViewCascadedList, MPickerViewData, MPickerViewItem, MPickerViewList, MPickerViewNormalData, MPickerViewNormalItem, MPickerViewNormalList} from '../PickerView/types'
 
 /** 普通条目 */
-export type MPickerNormalItem = MPickerViewNormalItem
+export type MPickerNormalItem<P = {}> = MPickerViewNormalItem<P>
 
 /** 普通列表 */
-export type MPickerNormalList = MPickerViewNormalList
+export type MPickerNormalList<P = {}> = MPickerViewNormalList<P>
 
 /** 普通数据 */
-export type MPickerNormalData = MPickerViewNormalData
+export type MPickerNormalData<P = {}> = MPickerViewNormalData<P>
 
 /** 级联条目 */
-export type MPickerCascadedItem = MPickerViewCascadedItem
+export type MPickerCascadedItem<P = {}> = MPickerViewCascadedItem<P>
 
 /** 级联列表 */
-export type MPickerCascadedList = MPickerViewCascadedList
+export type MPickerCascadedList<P = {}> = MPickerViewCascadedList<P>
 
 /** 级联数据 */
-export type MPickerCascadedData = MPickerViewCascadedData
+export type MPickerCascadedData<P = {}> = MPickerViewCascadedData<P>
 
 /** 条目 */
-export type MPickerItem = MPickerViewItem
+export type MPickerItem<P = {}> = MPickerViewItem<P>
 
 /** 列表 */
-export type MPickerList = MPickerViewList
+export type MPickerList<P = {}> = MPickerViewList<P>
 
 /** 数据 */
-export type MPickerData = MPickerViewData
+export type MPickerData<P = {}> = MPickerViewData<P>
