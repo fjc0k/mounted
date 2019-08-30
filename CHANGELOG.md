@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.3.0"></a>
+# [1.3.0](https://github.com/fjc0k/mounted/compare/v1.2.4...v1.3.0) (2019-08-30)
+
+
+### Features
+
+* 从 Picker 中提取 PickerHeader 作为独立的组件 ([6302a67](https://github.com/fjc0k/mounted/commit/6302a67))
+* 新增 BottomSheet 组件 ([349c339](https://github.com/fjc0k/mounted/commit/349c339))
+
+
+
 <a name="1.2.4"></a>
 ## [1.2.4](https://github.com/fjc0k/mounted/compare/v1.2.3...v1.2.4) (2019-08-29)
 
