@@ -1,4 +1,5 @@
 import {createProps, RequiredProp} from '../component'
+import {MPickerHeaderDefaultProps} from '../PickerHeader/props'
 import {MPickerViewDefaultProps} from '../PickerView/props'
 import {noop, omit} from 'vtils'
 
@@ -7,6 +8,10 @@ export const MPickerDefaultProps = {
     MPickerViewDefaultProps,
     ['onChange', 'onPickEnd', 'onPickStart'],
   ),
+  ...omit(
+    MPickerHeaderDefaultProps,
+    ['onCancel', 'onConfirm'],
+  ),
   ...createProps({
     /**
      * 是否可点击遮罩关闭。
@@ -14,34 +19,6 @@ export const MPickerDefaultProps = {
      * @default true
      */
     maskClosable: true as boolean,
-
-    /**
-     * 标题。
-     *
-     * @default ''
-     */
-    title: '' as string,
-
-    /**
-     * 是否无取消按钮。
-     *
-     * @default false
-     */
-    noCancel: false as boolean,
-
-    /**
-     * 取消文字。
-     *
-     * @default '取消'
-     */
-    cancelText: '取消' as string,
-
-    /**
-     * 确定文字。
-     *
-     * @default '确定'
-     */
-    confirmText: '确定' as string,
 
     /**
      * 点击取消事件。

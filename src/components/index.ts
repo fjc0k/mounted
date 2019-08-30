@@ -3,6 +3,7 @@ export {default as MDatePicker} from './DatePicker'
 export {default as MECharts} from './ECharts'
 export {default as MNavigationBar} from './NavigationBar'
 export {default as MPicker} from './Picker'
+export {default as MPickerHeader} from './PickerHeader'
 export {default as MPickerView} from './PickerView'
 export {default as MPopup} from './Popup'
 export {default as MSinglePicker} from './SinglePicker'
@@ -17,6 +18,7 @@ export * from './ECharts/props'
 export * from './NavigationBar/props'
 export * from './Picker/props'
 export * from './Picker/types'
+export * from './PickerHeader/props'
 export * from './PickerView/props'
 export * from './PickerView/types'
 export * from './Popup/props'
@@ -33,6 +35,7 @@ export type ComponentName = (
   'ECharts' |
   'NavigationBar' |
   'Picker' |
+  'PickerHeader' |
   'PickerView' |
   'Popup' |
   'SinglePicker' |

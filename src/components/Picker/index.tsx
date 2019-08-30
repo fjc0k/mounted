@@ -1,3 +1,4 @@
+import MPickerHeader from '../PickerHeader'
 import MPickerView from '../PickerView'
 import MPopup from '../Popup'
 import Taro, {useEffect, useRef, useState} from '@tarojs/taro'
@@ -66,21 +67,11 @@ function MPicker(props: MPickerProps) {
         maskClosable={props.maskClosable}
         onVisibleChange={handleVisibleChange}>
         <View className='m-picker'>
-          <View className='m-picker__header'>
-            <View
-              className={`m-picker__cancel ${props.noCancel && 'm-picker__cancel_hidden'}`}
-              onClick={handleCancelClick}>
-              {props.cancelText}
-            </View>
-            <View className='m-picker__title'>
-              {props.title}
-            </View>
-            <View
-              className='m-picker__confirm'
-              onClick={handleConfirmClick}>
-              {props.confirmText}
-            </View>
-          </View>
+          <MPickerHeader
+            {...props}
+            onCancel={handleCancelClick}
+            onConfirm={handleConfirmClick}
+          />
           <MPickerView
             {...props}
             selectedIndexes={selectedIndexes}
