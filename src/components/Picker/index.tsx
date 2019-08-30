@@ -1,7 +1,7 @@
 import MPickerHeader from '../PickerHeader'
 import MPickerView from '../PickerView'
-import MPopup from '../Popup'
 import Taro, {useEffect, useRef, useState} from '@tarojs/taro'
+import XBottomSheet from '../BottomSheet'
 import {functionalComponent} from '../component'
 import {MPickerDefaultProps, MPickerProps} from './props'
 import {View} from '@tarojs/components'
@@ -17,10 +17,6 @@ function MPicker(props: MPickerProps) {
     },
     [props.selectedIndexes],
   )
-
-  function handleTriggerClick() {
-    setVisible(!visible)
-  }
 
   function handleVisibleChange(visible: boolean) {
     setVisible(visible)
@@ -57,15 +53,8 @@ function MPicker(props: MPickerProps) {
   }
 
   return props.disabled ? props.children : (
-    <View className={props.className}>
-      <View onClick={handleTriggerClick}>
-        {props.children}
-      </View>
-      <MPopup
-        position='bottom'
-        visible={visible}
-        maskClosable={props.maskClosable}
-        onVisibleChange={handleVisibleChange}>
+    <XBottomSheet
+      renderMain={(
         <View className='m-picker'>
           <MPickerHeader
             {...props}
@@ -80,8 +69,11 @@ function MPicker(props: MPickerProps) {
             onChange={handlePickChange}
           />
         </View>
-      </MPopup>
-    </View>
+      )}
+      visible={visible}
+      onVisibleChange={handleVisibleChange}>
+      {props.children}
+    </XBottomSheet>
   )
 }
 

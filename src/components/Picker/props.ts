@@ -1,4 +1,5 @@
 import {createProps, RequiredProp} from '../component'
+import {MBottomSheetDefaultProps} from '../BottomSheet/props'
 import {MPickerHeaderDefaultProps} from '../PickerHeader/props'
 import {MPickerViewDefaultProps} from '../PickerView/props'
 import {noop, omit} from 'vtils'
@@ -12,14 +13,11 @@ export const MPickerDefaultProps = {
     MPickerHeaderDefaultProps,
     ['onCancel', 'onConfirm'],
   ),
+  ...omit(
+    MBottomSheetDefaultProps,
+    ['renderMain'],
+  ),
   ...createProps({
-    /**
-     * 是否可点击遮罩关闭。
-     *
-     * @default true
-     */
-    maskClosable: true as boolean,
-
     /**
      * 点击取消事件。
      *

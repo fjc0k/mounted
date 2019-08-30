@@ -10407,9 +10407,9 @@ vtils@^0.85.0:
   dependencies:
     is-chinese-phone-number "^0.1.9"
 
-vtils@^2.22.0:
-  version "2.22.0"
-  resolved "https://registry.yarnpkg.com/vtils/-/vtils-2.22.0.tgz#76a6b20c795e0fa980cbfc56104d82cfb125367d"
+vtils@^2.24.0:
+  version "2.24.0"
+  resolved "https://registry.yarnpkg.com/vtils/-/vtils-2.24.0.tgz#be16dd9d7892299893fbab9bfb4baee80cfef978"
 
 walkdir@0.0.11:
   version "0.0.11"

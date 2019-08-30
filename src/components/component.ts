@@ -1,11 +1,7 @@
 import Taro from '@tarojs/taro'
-import {Merge, Omit} from 'vtils'
+import {Merge, PartialBy} from 'vtils'
 
-type PartialBy<T, K extends keyof T> = Omit<T, K> & Partial<Pick<T, K>>
-type RequiredProp<T = any> = {
-  __REQUIRED__: true,
-  __TYPE__: T,
-}
+type RequiredProp<T = any> = { ____TYPE____: T }
 
 const functionalComponent = <P extends Record<string, any>>(props: P, disableGlobalClass = false) => (
   <T extends Taro.FunctionComponent<P>>(component: T): T => {
