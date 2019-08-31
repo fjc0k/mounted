@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.3.1"></a>
+## [1.3.1](https://github.com/fjc0k/mounted/compare/v1.3.0...v1.3.1) (2019-08-31)
+
+
+### Bug Fixes
+
+* 导出 BottomSheet 组件 ([d92b326](https://github.com/fjc0k/mounted/commit/d92b326))
+
+
+
 <a name="1.3.0"></a>
 # [1.3.0](https://github.com/fjc0k/mounted/compare/v1.2.4...v1.3.0) (2019-08-30)
 
