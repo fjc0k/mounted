@@ -10,6 +10,11 @@ export const MPickerHeaderDefaultProps = createProps({
   title: '' as string,
 
   /**
+   * 自定义标题。
+   */
+  renderTitle: null as React.ReactNode,
+
+  /**
    * 是否无取消按钮。
    *
    * @default false

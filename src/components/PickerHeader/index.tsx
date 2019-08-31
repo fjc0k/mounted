@@ -13,6 +13,7 @@ function MPickerHeader(props: MPickerHeaderProps) {
       </View>
       <View className='m-picker-header__title'>
         {props.title}
+        {props.renderTitle}
       </View>
       <View
         className='m-picker-header__confirm'

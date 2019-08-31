@@ -58,6 +58,7 @@ function MPicker(props: MPickerProps) {
         <View className='m-picker'>
           <MPickerHeader
             {...props}
+            renderTitle={props.renderTitle}
             onCancel={handleCancelClick}
             onConfirm={handleConfirmClick}
           />
