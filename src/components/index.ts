@@ -1,4 +1,5 @@
 // @index('./[A-Z]*', (pp, cc) => `export {default as M${pp.name}} from '${pp.path}'`)
+export {default as MBottomSheet} from './BottomSheet'
 export {default as MDatePicker} from './DatePicker'
 export {default as MECharts} from './ECharts'
 export {default as MNavigationBar} from './NavigationBar'
@@ -13,6 +14,7 @@ export {default as MTransition} from './Transition'
 // @endindex
 
 // @index('./**/{props,types}.ts', (pp, cc) => `export * from '${pp.path}'`)
+export * from './BottomSheet/props'
 export * from './DatePicker/props'
 export * from './ECharts/props'
 export * from './NavigationBar/props'
@@ -31,6 +33,7 @@ export * from './Transition/props'
 
 export type ComponentName = (
   // @index('./[A-Z]*', (pp, cc, { isLast }) => `'${pp.name}'${isLast ? '' : ' |'}`)
+  'BottomSheet' |
   'DatePicker' |
   'ECharts' |
   'NavigationBar' |
