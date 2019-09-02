@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.5.0"></a>
+# [1.5.0](https://github.com/fjc0k/mounted/compare/v1.4.0...v1.5.0) (2019-09-02)
+
+
+### Features
+
+* **NavigationBar:** 支持传入 noHome 属性隐藏返回主页按钮 ([260d450](https://github.com/fjc0k/mounted/commit/260d450))
+
+
+
 <a name="1.4.0"></a>
 # [1.4.0](https://github.com/fjc0k/mounted/compare/v1.3.1...v1.4.0) (2019-08-31)
 
