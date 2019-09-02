@@ -1,4 +1,4 @@
-import Taro, {useState} from '@tarojs/taro'
+import Taro, {useMemo, useState} from '@tarojs/taro'
 import {functionalComponent} from '../component'
 import {last} from 'vtils'
 import {MNavigationBarDefaultProps, MNavigationBarProps} from './props'
@@ -26,6 +26,10 @@ function MNavigationBar(props: MNavigationBarProps) {
     : props.textStyle === 'white'
       ? '#000000'
       : '#FFFFFF'
+
+  const homeButtonVisible = useMemo(() => {
+    return !props.noHome && state.homeButtonVisible
+  }, [state.homeButtonVisible, props.noHome])
 
   useDidEnter(() => {
     const menuRect = Taro.getMenuButtonBoundingClientRect()
@@ -86,12 +90,12 @@ function MNavigationBar(props: MNavigationBarProps) {
           height: `${state.navigationBarFullHeight}px`,
           padding: `${state.navigationBarFullHeight - state.navigationBarHeight + state.verticalPadding}px ${state.horizontalPadding}px ${state.verticalPadding}px ${state.horizontalPadding}px`,
         }}>
-        {!state.backButtonVisible && !state.homeButtonVisible ? null : (
+        {!state.backButtonVisible && !homeButtonVisible ? null : (
           <View className='m-navigation-bar__left' style={{left: `${state.horizontalPadding}px`}}>
             <View
               className='m-navigation-bar__menu'
               style={{
-                width: `${state.backButtonVisible && state.homeButtonVisible ? state.menuButtonWidth : state.menuButtonWidth / 2}px`,
+                width: `${state.backButtonVisible && homeButtonVisible ? state.menuButtonWidth : state.menuButtonWidth / 2}px`,
                 height: `${state.menuButtonHeight}px`,
                 borderRadius: `${state.menuButtonHeight / 2}px`,
               }}>
@@ -101,10 +105,10 @@ function MNavigationBar(props: MNavigationBarProps) {
                   onClick={handleBackClick}
                 />
               )}
-              {!(state.backButtonVisible && state.homeButtonVisible) ? null : (
+              {!(state.backButtonVisible && homeButtonVisible) ? null : (
                 <View className='m-navigation-bar__menu-divider' />
               )}
-              {!state.homeButtonVisible ? null : (
+              {!homeButtonVisible ? null : (
                 <View
                   className='m-navigation-bar__menu-right m-navigation-bar-iconfont m-navigation-bar-icon-home'
                   onClick={handleHomeClick}

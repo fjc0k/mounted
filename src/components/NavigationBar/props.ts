@@ -23,6 +23,13 @@ export const MNavigationBarDefaultProps = createProps({
    * @default 'auto'
    */
   backgroundColor: 'auto' as string,
+
+  /**
+   * 是否隐藏返回主页的按钮。
+   *
+   * @default false
+   */
+  noHome: false as boolean,
 })
 
 export type MNavigationBarProps = typeof MNavigationBarDefaultProps
