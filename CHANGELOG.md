@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.5.1"></a>
+## [1.5.1](https://github.com/fjc0k/mounted/compare/v1.5.0...v1.5.1) (2019-09-04)
+
+
+### Bug Fixes
+
+* **Sticky:** 修复使用 hooks 导致的一些问题 ([819930c](https://github.com/fjc0k/mounted/commit/819930c))
+* **Sticky:** 组件销毁时计数器减一 ([19a7616](https://github.com/fjc0k/mounted/commit/19a7616))
+
+
+
 <a name="1.5.0"></a>
 # [1.5.0](https://github.com/fjc0k/mounted/compare/v1.4.0...v1.5.0) (2019-09-02)
 
