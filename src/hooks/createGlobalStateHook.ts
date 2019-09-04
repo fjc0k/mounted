@@ -1,5 +1,5 @@
 import {EventBus} from 'vtils'
-import {useEffect, useState} from '@tarojs/taro'
+import {useEffect, useMemo, useState} from '@tarojs/taro'
 
 let stateIndex: number = 0
 
@@ -15,6 +15,7 @@ bus.on('setState', (index, value) => {
 
 export function createGlobalStateHook<V>() {
   const index = stateIndex++
+
   return function useGlobalState(initialValue?: V): [V, (value: V) => void] {
     const [value, setValue] = useState<V>(
       () => {
@@ -24,17 +25,20 @@ export function createGlobalStateHook<V>() {
         return store.get(index)
       },
     )
-    const [off] = useState(
-      () => bus.on(
+
+    const off = useMemo(() => {
+      return bus.on(
         'setState',
         (targetIndex, targetValue) => {
           if (targetIndex === index) {
             setValue(targetValue)
           }
         },
-      ),
-    )
-    useEffect(() => off, [off])
+      )
+    }, [])
+
+    useEffect(() => off, [])
+
     return [
       value,
       function setValue(value: V) {

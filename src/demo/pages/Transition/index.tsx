@@ -67,7 +67,7 @@ export default function Transition() {
       </View>
       <MTransition
         name={transitionName}
-        duration={1000}
+        duration={300}
         visible={visible}>
         <View className='poem'>
           {poem.map(sentence => (

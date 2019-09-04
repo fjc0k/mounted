@@ -93,7 +93,7 @@
     "babel-preset-env": "^1.6.1",
     "echarts": "^4.2.1",
     "eslint": "^5.15.3",
-    "eslint-config-io": "^0.8.0",
+    "eslint-config-io": "^0.8.1",
     "miniprogram-api-typings": "^2.4.2-2",
     "nerv-devtools": "^1.4.0",
     "nervjs": "^1.4.0",

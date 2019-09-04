@@ -1,8 +1,8 @@
-import Taro, {useEffect, useState} from '@tarojs/taro'
+import Taro, {useEffect, useRef, useState} from '@tarojs/taro'
 import {EventBus, wait} from 'vtils'
 import {functionalComponent} from '../component'
 import {MStickyDefaultProps, MStickyProps} from './props'
-import {useCustomNavigationBarFullHeight, useDisposer} from '../../hooks'
+import {useCustomNavigationBarFullHeight} from '../../hooks'
 import {View} from '@tarojs/components'
 
 const bus = new EventBus<{
@@ -14,18 +14,19 @@ let stickyComponentCount = -1
 function MSticky(props: MStickyProps) {
   const [fixed, setFixed] = useState(false)
   const [contentHeight, setContentHeight] = useState(0)
-  const [stickyComponentIndex] = useState(stickyComponentCount++)
   const {customNavigationBarFullHeight} = useCustomNavigationBarFullHeight()
-  const {addDisposer} = useDisposer()
+  const stickyComponentIndex = useRef<number>(0)
+  const disconnectIntersectionObserver = useRef<() => void>(null)
 
-  addDisposer([
-    () => { stickyComponentCount-- },
-    bus.on('changeFixed', (index, sourceFixed) => {
-      if (index === stickyComponentIndex && sourceFixed !== fixed) {
+  useEffect(() => {
+    stickyComponentIndex.current = ++stickyComponentCount
+    const offListener = bus.on('changeFixed', (index, sourceFixed) => {
+      if (index === stickyComponentIndex.current && sourceFixed !== fixed) {
         setFixed(!sourceFixed)
       }
-    }),
-  ])
+    })
+    return offListener
+  }, [])
 
   useEffect(() => {
     // 等待一段时间，确保页面渲染已经完成
@@ -34,11 +35,19 @@ function MSticky(props: MStickyProps) {
       wx.createSelectorQuery()
         .in(this.$scope)
         .select('.m-sticky')
-        .boundingClientRect(({height}) => {
+        .boundingClientRect(({top: contentTop, height}) => {
           setContentHeight(height)
 
+          if (contentTop === customNavigationBarFullHeight) {
+            setFixed(true)
+          }
+
+          if (disconnectIntersectionObserver.current) {
+            disconnectIntersectionObserver.current()
+          }
+
           // 监听吸顶内容的位置
-          const top = -(this.index === 0 ? customNavigationBarFullHeight : height)
+          const top = -(height + customNavigationBarFullHeight)
           const intersectionObserver = wx.createIntersectionObserver(this.$scope)
           const relativeToViewport = intersectionObserver.relativeToViewport({top}) as any
           relativeToViewport.observe(
@@ -49,19 +58,18 @@ function MSticky(props: MStickyProps) {
               setFixed(fixed)
 
               // 切换前一个吸顶组件的状态
-              if (this.index >= 1) {
-                bus.emit('changeFixed', stickyComponentIndex - 1, fixed)
+              if (stickyComponentIndex.current >= 1) {
+                bus.emit('changeFixed', stickyComponentIndex.current - 1, fixed)
               }
             },
           )
 
-          addDisposer(
-            () => intersectionObserver.disconnect(),
-          )
+          disconnectIntersectionObserver.current = () => intersectionObserver.disconnect()
         })
         .exec()
     })
-  }, [addDisposer, customNavigationBarFullHeight, stickyComponentIndex])
+    return () => disconnectIntersectionObserver.current && disconnectIntersectionObserver.current()
+  }, [customNavigationBarFullHeight])
 
   return (
     <View
@@ -70,7 +78,7 @@ function MSticky(props: MStickyProps) {
       <View
         className='m-sticky__content'
         style={{top: `${customNavigationBarFullHeight}px`}}>
-        {this.props.children}
+        {props.children}
       </View>
     </View>
   )

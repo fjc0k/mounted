@@ -17,7 +17,7 @@ const getDaysInMonth = memoize(
 )
 
 function MDatePicker(props: MDatePickerProps) {
-  const [data, setData] = useState<MPickerCascadedData>([])
+  const [data, setData] = useState<MPickerCascadedData<{ value: number }>>([])
   const [selectedIndexes, setSelectedIndexes] = useState<number[]>([])
 
   useEffect(
@@ -38,7 +38,7 @@ function MDatePicker(props: MDatePickerProps) {
       const useRawMonthValue = props.formatMonth == null
       const useRawDayValue = props.formatDay == null
 
-      const yearList: MPickerCascadedData = []
+      const yearList: MPickerCascadedData<{ value: number }> = []
       const selectedIndexes: number[] = []
       for (let year = startYear; year <= endYear; year++) {
         reject = props.filterYear && props.filterYear({year: year})
@@ -46,7 +46,7 @@ function MDatePicker(props: MDatePickerProps) {
           if (year === props.selectedDate[0]) {
             selectedIndexes[0] = yearList.length
           }
-          const monthList: MPickerCascadedData = []
+          const monthList: MPickerCascadedData<{ value: number }> = []
           yearList.push({
             label: String(useRawYearValue ? year : props.formatYear({year})),
             value: year,
@@ -62,7 +62,7 @@ function MDatePicker(props: MDatePickerProps) {
               if (month === props.selectedDate[1]) {
                 selectedIndexes[1] = monthList.length
               }
-              const dayList: MPickerCascadedData = []
+              const dayList: MPickerCascadedData<{ value: number }> = []
               monthList.push({
                 label: String(useRawMonthValue ? month : props.formatMonth({year, month})),
                 value: month,

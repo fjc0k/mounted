@@ -4,7 +4,7 @@ import {functionalComponent} from '../component'
 import {MTimePickerDefaultProps, MTimePickerProps} from './props'
 
 function MTimePicker(props: MTimePickerProps) {
-  const [data, setData] = useState<MPickerCascadedData>([])
+  const [data, setData] = useState<MPickerCascadedData<{ value: number }>>([])
   const [selectedIndexes, setSelectedIndexes] = useState<number[]>([])
 
   useEffect(
@@ -22,7 +22,7 @@ function MTimePicker(props: MTimePickerProps) {
       const useRawHourValue = props.formatHour == null
       const useRawMinuteValue = props.formatMinute == null
 
-      const hourList: MPickerCascadedData = []
+      const hourList: MPickerCascadedData<{ value: number }> = []
       const selectedIndexes: number[] = []
       for (let hour = startHour; hour <= endHour; hour++) {
         reject = props.filterHour && props.filterHour({
@@ -32,7 +32,7 @@ function MTimePicker(props: MTimePickerProps) {
           if (hour === props.selectedTime[0]) {
             selectedIndexes[0] = hourList.length
           }
-          const minuteList: MPickerCascadedData = []
+          const minuteList: MPickerCascadedData<{ value: number }> = []
           hourList.push({
             label: String(useRawHourValue ? hour.toString() : props.formatHour({hour})),
             value: hour,
