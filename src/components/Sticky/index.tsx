@@ -25,7 +25,10 @@ function MSticky(props: MStickyProps) {
         setFixed(!sourceFixed)
       }
     })
-    return offListener
+    return () => {
+      stickyComponentCount--
+      offListener()
+    }
   }, [])
 
   useEffect(() => {
