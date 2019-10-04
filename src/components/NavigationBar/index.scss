@@ -24,7 +24,6 @@
     justify-content: space-around;
     font-weight: bold;
     font-size: transformPx(18);
-    border: transformPx(0.5) solid;
 
     &-left, &-right {
       flex-grow: 1;
@@ -41,8 +40,7 @@
       align-items: center;
       justify-content: center;
 
-      &::after {
-        content: '';
+      &__inner {
         display: block;
         width: transformPx(0.5);
         height: 1em;
@@ -57,20 +55,34 @@
 
   &_white &__menu {
     background: rgba(black, 0.15);
-    border-color: rgba(white, 0.25);
+    @include hairline(rgba(white, 0.25), 1000px);
+
+    &_active {
+      &.is-android {
+        background: rgba(white, 0.3);
+      }
+
+      &.is-ios {
+        color: #999;
+      }
+    }
   }
 
-  &_white &__menu-divider::after {
-    background: rgba(white, 0.25);
+  &_white &__menu-divider__inner {
+    @include hairlineRight(rgba(white, 0.25));
   }
 
   &_black &__menu {
     background: rgba(white, 0.55);
-    border-color: rgba(black, 0.25);
+    @include hairline(rgba(black, 0.08), 1000px);
+
+    &_active {
+      background: rgba(black, 0.3);
+    }
   }
 
-  &_black &__menu-divider::after {
-    background: rgba(black, 0.15);
+  &_black &__menu-divider__inner {
+    @include hairlineRight(rgba(black, 0.15));
   }
 }
 

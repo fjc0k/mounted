@@ -1,0 +1,6 @@
+@import '../variables.scss';
+
+// 将 375 尺寸下的像素转换为其他尺寸下的像素
+@function transformPx($px) {
+  @return unquote(($px / (375 / $designWidth)) + 'px');
+}

@@ -1,0 +1,29 @@
+// 纯粹的按钮，去除小程序按钮的默认样式，仅保留居中属性
+@mixin pureButton {
+  position: relative;
+  display: block;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  font-size: inherit;
+  line-height: inherit;
+  border-radius: 0;
+  border: none;
+  color: inherit;
+  background: inherit;
+  overflow: auto;
+  box-sizing: border-box;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+
+  &.button-hover {
+    color: inherit;
+    background: inherit;
+  }
+
+  &::after {
+    content: none;
+    display: none;
+  }
+}

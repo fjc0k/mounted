@@ -30,6 +30,13 @@ export const MNavigationBarDefaultProps = createProps({
    * @default false
    */
   noHome: false as boolean,
+
+  /**
+   * 是否在页面切换时不重置导航栏高度。
+   *
+   * @default false
+   */
+  noReset: false as boolean,
 })
 
 export type MNavigationBarProps = typeof MNavigationBarDefaultProps

@@ -1,0 +1,105 @@
+// ref: https://github.com/blearjs/blear.scss.hairline/blob/master/src/_index.scss
+
+@import '../variables.scss';
+
+%border {
+  content: " ";
+  position: absolute;
+  box-sizing: border-box;
+  top: -50%;
+  right: -50%;
+  bottom: -50%;
+  left: -50%;
+  transform-origin: center;
+  transform: scale(0.5);
+  pointer-events: none;
+}
+
+@function isPercentageUnit($value) {
+  @return str_index($value + "", "%") != null;
+}
+
+@mixin hairline($border-color: $hairlineColor, $border-radius: 0, $border-style: solid) {
+  &.is-ios {
+    border: transformPx(0.5) $border-style $border-color;
+    border-radius: $border-radius;
+    overflow: hidden;
+  }
+
+  &:not(.is-ios) {
+    position: relative;
+    border-radius: $border-radius;
+    overflow: hidden;
+
+    &::after {
+      border: 1PX $border-style $border-color;
+      border-radius: $border-radius;
+
+      @if isPercentageUnit($border-radius) == false {
+        border-radius: $border-radius * 2;
+      }
+
+      @extend %border;
+    }
+  }
+}
+
+@mixin hairlineTop($border-color: $hairlineColor, $border-style: solid) {
+  &.is-ios {
+    border-top: transformPx(0.5) $border-style $border-color;
+  }
+
+  &:not(.is-ios) {
+    position: relative;
+
+    &::after {
+      border-top: 1PX $border-style $border-color;
+      @extend %border;
+    }
+  }
+}
+
+@mixin hairlineRight($border-color: $hairlineColor, $border-style: solid) {
+  &.is-ios {
+    border-right: transformPx(0.5) $border-style $border-color;
+  }
+
+  &:not(.is-ios) {
+    position: relative;
+
+    &::after {
+      border-right: 1PX $border-style $border-color;
+      @extend %border;
+    }
+  }
+}
+
+@mixin hairlineBottom($border-color: $hairlineColor, $border-style: solid) {
+  &.is-ios {
+    border-bottom: transformPx(0.5) $border-style $border-color;
+  }
+
+  &:not(.is-ios) {
+    position: relative;
+
+    &::after {
+      border-bottom: 1PX $border-style $border-color;
+      @extend %border;
+    }
+  }
+}
+
+@mixin hairlineLeft($border-color: $hairlineColor, $border-style: solid) {
+  &.is-ios {
+    border-left: transformPx(0.5) $border-style $border-color;
+  }
+
+  &:not(.is-ios) {
+    position: relative;
+
+    &::after {
+      border-left: 1PX $border-style $border-color;
+      @extend %border;
+    }
+  }
+}

@@ -1,8 +1,8 @@
-import Taro, {useMemo, useState} from '@tarojs/taro'
+import Taro, {useCallback, useMemo, useState} from '@tarojs/taro'
 import {functionalComponent} from '../component'
 import {last} from 'vtils'
 import {MNavigationBarDefaultProps, MNavigationBarProps} from './props'
-import {useCustomNavigationBarFullHeight, useDidEnter, useDidLeave} from '../../hooks'
+import {useCustomNavigationBarFullHeight, useDidEnter, useDidLeave, usePlatform} from '../../hooks'
 import {View} from '@tarojs/components'
 
 function onlyPath(url: string) {
@@ -10,6 +10,8 @@ function onlyPath(url: string) {
 }
 
 function MNavigationBar(props: MNavigationBarProps) {
+  const platform = usePlatform()
+
   const {setCustomNavigationBarFullHeight, resetCustomNavigationBarFullHeight} = useCustomNavigationBarFullHeight()
   const [state, setState] = useState({
     verticalPadding: 0 as number,
@@ -36,7 +38,7 @@ function MNavigationBar(props: MNavigationBarProps) {
     const sysInfo = Taro.getSystemInfoSync()
 
     // 部分情况下 statusBarHeight 可能不存在或为 0，需手动计算，如：
-    // 苹果手机下开启热点、录屏
+    // 苹果手机 iOS 版本 < 13 时下开启热点等
     if (!sysInfo.statusBarHeight) {
       sysInfo.statusBarHeight = sysInfo.screenHeight - sysInfo.windowHeight
     }
@@ -64,17 +66,17 @@ function MNavigationBar(props: MNavigationBarProps) {
     })
   })
 
-  useDidLeave(resetCustomNavigationBarFullHeight)
+  useDidLeave(() => !props.noReset && resetCustomNavigationBarFullHeight())
 
-  function handleBackClick() {
+  const handleBackClick = useCallback(() => {
     Taro.navigateBack()
-  }
+  }, [])
 
-  function handleHomeClick() {
+  const handleHomeClick = useCallback(() => {
     Taro.navigateTo({
       url: props.homePath,
     })
-  }
+  }, [props.homePath])
 
   return (
     <View className={`m-navigation-bar m-navigation-bar_${props.textStyle} ${props.className}`}>
@@ -93,24 +95,27 @@ function MNavigationBar(props: MNavigationBarProps) {
         {!state.backButtonVisible && !homeButtonVisible ? null : (
           <View className='m-navigation-bar__left' style={{left: `${state.horizontalPadding}px`}}>
             <View
-              className='m-navigation-bar__menu'
+              className={`m-navigation-bar__menu is-${platform}`}
               style={{
                 width: `${state.backButtonVisible && homeButtonVisible ? state.menuButtonWidth : state.menuButtonWidth / 2}px`,
                 height: `${state.menuButtonHeight}px`,
-                borderRadius: `${state.menuButtonHeight / 2}px`,
               }}>
               {!state.backButtonVisible ? null : (
                 <View
-                  className='m-navigation-bar__menu-left m-navigation-bar-iconfont m-navigation-bar-icon-back'
+                  className={`m-navigation-bar__menu-left m-navigation-bar-iconfont m-navigation-bar-icon-back is-${platform}`}
+                  hoverClass='m-navigation-bar__menu_active'
                   onClick={handleBackClick}
                 />
               )}
               {!(state.backButtonVisible && homeButtonVisible) ? null : (
-                <View className='m-navigation-bar__menu-divider' />
+                <View className='m-navigation-bar__menu-divider'>
+                  <View className={`m-navigation-bar__menu-divider__inner is-${platform}`} />
+                </View>
               )}
               {!homeButtonVisible ? null : (
                 <View
-                  className='m-navigation-bar__menu-right m-navigation-bar-iconfont m-navigation-bar-icon-home'
+                  className={`m-navigation-bar__menu-right m-navigation-bar-iconfont m-navigation-bar-icon-home is-${platform}`}
+                  hoverClass='m-navigation-bar__menu_active'
                   onClick={handleHomeClick}
                 />
               )}
