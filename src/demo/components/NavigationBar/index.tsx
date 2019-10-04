@@ -11,6 +11,7 @@ function XNavigationBar(props: XNavigationBarProps) {
   return (
     <MNavigationBar
       homePath={pageUrls.HomeIndex}
+      noReset={true}
       textStyle='white'
       backgroundColor='#1AAD19'>
       {props.children}

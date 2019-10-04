@@ -3,10 +3,10 @@
 .m-picker-header {
   display: flex;
   align-items: center;
-  padding: transformPx(10) transformPx(15);
-  border-bottom: transformPx(0.5) solid $hairlineColor;
+  @include hairlineBottom($hairlineColor);
 
   &__cancel {
+    padding: transformPx(10) transformPx(15);
     flex-shrink: 0;
     font-size: transformPx(17);
     color: $grayColor;
@@ -15,6 +15,10 @@
       visibility: hidden;
       opacity: 0;
       pointer-events: none;
+    }
+
+    &_active {
+      opacity: 0.6;
     }
   }
 
@@ -28,9 +32,14 @@
   }
 
   &__confirm {
+    padding: transformPx(10) transformPx(15);
     flex-shrink: 0;
     font-size: transformPx(17);
     color: $primaryColor;
+
+    &_active {
+      opacity: 0.6;
+    }
   }
 }
 
