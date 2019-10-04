@@ -1,6 +1,6 @@
 import MPickerHeader from '../PickerHeader'
 import MPickerView from '../PickerView'
-import Taro, {useEffect, useRef, useState} from '@tarojs/taro'
+import Taro, {useCallback, useEffect, useRef, useState} from '@tarojs/taro'
 import XBottomSheet from '../BottomSheet'
 import {functionalComponent} from '../component'
 import {MPickerDefaultProps, MPickerProps} from './props'
@@ -9,48 +9,45 @@ import {View} from '@tarojs/components'
 function MPicker(props: MPickerProps) {
   const [visible, setVisible] = useState<boolean>(false)
   const [selectedIndexes, setSelectedIndexes] = useState<number[]>([])
-  const canClose = useRef<boolean>(false)
+  const canClose = useRef<boolean>(true)
 
-  useEffect(
-    () => {
-      setSelectedIndexes(props.selectedIndexes)
-    },
-    [props.selectedIndexes],
-  )
+  useEffect(() => {
+    setSelectedIndexes(props.selectedIndexes)
+  }, [props.selectedIndexes])
 
-  function handleVisibleChange(visible: boolean) {
+  const handleVisibleChange = useCallback((visible: boolean) => {
     setVisible(visible)
     if (!visible) {
       setSelectedIndexes(props.selectedIndexes)
     }
-  }
+  }, [props.selectedIndexes])
 
-  function handlePickStart() {
+  const handlePickStart = useCallback(() => {
     canClose.current = false
-  }
+  }, [])
 
-  function handlePickEnd() {
+  const handlePickEnd = useCallback(() => {
     canClose.current = true
-  }
+  }, [])
 
-  function handlePickChange(selectedIndexes: number[]) {
+  const handlePickChange = useCallback((selectedIndexes: number[]) => {
     setSelectedIndexes(selectedIndexes)
-  }
+  }, [])
 
-  function handleCancelClick() {
+  const handleCancelClick = useCallback(() => {
     if (canClose.current) {
       setSelectedIndexes(props.selectedIndexes)
       setVisible(false)
       props.onCancel()
     }
-  }
+  }, [props.selectedIndexes, props.onCancel])
 
-  function handleConfirmClick() {
+  const handleConfirmClick = useCallback(() => {
     if (canClose.current) {
       setVisible(false)
       props.onConfirm(selectedIndexes.slice())
     }
-  }
+  }, [props.onConfirm, selectedIndexes])
 
   return props.disabled ? props.children : (
     <XBottomSheet
