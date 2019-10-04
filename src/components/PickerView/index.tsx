@@ -1,4 +1,4 @@
-import Taro, {useEffect, useMemo, useRef, useState} from '@tarojs/taro'
+import Taro, {useCallback, useEffect, useMemo, useRef, useState} from '@tarojs/taro'
 import {Block, PickerView, PickerViewColumn, View} from '@tarojs/components'
 import {clamp, isArray, isNumber, parseCSSValue} from 'vtils'
 import {functionalComponent} from '../component'
@@ -16,56 +16,45 @@ function MPickerView(props: MPickerViewProps) {
   const prevData = usePrevious(props.data, [])
   const prevSelectedIndexes = usePrevious(props.selectedIndexes, [])
   // 样式
-  const styles = useMemo<Record<'view' | 'indicator', React.CSSProperties>>(
-    () => {
-      const {visibleItemCount, itemHeight} = props
-      const {value: pureItemHeight, unit} = parseCSSValue(itemHeight)
-      const viewHeight = `${pureItemHeight * visibleItemCount}${unit}`
-      return {
-        view: {
-          height: viewHeight,
-        },
-        indicator: {
-          height: itemHeight,
-        },
-      }
-    },
-    [props],
-  )
+  const styles = useMemo<Record<'view' | 'indicator', React.CSSProperties>>(() => {
+    const {value: pureItemHeight, unit} = parseCSSValue(props.itemHeight)
+    const viewHeight = `${pureItemHeight * props.visibleItemCount}${unit}`
+    return {
+      view: {
+        height: viewHeight,
+      },
+      indicator: {
+        height: props.itemHeight,
+      },
+    }
+  }, [props.visibleItemCount, props.itemHeight])
   // 分隔符
-  const separators = useMemo<any[]>(
-    () => {
-      const {separator} = props
-      const separatorIsArray = isArray(separator)
-      const normalizedSeparator = []
-      for (let i = 0; i < normalizedData.length - 1; i++) {
-        normalizedSeparator.push(
-          separatorIsArray
-            ? separator[i]
-            : separator,
-        )
-      }
-      return normalizedSeparator.map(
-        separator => separator == null || separator === ''
-          ? null
-          : separator,
+  const separators = useMemo<any[]>(() => {
+    const separatorIsArray = isArray(props.separator)
+    const normalizedSeparator = []
+    for (let i = 0; i < normalizedData.length - 1; i++) {
+      normalizedSeparator.push(
+        separatorIsArray
+          ? props.separator[i]
+          : props.separator,
       )
-    },
-    [props, normalizedData.length],
-  )
-  const fullSelectedIndexes = useMemo<number[]>(
-    () => {
-      const selectedIndexes = localSelectedIndexes.slice()
-      for (let i = 0, len = selectedIndexes.length; i < len; i++) {
-        selectedIndexes.splice(i * 2 + 1, 0, 0)
-      }
-      return selectedIndexes
-    },
-    [localSelectedIndexes],
-  )
+    }
+    return normalizedSeparator.map(
+      separator => separator == null || separator === ''
+        ? null
+        : separator,
+    )
+  }, [props.separator, normalizedData.length])
+  const fullSelectedIndexes = useMemo<number[]>(() => {
+    const selectedIndexes = localSelectedIndexes.slice()
+    for (let i = 0, len = selectedIndexes.length; i < len; i++) {
+      selectedIndexes.splice(i * 2 + 1, 0, 0)
+    }
+    return selectedIndexes
+  }, [localSelectedIndexes])
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  function update(nextProps: Pick<MPickerViewProps, 'data' | 'selectedIndexes'>, prevProps: Pick<MPickerViewProps, 'data' | 'selectedIndexes'>, emit = false) {
+  const update = useCallback((nextProps: Pick<MPickerViewProps, 'data' | 'selectedIndexes'>, prevProps: Pick<MPickerViewProps, 'data' | 'selectedIndexes'>, emit = false) => {
     const {data, selectedIndexes} = nextProps
     const {data: prevData, selectedIndexes: prevSelectedIndexes} = prevProps
     isCascaded.current = !isArray(data[0])
@@ -109,25 +98,22 @@ function MPickerView(props: MPickerViewProps) {
     if (emit) {
       props.onChange(revisedSelectedIndexes.slice())
     }
-  }
+  }, [props.onChange])
 
-  useEffect(
-    () => {
-      update(
-        {
-          data: props.data,
-          selectedIndexes: props.selectedIndexes,
-        },
-        {
-          data: prevData,
-          selectedIndexes: prevSelectedIndexes,
-        },
-      )
-    },
-    [prevData, prevSelectedIndexes, props.data, props.selectedIndexes, update],
-  )
+  useEffect(() => {
+    update(
+      {
+        data: props.data,
+        selectedIndexes: props.selectedIndexes,
+      },
+      {
+        data: prevData,
+        selectedIndexes: prevSelectedIndexes,
+      },
+    )
+  }, [prevData, prevSelectedIndexes, props.data, props.selectedIndexes, update])
 
-  function handleChange(e: any) {
+  const handleChange = useCallback((e: any) => {
     const selectedIndexes = (e.detail.value as number[])
       // 去除 separator 的值
       .filter((_, i) => i % 2 === 0)
@@ -151,7 +137,7 @@ function MPickerView(props: MPickerViewProps) {
         true,
       )
     }
-  }
+  }, [normalizedData, props.onChange, props.data])
 
   return (
     <PickerView

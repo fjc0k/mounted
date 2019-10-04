@@ -1,5 +1,5 @@
 import MPicker from '../Picker'
-import Taro, {useEffect, useState} from '@tarojs/taro'
+import Taro, {useCallback, useEffect, useState} from '@tarojs/taro'
 import {functionalComponent} from '../component'
 import {MPickerData} from '../Picker/types'
 import {MPickerProps} from '../Picker/props'
@@ -9,23 +9,17 @@ function MSinglePicker(props: MSinglePickerProps) {
   const [data, setData] = useState<MPickerData>([])
   const [selectedIndexes, setSelectedIndexes] = useState<number[]>([])
 
-  useEffect(
-    () => {
-      setData([props.data])
-    },
-    [props.data],
-  )
+  useEffect(() => {
+    setData([props.data])
+  }, [props.data])
 
-  useEffect(
-    () => {
-      setSelectedIndexes([props.selectedIndex])
-    },
-    [props.selectedIndex],
-  )
+  useEffect(() => {
+    setSelectedIndexes([props.selectedIndex])
+  }, [props.selectedIndex])
 
-  const handleConfirm: MPickerProps['onConfirm'] = selectedIndexes => {
+  const handleConfirm: MPickerProps['onConfirm'] = useCallback(selectedIndexes => {
     props.onConfirm(selectedIndexes[0])
-  }
+  }, [props.onConfirm])
 
   return (
     <MPicker
