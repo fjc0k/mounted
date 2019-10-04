@@ -20,16 +20,16 @@ function MSticky(props: MStickyProps) {
 
   useEffect(() => {
     stickyComponentIndex.current = ++stickyComponentCount
-    const offListener = bus.on('changeFixed', (index, sourceFixed) => {
+    return () => stickyComponentCount--
+  }, [])
+
+  useEffect(() => {
+    return bus.on('changeFixed', (index, sourceFixed) => {
       if (index === stickyComponentIndex.current && sourceFixed !== fixed) {
         setFixed(!sourceFixed)
       }
     })
-    return () => {
-      stickyComponentCount--
-      offListener()
-    }
-  }, [])
+  }, [fixed])
 
   useEffect(() => {
     // 等待一段时间，确保页面渲染已经完成
