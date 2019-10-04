@@ -75,7 +75,7 @@ function MPopup(props: MPopupProps) {
           visible={props.visible}
           duration={props.duration}
           onTransitionEnd={handleTransitionEnd}>
-          {this.props.children}
+          {props.children}
         </MTransition>
       </View>
     </View>
