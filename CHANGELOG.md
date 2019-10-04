@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.6.0"></a>
+# [1.6.0](https://github.com/fjc0k/mounted/compare/v1.5.3...v1.6.0) (2019-10-04)
+
+
+### Bug Fixes
+
+* **Picker:** canClose 初始值应为 true ([7fb20a9](https://github.com/fjc0k/mounted/commit/7fb20a9))
+* **Popup:** 调整类组件遗留代码 ([8a4e2c4](https://github.com/fjc0k/mounted/commit/8a4e2c4))
+* **Sticky:** 将 fixed 加入监听依赖 ([60b8cc7](https://github.com/fjc0k/mounted/commit/60b8cc7))
+
+
+### Features
+
+* **NavigationBar:** 一系列的优化 ([84c39c7](https://github.com/fjc0k/mounted/commit/84c39c7))
+* **PickerHeader:** 优化样式及点击反馈效果 ([182acc2](https://github.com/fjc0k/mounted/commit/182acc2))
+* 优化 ([09cd948](https://github.com/fjc0k/mounted/commit/09cd948))
+
+
+
 <a name="1.5.3"></a>
 ## [1.5.3](https://github.com/fjc0k/mounted/compare/v1.5.2...v1.5.3) (2019-09-04)
 
