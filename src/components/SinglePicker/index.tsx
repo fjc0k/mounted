@@ -7,7 +7,7 @@ import {MSinglePickerDefaultProps, MSinglePickerProps} from './props'
 
 function MSinglePicker(props: MSinglePickerProps) {
   const [data, setData] = useState<MPickerData>([])
-  const [selectedIndexes, setSelectedIndexes] = useState<number[]>([])
+  const [selectedIndexes, setSelectedIndexes] = useState<number[]>([0])
 
   useEffect(() => {
     setData([props.data])
